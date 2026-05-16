@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Arena Lite</title>
+
+<!-- PWA / Home Screen config -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Arena Lite">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1B263B">
+<meta name="description" content="Arena Lite — Evidence-led curriculum planning for AP and SEMH practitioners.">
+
+<!-- Icons -->
+<link rel="apple-touch-icon" sizes="512x512" href="/arena-icon-512.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/arena-icon-512.png">
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="/app-manifest.json">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #1B263B;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 100vh; padding: 24px;
+  color: #fff; text-align: center;
+}
+.logo {
+  width: 96px; height: 96px;
+  background: rgba(255,255,255,.07);
+  border-radius: 22px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 1.6rem; font-weight: 700; margin-bottom: 8px;
+  letter-spacing: -.3px;
+}
+h1 span { color: #C5A059; }
+p { font-size: .9rem; color: rgba(255,255,255,.55); margin-bottom: 28px; line-height: 1.6; }
+.spinner {
+  width: 32px; height: 32px;
+  border: 3px solid rgba(255,255,255,.15);
+  border-top-color: #C5A059;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.status { font-size: .8rem; color: rgba(255,255,255,.35); }
+.manual-link {
+  margin-top: 24px;
+  font-size: .78rem; color: rgba(255,255,255,.3);
+}
+.manual-link a { color: #C5A059; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+    <path d="M12 3L4 7.5V16.5L12 21L20 16.5V7.5L12 3Z"
+          stroke="#C5A059" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M12 3V21M4 7.5L20 16.5M20 7.5L4 16.5"
+          stroke="#C5A059" stroke-width="1.1" stroke-opacity=".4"/>
+  </svg>
+</div>
+
+<h1>Arena <span>Lite</span></h1>
+<p>Opening your workspace…</p>
+<div class="spinner"></div>
+<p class="status" id="status">Redirecting…</p>
+
+<div class="manual-link" id="manual-link" style="display:none;">
+  Not redirecting? <a id="direct-link" href="#">Open Arena Lite →</a>
+</div>
+
+<script>
+// ── Portal URL storage ─────────────────────────────────────────────────────
+// On first visit the URL is taken from the query string: /app?url=PORTAL_URL
+// It is stored in localStorage so future taps go straight there.
+// To update the portal URL: visit /app?url=NEW_PORTAL_URL
+
+var STORAGE_KEY = 'arena_lite_portal_url';
+
+function getPortalUrl() {
+  // Check query param first (allows override)
+  var params = new URLSearchParams(window.location.search);
+  var fromParam = params.get('url');
+  if (fromParam) {
+    try { localStorage.setItem(STORAGE_KEY, fromParam); } catch(e) {}
+    return fromParam;
+  }
+  // Fall back to stored URL
+  try { return localStorage.getItem(STORAGE_KEY); } catch(e) { return null; }
+}
+
+var portalUrl = getPortalUrl();
+
+if (portalUrl) {
+  document.getElementById('status').textContent = 'Opening Arena Lite…';
+  document.getElementById('direct-link').href = portalUrl;
+  // Show manual link after 2s as fallback
+  setTimeout(function() {
+    document.getElementById('manual-link').style.display = 'block';
+  }, 2000);
+  // Redirect immediately
+  window.location.replace(portalUrl);
+} else {
+  // No URL stored — show setup instructions
+  document.querySelector('.spinner').style.display = 'none';
+  document.getElementById('status').textContent = '';
+  document.querySelector('p').textContent = 'Your Arena Lite portal link hasn\'t been set up yet.';
+  document.getElementById('manual-link').style.display = 'block';
+  document.getElementById('direct-link').href = 'https://www.thearenahub.com';
+  document.getElementById('direct-link').textContent = 'Go to thearenahub.com';
+}
+</script>
+</body>
+</html>

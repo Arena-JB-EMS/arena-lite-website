@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — The Arena Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --navy:#1B263B; --gold:#C5A059; --light:#F5F7FA; --mid:#E0E4EB; --muted:#6B7280; }
+body {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  background: var(--light); color: var(--navy);
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 24px;
+}
+.card {
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 4px 28px rgba(27,38,59,.10);
+  padding: 40px 36px; width: 100%; max-width: 440px;
+}
+.logo-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.logo-icon {
+  width: 40px; height: 40px; background: var(--navy);
+  border-radius: 9px; display: flex; align-items: center; justify-content: center;
+}
+.brand-name { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; }
+.brand-name span { color: var(--gold); }
+h1 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; margin-bottom: 8px; }
+.sub { font-size: .9rem; color: var(--muted); margin-bottom: 28px; line-height: 1.5; }
+.info-box {
+  background: var(--light); border-radius: 10px;
+  padding: 18px 20px; margin-bottom: 24px;
+  border-left: 4px solid var(--gold);
+}
+.info-box h3 { font-size: .9rem; margin-bottom: 8px; }
+.info-box p  { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+label { display: block; font-size: .77rem; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+input[type="url"] {
+  width: 100%; padding: 12px 14px; border: 1.5px solid var(--mid);
+  border-radius: 8px; font-size: .95rem; outline: none; margin-bottom: 16px;
+  transition: border-color .15s; -webkit-appearance: none;
+}
+input:focus { border-color: var(--gold); }
+.btn {
+  display: block; width: 100%; background: var(--navy); color: #fff;
+  font-weight: 700; font-size: 1rem; padding: 14px;
+  border-radius: 10px; border: none; cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif; transition: background .15s;
+}
+.btn:hover { background: #243650; }
+.divider { border: none; border-top: 1px solid var(--mid); margin: 24px 0 20px; }
+.help { font-size: .8rem; color: var(--muted); text-align: center; line-height: 1.6; }
+.help a { color: var(--navy); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo-bar">
+    <div class="logo-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3L4 7.5V16.5L12 21L20 16.5V7.5L12 3Z" stroke="#C5A059" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="brand-name">The Arena <span>Hub</span></span>
+  </div>
+
+  <h1>Log in to Arena Lite</h1>
+  <p class="sub">Arena Lite is accessed via your unique instance URL — sent to you in your welcome email.</p>
+
+  <div class="info-box">
+    <h3>Where is my URL?</h3>
+    <p>When your instance was set up, you received an email from <strong>hello@thearenahub.co.uk</strong> with a link that looks like:<br><br><code style="font-size:.78rem;word-break:break-all;">https://script.google.com/macros/s/...</code><br><br>Bookmark that link — it's your direct access to Arena Lite.</p>
+  </div>
+
+  <label for="urlInput">Paste your Arena Lite URL</label>
+  <input type="url" id="urlInput" placeholder="https://script.google.com/macros/s/..." autocomplete="off">
+  <button class="btn" onclick="goToUrl()">Open Arena Lite →</button>
+
+  <hr class="divider">
+  <div class="help">
+    Can't find your URL? Email <a href="mailto:hello@thearenahub.co.uk">hello@thearenahub.co.uk</a><br>
+    Don't have an account? <a href="/#pricing">Get Arena Lite →</a>
+  </div>
+</div>
+
+<script>
+function goToUrl() {
+  var url = document.getElementById('urlInput').value.trim();
+  if (!url.startsWith('https://script.google.com/macros/')) {
+    alert('That doesn\'t look like an Arena Lite URL. Check your welcome email.');
+    return;
+  }
+  window.location.href = url;
+}
+document.getElementById('urlInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') goToUrl();
+});
+</script>
+</body>
+</html>

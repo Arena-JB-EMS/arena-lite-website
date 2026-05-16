@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Terms of Service — The Arena Hub Ltd. Arena Lite Subscription Agreement.">
+<title>Terms of Service — The Arena Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:   #1B263B;
+  --gold:   #C5A059;
+  --gold-l: rgba(197,160,89,.14);
+  --light:  #F5F7FA;
+  --mid:    #E0E4EB;
+  --muted:  #6B7280;
+  --white:  #ffffff;
+  --warn:   #E65100;
+  --radius: 14px;
+  --shadow: 0 4px 28px rgba(27,38,59,.10);
+  --nav-h:  68px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  color: var(--navy);
+  background: var(--white);
+  line-height: 1.7;
+}
+h1, h2, h3 { font-family: 'Rajdhani', 'Segoe UI', sans-serif; line-height: 1.2; }
+a { text-decoration: none; color: inherit; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navy);
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 5%;
+  box-shadow: 0 2px 12px rgba(0,0,0,.18);
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; flex: 1; }
+.nav-logo {
+  width: 38px; height: 38px;
+  background: rgba(197,160,89,.18);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-name { font-family: 'Rajdhani', sans-serif; color: var(--white); font-size: 1.2rem; font-weight: 700; letter-spacing: .3px; }
+.nav-name span { color: var(--gold); }
+.nav-home {
+  color: var(--gold); font-size: .9rem; font-weight: 500;
+  padding: 8px 20px; border: 1.5px solid rgba(197,160,89,.5);
+  border-radius: 8px;
+  transition: background .15s;
+}
+.nav-home:hover { background: var(--gold-l); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: linear-gradient(135deg, var(--navy) 0%, #243650 100%);
+  padding: 64px 5% 56px;
+  text-align: center;
+}
+.page-header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--white); font-weight: 700; margin-bottom: 12px;
+}
+.page-header p {
+  color: rgba(255,255,255,.65); font-size: 1rem;
+  max-width: 560px; margin: 0 auto;
+}
+.page-header .updated {
+  display: inline-block;
+  margin-top: 20px;
+  background: rgba(197,160,89,.15);
+  border: 1px solid rgba(197,160,89,.35);
+  border-radius: 999px;
+  padding: 4px 16px;
+  font-size: .78rem; font-weight: 600;
+  color: var(--gold); letter-spacing: .5px;
+}
+
+/* ── CONTENT ── */
+.content-wrap {
+  max-width: 780px; margin: 0 auto;
+  padding: 56px 5% 72px;
+}
+.content-wrap h2 {
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--navy);
+  margin-top: 40px; margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold-l);
+}
+.content-wrap h2:first-child { margin-top: 0; }
+.content-wrap p { margin-bottom: 16px; color: #2d3748; font-size: 1rem; }
+.content-wrap p:last-child { margin-bottom: 0; }
+.content-wrap strong { color: var(--navy); font-weight: 600; }
+
+.callout {
+  background: var(--light);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: .95rem;
+  color: var(--navy);
+}
+
+.disclaimer-box {
+  background: #FFF8E1;
+  border: 2px solid var(--warn);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 28px 0;
+  font-size: .95rem;
+  color: var(--navy);
+  line-height: 1.7;
+}
+.disclaimer-box .disclaimer-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--warn);
+  text-transform: uppercase; letter-spacing: .5px;
+  margin-bottom: 12px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 32px 5%;
+  text-align: center;
+}
+footer p { color: rgba(255,255,255,.4); font-size: .82rem; margin-bottom: 8px; }
+footer a { color: var(--gold); }
+footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3L4 7.5V16.5L12 21L20 16.5V7.5L12 3Z" stroke="#C5A059" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M12 3V21M4 7.5L20 16.5M20 7.5L4 16.5" stroke="#C5A059" stroke-width="1.2" stroke-opacity=".45"/>
+      </svg>
+    </div>
+    <span class="nav-name">The Arena <span>Hub</span></span>
+  </div>
+  <a href="index.html" class="nav-home">← Back to Home</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <h1>Terms of Service</h1>
+  <p>Arena Lite Subscription Agreement between The Arena Hub Ltd and the subscribing practitioner or school.</p>
+  <div class="updated">Last updated: May 2026</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <h2>1. Parties</h2>
+  <p>This Agreement is between <strong>The Arena Hub Ltd</strong> ("Arena Hub", "we", "us"), a company registered in England and Wales, and the subscribing practitioner or school ("User", "you") who purchases access to the Arena Lite platform. By completing the subscription checkout, you agree to be bound by these Terms.</p>
+
+  <h2>2. The Service</h2>
+  <p><strong>Arena Lite</strong> is a cloud-based evidence management platform designed for Alternative Provision (AP) and Social, Emotional, and Mental Health (SEMH) educational settings. It is accessed via your existing Google Workspace account and enables practitioners to capture, organise, and report on student evidence in a forensically structured, UK GDPR-compliant manner.</p>
+  <p>The service includes: forensic evidence capture, EYFS taxonomy mapping (285 objectives), mobile quick capture, safeguarding log, student scorecards, gap analysis, and LA-ready PDF report generation. Arena Hub reserves the right to add, modify, or remove features with reasonable notice.</p>
+
+  <h2>3. Subscription and Payment</h2>
+  <p>Arena Lite is offered on two subscription plans, both billed through Stripe, Inc. and subject to auto-renewal:</p>
+  <div class="callout">
+    <strong>Monthly plan:</strong> £19.99 per practitioner per month, billed monthly.<br><br>
+    <strong>Annual plan:</strong> £180 per practitioner per year, billed annually (equivalent to £15/month — a saving of 25%).
+  </div>
+  <p>Subscriptions auto-renew at the end of each billing period unless cancelled before the renewal date. You will receive a reminder email before annual renewal. Payment is processed securely by Stripe. Arena Hub does not store payment card data.</p>
+  <p><strong>14-day cooling-off period:</strong> In accordance with the Consumer Contracts Regulations 2013, you have the right to cancel within 14 days of your initial purchase and receive a full refund, provided you have not activated the licence and commenced use of the service. Activation constitutes agreement to waive this right, as permitted by the regulations for digital services where delivery is immediate.</p>
+
+  <h2>4. Licence</h2>
+  <p>Upon successful payment, Arena Hub grants you a limited, non-exclusive, non-transferable licence to use Arena Lite for the duration of your active subscription. The licence covers a single named practitioner. You may not share your licence key or account credentials with third parties, sub-licence the platform, or use Arena Lite for purposes other than those described in these Terms.</p>
+  <p>If you require licences for multiple practitioners within one school, please contact <a href="mailto:hello@thearenahub.co.uk">hello@thearenahub.co.uk</a> to discuss multi-seat arrangements.</p>
+
+  <h2>5. Data Sovereignty and UK GDPR</h2>
+  <p>Data sovereignty is a founding principle of Arena Lite. All student data — including evidence records, safeguarding logs, and student profiles — is stored exclusively within your school's Google Workspace environment (your Google Drive). Arena Hub does not hold or retain student personally identifiable information (PII) on its own systems.</p>
+  <p>In relation to student data that transiently passes through Arena Hub's processing infrastructure during a write or read operation, the following roles apply under UK GDPR:</p>
+  <div class="callout">
+    <strong>Data Controller:</strong> The User (subscribing school or practitioner). You are responsible for ensuring that your use of Arena Lite complies with your school's Data Protection Policy, your legal obligations as a Data Controller under UK GDPR, and any applicable ICO guidance.<br><br>
+    <strong>Data Processor:</strong> The Arena Hub Ltd, acting under the instructions of the Data Controller as documented in our Data Processing Agreement (Article 28 UK GDPR). A DPA is available upon request.
+  </div>
+  <p>Arena Hub's obligations as Data Processor include: processing student data only on your documented instructions, implementing appropriate technical and organisational security measures, not engaging sub-processors without your knowledge, and assisting you in responding to data subject rights requests where technically feasible.</p>
+
+  <h2>6. Acceptable Use</h2>
+  <p>Arena Lite is licensed for educational evidence management purposes only. You agree not to use the platform for any purpose other than the capture, organisation, and reporting of student evidence in an educational setting. You must not resell, redistribute, sub-licence, or commercially exploit the Arena Lite platform or any component thereof. You must not attempt to reverse-engineer, decompile, or extract the underlying source code of the platform.</p>
+  <p>You are responsible for ensuring that all staff who use your Arena Lite account do so in compliance with these Terms and your school's data protection obligations.</p>
+
+  <h2>7. Intellectual Property</h2>
+  <p>Arena Hub retains full ownership of all intellectual property in the Arena Lite platform, including but not limited to: the software architecture, the Library codebase (Google Apps Script and Cloud Run services), the EYFS taxonomy mapping data, all UI/UX designs, documentation, and trademarks associated with The Arena Hub and Arena Lite. The Library code is proprietary and is not made available to Users. No rights in Arena Hub's intellectual property are transferred by this Agreement.</p>
+  <p>You retain ownership of all student data and evidence content that you create and store within your Google Workspace using the platform.</p>
+
+  <h2>8. Regulatory Disclaimer — Awarding Bodies and Accreditation</h2>
+
+  <div class="disclaimer-box">
+    <div class="disclaimer-title">Important — Please Read</div>
+    Arena Hub is an evidence management infrastructure, NOT an awarding body. The 'Recognition' of credits within this system is for internal tracking and progress visualisation only. Formal accreditation can only be granted by authorised awarding bodies (e.g., AQA, Pearson). Evidence captured prior to unit registration may be subject to 'Recognition of Prior Learning' (RPL) policies. Users must ensure all historical evidence meets the VARCS standards (Valid, Authentic, Reliable, Current, Sufficient) required by the relevant qualification moderator. Purchase of unit registration from the awarding body is a mandatory prerequisite for formal submission.
+  </div>
+
+  <h2>9. Termination</h2>
+  <p>Either party may terminate this Agreement by giving 30 days' written notice. You may cancel your subscription at any time via the account portal or by emailing <a href="mailto:hello@thearenahub.co.uk">hello@thearenahub.co.uk</a>. Cancellation takes effect at the end of the current billing period; no refund will be issued for the unused portion of the current period, except where required by statutory consumer rights.</p>
+  <p>Arena Hub may suspend or terminate your access immediately if you materially breach these Terms, including but not limited to: licence key sharing, reverse engineering, or use of the platform for unlawful purposes.</p>
+  <p>Upon termination, your licence to use Arena Lite ceases. Your student data, which resides entirely within your own Google Workspace, remains under your control and is unaffected by termination.</p>
+
+  <h2>10. Limitation of Liability</h2>
+  <p>Arena Hub provides Arena Lite on an "as is" and "as available" basis. To the fullest extent permitted by law, Arena Hub shall not be liable for any indirect, incidental, special, or consequential loss or damage arising from your use of the platform, including but not limited to: loss of data, loss of revenue, or regulatory sanction resulting from inaccurate evidence records. Arena Hub's total aggregate liability to you shall not exceed the total subscription fees paid by you in the 12 months preceding the claim.</p>
+  <p>Nothing in these Terms limits liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be excluded under English law.</p>
+
+  <h2>11. Governing Law</h2>
+  <p>These Terms are governed by and construed in accordance with the laws of England and Wales. Any disputes arising under or in connection with this Agreement shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+  <h2>12. Changes to These Terms</h2>
+  <p>Arena Hub may update these Terms from time to time. Material changes will be communicated to active subscribers by email at least 30 days before they take effect. Continued use of the platform after the effective date of updated Terms constitutes acceptance of the revised Terms.</p>
+
+  <h2>13. Contact</h2>
+  <p>For all queries relating to these Terms, your subscription, or your data, please contact:</p>
+  <p><strong>The Arena Hub Ltd</strong><br>
+  Email: <a href="mailto:hello@thearenahub.co.uk">hello@thearenahub.co.uk</a></p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 The Arena Hub Ltd. All rights reserved. Registered in England and Wales.</p>
+  <p><a href="index.html">← Return to Home</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="dpa.html">Data Processing Agreement</a></p>
+</footer>
+
+</body>
+</html>

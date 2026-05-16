@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "name": "thearenahub",
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/",          "dest": "/index.html" },
+    { "src": "/login",     "dest": "/login.html" },
+    { "src": "/success",   "dest": "/success.html" },
+    { "src": "/privacy",          "dest": "/privacy.html" },
+    { "src": "/terms",           "dest": "/terms.html" },
+    { "src": "/app",             "dest": "/app.html" },
+    { "src": "/app-manifest.json", "dest": "/app-manifest.json" },
+    { "src": "/(.*)",            "dest": "/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options",    "value": "nosniff" },
+        { "key": "X-Frame-Options",           "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection",          "value": "1; mode=block" },
+        { "key": "Referrer-Policy",           "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}

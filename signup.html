@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!--
+  Arena Lite — Self-Service Trial Signup Page
+  File:    signup.html
+  Version: 1.0.0
+  Deploy:  Add to arena-jb-ems/arena-lite-website GitHub repo root.
+           Vercel will auto-deploy at https://www.thearenahub.com/signup.html
+  Links:   Add "New User? Create a free account" link on index.html near the Log In button.
+
+  BEFORE DEPLOYING: replace CLOUD_RUN_URL constant below with the live
+  arena-ingestor URL. It is already set to the known production URL.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account — Arena Lite</title>
+<meta name="description" content="Start your Arena Lite free trial. 5 evidence captures included, no credit card required.">
+<meta name="robots" content="noindex"><!-- Signup page — no need to index -->
+<link rel="icon" href="https://arena-jb-ems.github.io/arena-lite-website/assets/arena-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:     #1B263B;
+    --gold:     #C5A059;
+    --gold-lt:  rgba(197,160,89,.12);
+    --light:    #F5F7FA;
+    --mid:      #E0E4EB;
+    --text:     #1B263B;
+    --muted:    #6B7280;
+    --ok:       #2E7D32;
+    --ok-bg:    #E8F5E9;
+    --err:      #C62828;
+    --err-bg:   #FFEBEE;
+    --radius:   14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Nav ── */
+  nav {
+    background: var(--navy);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    flex-shrink: 0;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: #fff;
+  }
+  .nav-logo {
+    width: 36px; height: 36px;
+    background: rgba(197,160,89,.15);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-name { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; }
+  .nav-links { display: flex; gap: 20px; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,.7); text-decoration: none; font-size: .88rem; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-login {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 7px 16px; border-radius: 6px; font-weight: 600; font-size: .85rem !important;
+  }
+
+  /* ── Page layout ── */
+  .page {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px 60px;
+  }
+
+  /* ── Card ── */
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 28px rgba(27,38,59,.10);
+    padding: 40px 36px 36px;
+    width: 100%;
+    max-width: 460px;
+  }
+  @media (max-width: 500px) {
+    .card { padding: 28px 20px 24px; }
+  }
+
+  /* ── Logo bar ── */
+  .logo-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: var(--navy); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .logo-name { font-size: 1.1rem; font-weight: 700; color: var(--navy); letter-spacing: -.3px; line-height: 1.2; }
+  .logo-sub  { font-size: .72rem; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: .8px; }
+
+  /* ── Trial badge ── */
+  .trial-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold-lt); border: 1px solid rgba(197,160,89,.3);
+    color: #8B6914; border-radius: 20px;
+    padding: 5px 12px; font-size: .78rem; font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  h1 { font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .subtitle { font-size: .85rem; color: var(--muted); margin-bottom: 24px; line-height: 1.55; }
+
+  /* ── Form ── */
+  .form-row { display: flex; gap: 14px; }
+  .form-row .field { flex: 1; }
+
+  .field { margin-bottom: 16px; }
+  label {
+    display: block; font-size: .78rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 5px; text-transform: uppercase; letter-spacing: .4px;
+  }
+  input, select {
+    width: 100%; padding: 12px 13px;
+    border: 1.5px solid var(--mid); border-radius: 8px;
+    font-size: .95rem; color: var(--text); background: #fff;
+    outline: none; transition: border-color .15s;
+    -webkit-appearance: none; appearance: none;
+    font-family: inherit;
+  }
+  input:focus, select:focus { border-color: var(--gold); }
+  input.err, select.err { border-color: var(--err); }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 36px; }
+
+  /* ── Status ── */
+  .status {
+    display: none; border-radius: 8px; padding: 12px 14px;
+    font-size: .85rem; line-height: 1.5; margin-bottom: 16px;
+  }
+  .status.ok  { background: var(--ok-bg);  color: var(--ok);  display: block; }
+  .status.err { background: var(--err-bg); color: var(--err); display: block; }
+
+  /* ── Button ── */
+  .btn {
+    width: 100%; background: var(--navy); color: #fff;
+    border: none; border-radius: 10px; padding: 15px;
+    font-size: 1rem; font-weight: 700; cursor: pointer;
+    transition: background .15s, transform .08s; margin-top: 4px;
+    font-family: inherit; -webkit-appearance: none;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn:disabled { background: var(--muted); cursor: not-allowed; transform: none; }
+
+  /* ── Spinner ── */
+  .spinner {
+    display: inline-block; width: 16px; height: 16px;
+    border: 2.5px solid rgba(255,255,255,.35); border-top-color: #fff;
+    border-radius: 50%; animation: spin .7s linear infinite;
+    margin-right: 8px; vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Trust strip ── */
+  .trust {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin: 20px 0 0; padding-top: 18px;
+    border-top: 1px solid var(--mid);
+    font-size: .76rem; color: var(--muted);
+  }
+  .trust span { display: flex; align-items: center; gap: 5px; }
+
+  /* ── Success state ── */
+  .success-panel {
+    display: none; text-align: center; padding: 8px 0;
+  }
+  .success-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .success-title { font-size: 1.1rem; font-weight: 700; color: var(--ok); margin-bottom: 8px; }
+  .success-msg { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center; padding: 20px;
+    font-size: .76rem; color: var(--muted); flex-shrink: 0;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3L4 7.5V16.5L12 21L20 16.5V7.5L12 3Z" stroke="#C5A059" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M12 3V21M4 7.5L20 16.5M20 7.5L4 16.5" stroke="#C5A059" stroke-width="1.2" stroke-opacity=".5"/>
+      </svg>
+    </div>
+    <span class="nav-name">Arena Lite</span>
+  </a>
+  <div class="nav-links">
+    <a href="/#pricing">Pricing</a>
+    <a href="/login.html" class="nav-login">Log In</a>
+  </div>
+</nav>
+
+<!-- Content -->
+<div class="page">
+  <div class="card">
+
+    <!-- Logo -->
+    <div class="logo-bar">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3L4 7.5V16.5L12 21L20 16.5V7.5L12 3Z" stroke="#C5A059" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M12 3V21M4 7.5L20 16.5M20 7.5L4 16.5" stroke="#C5A059" stroke-width="1.2" stroke-opacity=".5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name">Arena Lite</div>
+        <div class="logo-sub">The Arena Hub</div>
+      </div>
+    </div>
+
+    <!-- Signup form -->
+    <div id="formPanel">
+      <div class="trial-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#8B6914" stroke-width="2"/><path d="M12 8v4l3 3" stroke="#8B6914" stroke-width="2" stroke-linecap="round"/></svg>
+        5 captures free — no credit card required
+      </div>
+
+      <h1>Create your free account</h1>
+      <p class="subtitle">Your Evidence Vault is created in your own Google Drive — Arena Hub holds zero student data.</p>
+
+      <div id="statusBanner" class="status"></div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" placeholder="Jane" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input type="text" id="lastName" placeholder="Smith" autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Work email address</label>
+        <input type="email" id="email" placeholder="jane@yourschool.co.uk" autocomplete="email" autocapitalize="none">
+      </div>
+
+      <div class="field">
+        <label for="orgName">School / organisation name</label>
+        <input type="text" id="orgName" placeholder="Phoenix AP Academy" autocomplete="organization">
+      </div>
+
+      <div class="field">
+        <label for="orgType">Setting type</label>
+        <select id="orgType">
+          <option value="Alternative Provision">Alternative Provision (AP)</option>
+          <option value="SEMH School">SEMH School</option>
+          <option value="PRU">Pupil Referral Unit (PRU)</option>
+          <option value="Independent Special School">Independent Special School</option>
+          <option value="SEND Unit">SEND Unit / Resource Base</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <button class="btn" id="submitBtn" onclick="submitSignup()">
+        Start free trial
+      </button>
+
+      <div class="trust">
+        <span>🔐 Google OAuth login</span>
+        <span>🏫 Data in your Drive</span>
+        <span>📋 GDPR Art. 28</span>
+        <span>🚫 No credit card</span>
+      </div>
+    </div>
+
+    <!-- Success panel -->
+    <div class="success-panel" id="successPanel">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Account created!</div>
+      <p class="success-msg">
+        Check your inbox — your licence key and activation link are on their way.<br><br>
+        <strong>Can't see the email?</strong> Check your spam folder, or contact
+        <a href="mailto:hello@thearenahub.co.uk" style="color:var(--navy)">hello@thearenahub.co.uk</a>.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="/terms.html">Terms</a> &nbsp;·&nbsp;
+  © 2026 The Arena Hub Ltd
+</footer>
+
+<script>
+  // ── Configuration ──────────────────────────────────────────────────────────
+  // Replace with live Cloud Run URL if it changes (currently correct).
+  var CLOUD_RUN_URL = 'https://arena-ingestor-820703761059.europe-west2.run.app/createTrialAccount';
+
+  var _submitting = false;
+
+  function showStatus(msg, type) {
+    var el = document.getElementById('statusBanner');
+    el.textContent = msg;
+    el.className = 'status ' + type;
+  }
+  function hideStatus() {
+    var el = document.getElementById('statusBanner');
+    el.className = 'status';
+  }
+  function setErr(id) {
+    document.getElementById(id).classList.add('err');
+  }
+  function clearErrs() {
+    ['firstName','lastName','email','orgName','orgType'].forEach(function(id) {
+      document.getElementById(id).classList.remove('err');
+    });
+  }
+
+  function submitSignup() {
+    if (_submitting) return;
+    clearErrs();
+    hideStatus();
+
+    var firstName = (document.getElementById('firstName').value || '').trim();
+    var lastName  = (document.getElementById('lastName').value  || '').trim();
+    var email     = (document.getElementById('email').value     || '').trim().toLowerCase();
+    var orgName   = (document.getElementById('orgName').value   || '').trim();
+    var orgType   = document.getElementById('orgType').value;
+
+    // ── Client validation ────────────────────────────────────────────────────
+    var ok = true;
+    if (!firstName) { setErr('firstName'); ok = false; }
+    if (!lastName)  { setErr('lastName');  ok = false; }
+    if (!email || !email.includes('@')) { setErr('email'); ok = false; }
+    if (!orgName)   { setErr('orgName');   ok = false; }
+    if (!ok) {
+      showStatus('Please fill in all required fields.', 'err');
+      return;
+    }
+
+    // ── Lock UI ───────────────────────────────────────────────────────────────
+    _submitting = true;
+    var btn = document.getElementById('submitBtn');
+    btn.disabled  = true;
+    btn.innerHTML = '<span class="spinner"></span>Creating your account&hellip;';
+
+    // ── Call Cloud Run ────────────────────────────────────────────────────────
+    fetch(CLOUD_RUN_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ firstName: firstName, lastName: lastName,
+                                email: email, orgName: orgName, orgType: orgType })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      _submitting = false;
+      if (data && data.success) {
+        document.getElementById('formPanel').style.display    = 'none';
+        document.getElementById('successPanel').style.display = 'block';
+      } else {
+        btn.disabled  = false;
+        btn.innerHTML = 'Start free trial';
+        var msg = (data && data.message) ? data.message
+                  : 'Something went wrong. Please try again or contact hello@thearenahub.co.uk';
+        showStatus(msg, 'err');
+      }
+    })
+    .catch(function(err) {
+      _submitting = false;
+      btn.disabled  = false;
+      btn.innerHTML = 'Start free trial';
+      showStatus('Connection error — please try again. If this persists, email hello@thearenahub.co.uk', 'err');
+    });
+  }
+
+  // Allow Enter key to submit
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !_submitting) submitSignup();
+  });
+</script>
+</body>
+</html>

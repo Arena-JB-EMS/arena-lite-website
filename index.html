@@ -1,749 +1,783 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N2PRX87LVE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N2PRX87LVE');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Arena Lite — Forensic evidence capture for Alternative Provision and SEMH education. Built for the practitioners who work where mainstream can't reach.">
-<meta property="og:title" content="Arena Lite — The Arena Hub">
-<meta property="og:description" content="Forensic evidence capture for AP and SEMH. Professional. Sovereign. Simple.">
-<meta property="og:type" content="website">
-<title>The Arena Hub — Arena Lite</title>
+<meta name="theme-color" content="#1B263B">
+<meta name="description" content="Arena Hub — The Sovereign Master Layer for AP & SEND. Practitioner-led digital infrastructure for Alternative Provision schools across the UK.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="The Arena Hub">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%231B263B' width='180' height='180'/><text x='50%' y='50%' font-size='60' font-weight='700' font-family='Rajdhani, sans-serif' fill='%23C5A059' text-anchor='middle' dominant-baseline='middle'>A</text></svg>">
+<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Arena Hub — The Sovereign Master Layer for AP & SEND</title>
 <style>
-/* ── Reset & tokens ─────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --navy:   #1B263B;
-  --gold:   #C5A059;
-  --gold-l: rgba(197,160,89,.14);
-  --light:  #F5F7FA;
-  --mid:    #E0E4EB;
-  --muted:  #6B7280;
-  --white:  #ffffff;
-  --ok:     #2E7D32;
-  --radius: 14px;
-  --shadow: 0 4px 28px rgba(27,38,59,.10);
-  --nav-h:  68px;
-}
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
-  color: var(--navy);
-  background: var(--white);
-  line-height: 1.6;
-}
-h1, h2, h3, h4 { font-family: 'Rajdhani', 'Segoe UI', sans-serif; line-height: 1.15; }
-a { text-decoration: none; color: inherit; }
-img { display: block; max-width: 100%; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── NAV ─────────────────────────────────────────────────── */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--navy);
-  height: var(--nav-h);
-  display: flex; align-items: center;
-  padding: 0 5%;
-  box-shadow: 0 2px 12px rgba(0,0,0,.18);
-}
-.nav-brand {
-  display: flex; align-items: center; gap: 12px; flex: 1;
-}
-.nav-logo {
-  width: 38px; height: 38px;
-  background: rgba(197,160,89,.18);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.nav-name { font-family: 'Rajdhani', sans-serif; color: var(--white); font-size: 1.2rem; font-weight: 700; letter-spacing: .3px; }
-.nav-name span { color: var(--gold); }
-.nav-links { display: flex; align-items: center; gap: 28px; }
-.nav-links a { color: rgba(255,255,255,.78); font-size: .9rem; font-weight: 500; transition: color .15s; }
-.nav-links a:hover { color: var(--gold); }
-.btn-nav-login {
-  padding: 8px 20px;
-  border: 1.5px solid rgba(197,160,89,.5);
-  border-radius: 8px;
-  color: var(--gold) !important;
-  font-weight: 600 !important;
-  font-size: .88rem !important;
-  transition: background .15s, border-color .15s !important;
-}
-.btn-nav-login:hover { background: var(--gold-l); border-color: var(--gold) !important; }
-.btn-nav-cta {
-  padding: 9px 22px;
-  background: var(--gold);
-  border-radius: 8px;
-  color: var(--navy) !important;
-  font-weight: 700 !important;
-  font-size: .88rem !important;
-  transition: filter .15s !important;
-}
-.btn-nav-cta:hover { filter: brightness(1.08); }
-
-/* ── HERO ─────────────────────────────────────────────────── */
-.hero {
-  background: linear-gradient(135deg, var(--navy) 0%, #243650 60%, #1a3a52 100%);
-  padding: 100px 5% 90px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(197,160,89,.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-inner { max-width: 760px; position: relative; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(197,160,89,.14);
-  border: 1px solid rgba(197,160,89,.35);
-  border-radius: 999px;
-  padding: 5px 14px;
-  font-size: .78rem; font-weight: 700;
-  color: var(--gold);
-  text-transform: uppercase; letter-spacing: .8px;
-  margin-bottom: 24px;
-}
-.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-h1.hero-title {
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  color: var(--white);
-  font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: -.5px;
-}
-h1.hero-title .gold { color: var(--gold); }
-.hero-sub {
-  font-size: 1.15rem; color: rgba(255,255,255,.72);
-  max-width: 580px; margin-bottom: 40px; line-height: 1.7;
-}
-.hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--gold);
-  color: var(--navy);
-  font-weight: 700; font-size: 1rem;
-  padding: 15px 32px;
-  border-radius: 10px;
-  transition: filter .15s, transform .08s;
-  box-shadow: 0 4px 16px rgba(197,160,89,.35);
-}
-.btn-primary:hover { filter: brightness(1.07); transform: translateY(-1px); }
-.btn-primary:active { transform: translateY(0); }
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 8px;
-  color: rgba(255,255,255,.8);
-  font-weight: 600; font-size: .95rem;
-  padding: 14px 24px;
-  border: 1.5px solid rgba(255,255,255,.2);
-  border-radius: 10px;
-  transition: border-color .15s, color .15s;
-}
-.btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
-.hero-trust {
-  margin-top: 52px;
-  display: flex; align-items: center; gap: 12px;
-  color: rgba(255,255,255,.45); font-size: .82rem;
-}
-.hero-trust-dots { display: flex; gap: 6px; }
-.hero-trust-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); opacity: .6; }
-
-/* ── STATS STRIP ──────────────────────────────────────────── */
-.stats-strip {
-  background: var(--gold);
-  padding: 22px 5%;
-  display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
-}
-.stat-item { text-align: center; }
-.stat-num { font-family: 'Rajdhani', sans-serif; font-size: 1.9rem; font-weight: 700; color: var(--navy); line-height: 1; }
-.stat-label { font-size: .78rem; font-weight: 600; color: rgba(27,38,59,.65); text-transform: uppercase; letter-spacing: .5px; margin-top: 3px; }
-
-/* ── SECTIONS ─────────────────────────────────────────────── */
-section { padding: 80px 5%; }
-.section-label {
-  display: inline-block;
-  font-size: .72rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 1px;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-h2.section-title {
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  font-weight: 700; margin-bottom: 16px;
-  letter-spacing: -.3px;
-}
-.section-sub {
-  font-size: 1.05rem; color: var(--muted); max-width: 540px; line-height: 1.7;
-}
-.center { text-align: center; }
-.center .section-sub { margin: 0 auto; }
-
-/* ── PROBLEM SECTION ──────────────────────────────────────── */
-#problem { background: var(--light); }
-.problem-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px; margin-top: 48px;
-}
-.problem-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 28px;
-  border-left: 4px solid var(--gold);
-  box-shadow: var(--shadow);
-}
-.problem-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
-.problem-card p  { font-size: .92rem; color: var(--muted); line-height: 1.6; }
-
-/* ── HOW IT WORKS ─────────────────────────────────────────── */
-#how {  background: var(--white); }
-.steps {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px; margin-top: 52px;
-}
-.step { text-align: center; }
-.step-num {
-  width: 56px; height: 56px; border-radius: 50%;
-  background: var(--navy); color: var(--gold);
-  font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 18px;
-  box-shadow: 0 4px 14px rgba(27,38,59,.2);
-}
-.step h3 { font-size: 1.1rem; margin-bottom: 8px; }
-.step p  { font-size: .9rem; color: var(--muted); line-height: 1.6; }
-.step-connector {
-  display: none;
-}
-@media (min-width: 680px) {
-  .steps { grid-template-columns: 1fr auto 1fr auto 1fr; align-items: start; }
-  .step-connector {
-    display: flex; align-items: flex-start; padding-top: 28px;
-    color: var(--gold); font-size: 1.4rem; opacity: .5;
+  :root {
+    --navy:       #1B263B;
+    --navy-mid:   #243552;
+    --navy-light: #2E4270;
+    --gold:       #C5A059;
+    --gold-light: #D4B475;
+    --gold-dim:   rgba(197,160,89,0.15);
+    --gold-line:  rgba(197,160,89,0.3);
+    --white:      #F4F1EB;
+    --grey:       #8C9BB0;
+    --text:       #CBD5E0;
   }
-}
 
-/* ── FEATURES ─────────────────────────────────────────────── */
-#features { background: var(--light); }
-.features-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px; margin-top: 48px;
-}
-.feature-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 28px 24px;
-  box-shadow: var(--shadow);
-  transition: transform .15s, box-shadow .15s;
-}
-.feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(27,38,59,.13); }
-.feature-icon {
-  width: 48px; height: 48px; border-radius: 10px;
-  background: var(--gold-l);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; margin-bottom: 16px;
-}
-.feature-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
-.feature-card p  { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+  html { scroll-behavior: smooth; }
 
-/* ── SOVEREIGN CALLOUT ────────────────────────────────────── */
-#sovereign {
-  background: var(--navy);
-  padding: 72px 5%;
-}
-.sovereign-inner {
-  max-width: 760px; margin: 0 auto; text-align: center;
-}
-#sovereign h2 { color: var(--white); margin-bottom: 16px; }
-#sovereign p  { color: rgba(255,255,255,.68); font-size: 1.05rem; line-height: 1.7; margin-bottom: 28px; }
-.sovereign-pillars {
-  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
-  margin-top: 36px;
-}
-.pillar {
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  color: rgba(255,255,255,.8);
-}
-.pillar-icon {
-  width: 52px; height: 52px; border-radius: 12px;
-  background: rgba(197,160,89,.15);
-  border: 1px solid rgba(197,160,89,.3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
-}
-.pillar span { font-size: .82rem; font-weight: 600; text-align: center; max-width: 90px; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-/* ── PRICING ──────────────────────────────────────────────── */
-#pricing { background: var(--light); }
-.pricing-card-wrap {
-  display: flex; justify-content: center; gap: 24px; margin-top: 48px;
-  flex-wrap: wrap; align-items: stretch;
-}
-.pricing-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 40px;
-  box-shadow: var(--shadow);
-  border: 2px solid var(--mid);
-  max-width: 380px; width: 100%;
-  text-align: center;
-  position: relative;
-  display: flex; flex-direction: column;
-}
-.pricing-card.annual {
-  border-color: var(--gold);
-}
-.pricing-badge {
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-  background: var(--gold); color: var(--navy);
-  font-size: .72rem; font-weight: 700; padding: 4px 16px;
-  border-radius: 999px; text-transform: uppercase; letter-spacing: .6px;
-  white-space: nowrap;
-}
-.pricing-best-value {
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-  background: var(--gold); color: var(--navy);
-  font-size: .72rem; font-weight: 700; padding: 4px 16px;
-  border-radius: 999px; text-transform: uppercase; letter-spacing: .6px;
-  white-space: nowrap;
-}
-.pricing-plan-label {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem; font-weight: 700; color: var(--muted);
-  text-transform: uppercase; letter-spacing: .8px;
-  margin-bottom: 8px;
-}
-.pricing-price {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 3rem; font-weight: 700; color: var(--navy);
-  margin: 8px 0 4px; line-height: 1;
-}
-.pricing-price sub { font-size: 1.1rem; vertical-align: bottom; margin-bottom: 6px; display: inline-block; }
-.pricing-period { font-size: .88rem; color: var(--muted); margin-bottom: 28px; }
-.pricing-saving {
-  display: inline-block;
-  background: rgba(46,125,50,.1); color: var(--ok);
-  font-size: .78rem; font-weight: 700;
-  padding: 3px 12px; border-radius: 999px;
-  margin-bottom: 20px;
-}
-.pricing-features { list-style: none; margin-bottom: 32px; text-align: left; flex: 1; }
-.pricing-features li {
-  padding: 9px 0;
-  border-bottom: 1px solid var(--mid);
-  font-size: .92rem;
-  display: flex; align-items: center; gap: 10px;
-}
-.pricing-features li:last-child { border-bottom: none; }
-.pricing-features li::before { content: '✓'; color: var(--ok); font-weight: 700; flex-shrink: 0; }
-.btn-pricing {
-  display: block; width: 100%;
-  background: var(--navy); color: var(--white);
-  font-weight: 700; font-size: 1rem;
-  padding: 15px;
-  border-radius: 10px;
-  border: none; cursor: pointer;
-  transition: background .15s;
-  font-family: 'Source Sans 3', sans-serif;
-}
-.btn-pricing:hover { background: #243650; }
-.btn-pricing.gold {
-  background: var(--white); color: var(--navy);
-  border: 2px solid var(--gold);
-}
-.btn-pricing.gold:hover { background: var(--gold-l); }
-.pricing-note { font-size: .78rem; color: var(--muted); margin-top: 14px; }
+  /* ── SKIP LINK ── */
+  .skip { position: absolute; top: -60px; left: 0; background: var(--gold); color: var(--navy);
+    padding: 10px 18px; font-weight: 600; text-decoration: none; z-index: 200; }
+  .skip:focus { top: 0; }
 
-/* ── CTA SECTION ──────────────────────────────────────────── */
-#cta {
-  background: linear-gradient(135deg, var(--navy) 0%, #243650 100%);
-  padding: 80px 5%; text-align: center;
-}
-#cta h2 { color: var(--white); margin-bottom: 16px; }
-#cta p  { color: rgba(255,255,255,.65); font-size: 1.05rem; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  /* ══════════════════════════════════════════
+     HERO
+  ══════════════════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem 5rem;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
 
-/* ── FOOTER ───────────────────────────────────────────────── */
-footer {
-  background: var(--navy);
-  border-top: 1px solid rgba(255,255,255,.08);
-  padding: 40px 5% 28px;
-}
-.footer-inner {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 32px; flex-wrap: wrap; margin-bottom: 28px;
-}
-.footer-brand .nav-name { font-size: 1rem; margin-top: 8px; }
-.footer-brand p { color: rgba(255,255,255,.4); font-size: .8rem; margin-top: 6px; max-width: 220px; line-height: 1.5; }
-.footer-links { display: flex; gap: 40px; flex-wrap: wrap; }
-.footer-col h4 { color: var(--gold); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 12px; }
-.footer-col a  { display: block; color: rgba(255,255,255,.55); font-size: .85rem; margin-bottom: 8px; transition: color .15s; }
-.footer-col a:hover { color: var(--white); }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.07);
-  padding-top: 20px;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 12px;
-}
-.footer-bottom p { color: rgba(255,255,255,.3); font-size: .78rem; }
+  /* radial glow behind heading */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(197,160,89,0.07) 0%, transparent 65%),
+      radial-gradient(ellipse at 80% 90%, rgba(46,66,112,0.5) 0%, transparent 55%);
+    pointer-events: none;
+  }
 
-/* ── MOBILE NAV ───────────────────────────────────────────── */
-.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
-.nav-toggle span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.8); margin: 5px 0; border-radius: 2px; transition: .2s; }
-@media (max-width: 680px) {
-  .nav-links { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 20px 5%; gap: 16px; border-top: 1px solid rgba(255,255,255,.08); }
-  .nav-links.open { display: flex; }
-  .nav-toggle { display: block; }
-  .stats-strip { gap: 28px; }
-  .hero { padding: 64px 5% 60px; }
-  section { padding: 56px 5%; }
-}
+  /* subtle grid texture */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(197,160,89,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(197,160,89,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+  }
+
+  .wordmark {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid var(--gold-line);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 1.75rem;
+    background: var(--gold-dim);
+  }
+
+  .hero h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.65;
+    max-width: 620px;
+    margin: 0 auto 2.75rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 32px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.2px;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 32px;
+    background: transparent;
+    color: var(--gold);
+    border: 1.5px solid var(--gold-line);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    letter-spacing: 0.2px;
+  }
+  .btn-ghost:hover { border-color: var(--gold); background: var(--gold-dim); transform: translateY(-2px); }
+
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--grey);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  .scroll-hint svg { opacity: 0.5; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: translateY(0); }
+    50%       { opacity: 1;   transform: translateY(4px); }
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION SHARED
+  ══════════════════════════════════════════ */
+  section { padding: 6rem 2rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    opacity: 0.85;
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.65;
+    max-width: 580px;
+  }
+
+  .gold-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1.5rem 0;
+    border: none;
+  }
+
+  /* ══════════════════════════════════════════
+     THREE TRUTHS
+  ══════════════════════════════════════════ */
+  .truths { background: var(--navy-mid); }
+
+  .truths-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .truths-header { margin-bottom: 3.5rem; }
+
+  .truths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .truth-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(197,160,89,0.12);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .truth-card:hover { border-color: var(--gold-line); background: rgba(197,160,89,0.04); }
+
+  .truth-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gold-dim);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .truth-icon svg { color: var(--gold); }
+
+  .truth-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.3px;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .truth-card p {
+    font-size: 0.97rem;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  .truth-card p strong { color: var(--gold-light); font-weight: 600; }
+
+  /* ══════════════════════════════════════════
+     ROADMAP
+  ══════════════════════════════════════════ */
+  .roadmap { background: var(--navy); }
+
+  .roadmap-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .roadmap-header { margin-bottom: 4rem; }
+
+  .timeline {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    gap: 0;
+  }
+
+  /* connecting line */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: calc(16.66% + 18px);
+    right: calc(16.66% + 18px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-line) 50%, rgba(197,160,89,0.1) 100%);
+    z-index: 0;
+  }
+
+  .timeline-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-dot.active {
+    background: var(--gold);
+  }
+
+  .tl-dot.active svg { color: var(--navy); }
+  .tl-dot:not(.active) svg { color: var(--gold); opacity: 0.5; }
+
+  .tl-version {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  .tl-desc {
+    font-size: 0.85rem;
+    color: var(--grey);
+    line-height: 1.5;
+  }
+
+  .tl-status {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-line);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .tl-status.upcoming {
+    color: var(--grey);
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  /* Mobile roadmap — stack vertical */
+  @media (max-width: 640px) {
+    .timeline { flex-direction: column; gap: 0; }
+    .timeline::before {
+      top: 18px;
+      left: 17px;
+      right: auto;
+      bottom: 18px;
+      width: 2px;
+      height: auto;
+    }
+    .timeline-item { flex-direction: row; align-items: flex-start; text-align: left; gap: 1.25rem; padding: 0 0 2.5rem; }
+    .tl-dot { flex-shrink: 0; margin-bottom: 0; }
+    .tl-content { padding-top: 4px; }
+  }
+
+  /* ══════════════════════════════════════════
+     ENDORSEMENT
+  ══════════════════════════════════════════ */
+  .endorsement {
+    background: var(--navy-mid);
+    text-align: center;
+  }
+
+  .quote-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 2rem;
+  }
+
+  .quote-mark {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 5rem;
+    line-height: 0.6;
+    color: var(--gold);
+    opacity: 0.25;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .quote-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 1.75rem;
+    font-style: italic;
+  }
+
+  .quote-text em { color: var(--gold); font-style: normal; }
+
+  .quote-attr {
+    font-size: 0.9rem;
+    color: var(--grey);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .quote-attr strong {
+    color: var(--gold-light);
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  /* ══════════════════════════════════════════
+     CTA BANNER
+  ══════════════════════════════════════════ */
+  .cta-banner {
+    background: var(--navy);
+    text-align: center;
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--gold-line);
+  }
+
+  .cta-banner h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-banner p {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 2.25rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .cta-banner .hero-ctas { margin-bottom: 0; }
+
+  /* ══════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════ */
+  footer {
+    background: #111C2B;
+    padding: 1.75rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  footer p {
+    font-size: 0.82rem;
+    color: var(--grey);
+    line-height: 1.8;
+  }
+
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  footer a:hover { opacity: 1; }
+
+  /* ══════════════════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag    { animation: fadeUp 0.6s ease-out 0.1s both; }
+  .hero h1     { animation: fadeUp 0.6s ease-out 0.25s both; }
+  .hero-sub    { animation: fadeUp 0.6s ease-out 0.4s both; }
+  .hero-ctas   { animation: fadeUp 0.6s ease-out 0.55s both; }
+  .scroll-hint { animation: fadeUp 0.6s ease-out 0.7s both; }
+
+  /* ══════════════════════════════════════════
+     FOCUS / ACCESSIBILITY
+  ══════════════════════════════════════════ */
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-brand">
-    <div class="nav-logo">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3L4 7.5V16.5L12 21L20 16.5V7.5L12 3Z" stroke="#C5A059" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M12 3V21M4 7.5L20 16.5M20 7.5L4 16.5" stroke="#C5A059" stroke-width="1.2" stroke-opacity=".45"/>
-      </svg>
-    </div>
-    <span class="nav-name">The Arena <span>Hub</span></span>
-  </div>
+<a href="#main" class="skip">Skip to content</a>
 
-  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-
-  <div class="nav-links">
-    <a href="#how">How it works</a>
-    <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
-    <a href="mailto:info@thearenahub.co.uk">Contact</a>
-    <a href="login.html" class="btn-nav-login">Log in</a>
-    <a href="#pricing" class="btn-nav-cta">Get Arena Lite</a>
-  </div>
-</nav>
-
-
-<!-- HERO -->
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<main id="main">
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">Now in pilot — Arena Lite</div>
-    <h1 class="hero-title">Evidence that works as hard as<br><span class="gold">you do</span></h1>
+
+    <div class="wordmark">The Arena Hub &nbsp;·&nbsp; JB-EMS</div>
+
+    <div class="hero-tag">National Pilot · 2026</div>
+
+    <h1>The Sovereign Master Layer<br>for <span>AP &amp; SEND.</span></h1>
+
     <p class="hero-sub">
-      Arena Lite gives Alternative Provision and SEMH practitioners a forensic evidence record — built for the students mainstream can't reach, owned entirely by your school.
+      A practitioner-led infrastructure built to capture the social and vocational wins
+      that legacy systems ignore — and turn them into forensic evidence that counts.
     </p>
-    <div class="hero-actions">
-      <a href="#pricing" class="btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Get started today
+
+    <div class="hero-ctas">
+      <a href="The Arena Hub Master Concept.pdf" class="btn-primary" target="_blank" rel="noopener"
+         onclick="gtag('event','pdf_download',{'event_category':'hero','event_label':'master_concept'})">
+        <!-- download icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download the Master Concept Reference
       </a>
-      <a href="#how" class="btn-ghost">See how it works</a>
+      <a href="company.html" class="btn-ghost"
+         onclick="gtag('event','click',{'event_category':'hero','event_label':'company_site'})">
+        Explore the Platform &amp; Request a Pilot
+        <!-- arrow icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="/signup.html" class="btn-ghost"
+         onclick="gtag('event','click',{'event_category':'hero','event_label':'signup'})">
+        New User? Create a free trial account
+        <!-- arrow icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
-    <div class="hero-trust">
-      <div class="hero-trust-dots">
-        <div class="hero-trust-dot"></div>
-        <div class="hero-trust-dot"></div>
-        <div class="hero-trust-dot"></div>
-      </div>
-      Your data. Your Drive. Always.
+
+    <div class="scroll-hint" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
+
   </div>
 </section>
 
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="stat-item">
-    <div class="stat-num">285</div>
-    <div class="stat-label">EYFS objectives mapped</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Data in your Drive</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">0</div>
-    <div class="stat-label">Third-party data stores</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">GDPR</div>
-    <div class="stat-label">Article 28 compliant</div>
-  </div>
-</div>
+<!-- ══════════════════════════════════════════
+     THREE TRUTHS
+══════════════════════════════════════════ -->
+<section class="truths" id="about">
+  <div class="truths-inner">
 
-
-<!-- PROBLEM -->
-<section id="problem">
-  <div class="section-label">The challenge</div>
-  <h2 class="section-title">AP evidence is complex.<br>Your tools shouldn't be.</h2>
-  <p class="section-sub">Practitioners in Alternative Provision carry the weight of complex need, incomplete histories, and high-stakes decisions — often without the systems to back them up.</p>
-
-  <div class="problem-grid">
-    <div class="problem-card">
-      <h3>Evidence scattered across systems</h3>
-      <p>Email threads, printed observations, WhatsApp notes. When Ofsted knocks, the evidence isn't ready.</p>
-    </div>
-    <div class="problem-card">
-      <h3>No audit trail</h3>
-      <p>Without a timestamped, tamper-evident record, decisions made in good faith can't be defended.</p>
-    </div>
-    <div class="problem-card">
-      <h3>GDPR risk on every submission</h3>
-      <p>Third-party platforms holding student PII is a compliance liability most AP settings aren't aware of.</p>
-    </div>
-    <div class="problem-card">
-      <h3>Tools built for mainstream</h3>
-      <p>MIS systems assume a register, year groups, and a timetable. AP doesn't work like that.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- HOW IT WORKS -->
-<section id="how" class="center">
-  <div class="section-label">The process</div>
-  <h2 class="section-title">From subscription to evidence capture<br>in under 10 minutes</h2>
-  <p class="section-sub">Arena Lite is designed for practitioners, not IT teams. No servers, no complex setup, no IT department needed.</p>
-
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>Subscribe</h3>
-      <p>Choose Arena Lite and complete checkout. You'll receive your licence key by email immediately.</p>
-    </div>
-    <div class="step-connector">→</div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>Activate</h3>
-      <p>Visit your unique Arena Lite URL, enter your email and licence key. Your Evidence Vault is created in your own Google Drive — instantly.</p>
-    </div>
-    <div class="step-connector">→</div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>Capture</h3>
-      <p>Add students, select objectives from the EYFS taxonomy, and commit forensic evidence. From any device, anywhere.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="center" style="margin-bottom: 0;">
-    <div class="section-label">What you get</div>
-    <h2 class="section-title">Built for the way AP actually works</h2>
-    <p class="section-sub">Every feature designed around the realities of Alternative Provision — not adapted from a mainstream MIS.</p>
-  </div>
-
-  <div class="features-grid" style="margin-top: 48px;">
-    <div class="feature-card">
-      <div class="feature-icon">🔬</div>
-      <h3>Forensic Evidence Capture</h3>
-      <p>Timestamped, practitioner-attributed evidence records. Text-based for speed. EYFS taxonomy-linked for depth. Every commit has a clear audit trail.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📱</div>
-      <h3>Mobile Quick Capture</h3>
-      <p>iPhone-optimised capture for in-the-moment observations. No login friction. Works on any device with a browser.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🗂</div>
-      <h3>EYFS Taxonomy</h3>
-      <p>285 objectives mapped — 235 Development Matters 2021 and 50 Engagement Model. Level Gate flags evidence above or below identified level.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📊</div>
-      <h3>Student Scorecard</h3>
-      <p>Aggregated evidence view per student. Gap analysis. Close-of-Play report. Defensible at any checkpoint.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🛡</div>
-      <h3>Safeguarding Log</h3>
-      <p>Concern entries with DSL referral tracking, status and follow-up dates. Confidential flag for sensitive records. Audit-ready.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⚙️</div>
-      <h3>Account Management</h3>
-      <p>Self-service school name and practitioner settings. Licence details always visible. No support ticket needed for basic changes.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- SOVEREIGN -->
-<section id="sovereign">
-  <div class="sovereign-inner">
-    <div class="section-label">Data sovereignty</div>
-    <h2 class="section-title" style="color: var(--white);">Your data never leaves<br>your Google Drive</h2>
-    <p>Arena Lite is built on the Sovereign Hybrid architecture. Every student record, every evidence commit, every safeguarding note is written directly to a Google Spreadsheet in your own Google Drive — not ours. Arena Hub holds zero personally identifiable information.</p>
-
-    <div class="sovereign-pillars">
-      <div class="pillar">
-        <div class="pillar-icon">🏫</div>
-        <span>School controls the data</span>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🔐</div>
-        <span>Google OAuth authentication</span>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">📋</div>
-        <span>UK GDPR Article 28 compliant</span>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🚫</div>
-        <span>No third-party PII storage</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- PRICING -->
-<section id="pricing" class="center">
-  <div class="section-label">Pricing</div>
-  <h2 class="section-title">Simple. Transparent. Per practitioner.</h2>
-  <p class="section-sub">One plan. Everything included. No add-ons, no per-student fees, no surprise bills.</p>
-
-  <div class="pricing-card-wrap">
-    <!-- Monthly card -->
-    <div class="pricing-card">
-      <div class="pricing-plan-label">Monthly</div>
-      <div class="pricing-price"><sub>£</sub>19.99</div>
-      <div class="pricing-period">per practitioner / per month</div>
-
-      <ul class="pricing-features">
-        <li>Unlimited student records</li>
-        <li>Full EYFS taxonomy (285 objectives)</li>
-        <li>Forensic evidence capture + audit trail</li>
-        <li>Mobile Quick Capture (iPhone + Android)</li>
-        <li>Safeguarding log with DSL referral tracking</li>
-        <li>Student Scorecard + Gap Analysis</li>
-        <li>Data in your own Google Drive — always</li>
-        <li>GDPR Article 28 compliant</li>
-        <li>Email support</li>
-      </ul>
-
-      <button class="btn-pricing" onclick="startCheckout('monthly')">Get Arena Lite →</button>
-      <p class="pricing-note">Billed monthly, cancel any time. 14-day money-back guarantee.</p>
+    <div class="truths-header">
+      <p class="section-label">Why Arena Exists</p>
+      <h2 class="section-title">Built in the classroom.<br>Scaled for national reform.</h2>
+      <hr class="gold-rule">
+      <p class="section-intro">
+        Arena Hub began as a single school's answer to a broken evidence gap.
+        It is now moving to a national pilot — because that gap is everywhere.
+      </p>
     </div>
 
-    <!-- Annual card -->
-    <div class="pricing-card annual">
-      <div class="pricing-best-value">Best Value</div>
-      <div class="pricing-plan-label">Annual</div>
-      <div class="pricing-price"><sub>£</sub>180</div>
-      <div class="pricing-period">per practitioner / per year</div>
-      <div class="pricing-saving">Save 25% — £15/month</div>
+    <div class="truths-grid">
 
-      <ul class="pricing-features">
-        <li>Unlimited student records</li>
-        <li>Full EYFS taxonomy (285 objectives)</li>
-        <li>Forensic evidence capture + audit trail</li>
-        <li>Mobile Quick Capture (iPhone + Android)</li>
-        <li>Safeguarding log with DSL referral tracking</li>
-        <li>Student Scorecard + Gap Analysis</li>
-        <li>Data in your own Google Drive — always</li>
-        <li>GDPR Article 28 compliant</li>
-        <li>Email support</li>
-      </ul>
-
-      <button class="btn-pricing gold" onclick="startCheckout('annual')">Get Arena Lite — Annual →</button>
-      <p class="pricing-note">Billed annually — save 25%. 14-day money-back guarantee.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- CTA -->
-<section id="cta">
-  <div class="section-label" style="color: var(--gold);">Get started</div>
-  <h2 class="section-title" style="color: var(--white); margin-bottom: 16px;">Ready to build an evidence record<br>that actually holds up?</h2>
-  <p>Join the practitioners using Arena Lite to capture forensic, defensible evidence for every student — on any device, in any setting.</p>
-  <a href="#pricing" class="btn-primary">Start your Arena Lite today</a>
-</section>
-
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div class="nav-logo">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M12 3L4 7.5V16.5L12 21L20 16.5V7.5L12 3Z" stroke="#C5A059" stroke-width="2" stroke-linejoin="round"/>
-          </svg>
+      <!-- Truth 1: Origin -->
+      <div class="truth-card">
+        <div class="truth-icon">
+          <!-- building/origin icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <span class="nav-name" style="font-size:.95rem;">The Arena <span style="color:var(--gold);">Hub</span></span>
+        <h3>The Origin</h3>
+        <p>
+          Designed by a practitioner to run a <strong>foundation-led AP site</strong> —
+          a "Perfect School" stalled by legacy tech fear and Big Tech lock-in.
+          Arena broke that stranglehold and is now entering its national pilot phase.
+        </p>
       </div>
-      <p>Forensic evidence tools for Alternative Provision and SEMH education.</p>
-    </div>
 
-    <div class="footer-links">
-      <div class="footer-col">
-        <h4>Product</h4>
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#sovereign">Data sovereignty</a>
+      <!-- Truth 2: Architecture -->
+      <div class="truth-card">
+        <div class="truth-icon">
+          <!-- lock/sovereign icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>The Architecture</h3>
+        <p>
+          <strong>Sovereign Hybrid design.</strong> All student data remains inside
+          your school's own Google Workspace tenant. No central databases.
+          No third-party data exposure. Full ICO &amp; UK GDPR Article 28 compliance by design.
+        </p>
       </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <a href="mailto:info@thearenahub.co.uk">Email support</a>
-        <a href="mailto:info@thearenahub.co.uk">Contact us</a>
+
+      <!-- Truth 3: Outcome -->
+      <div class="truth-card">
+        <div class="truth-icon">
+          <!-- trophy/outcome icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><polyline points="20 16 20 20 16 20"/><line x1="9" y1="15" x2="15" y2="9"/></svg>
+        </div>
+        <h3>The Outcome</h3>
+        <p>
+          <strong>The Equalizer Package.</strong> We convert vocational agency and
+          social progress into forensic evidence — professional credentials that
+          rival GCSE folders and are recognised at LA and national level.
+        </p>
       </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="dpa.html">Data Processing Agreement</a>
-      </div>
+
     </div>
   </div>
+</section>
 
-  <div class="footer-bottom">
-    <p>&copy; 2026 The Arena Hub Ltd. All rights reserved. Registered in England and Wales.</p>
-    <p style="color:rgba(255,255,255,.25);font-size:.75rem;">Sovereign Hybrid v7.0.0 — Built for AP</p>
+<!-- ══════════════════════════════════════════
+     ROADMAP
+══════════════════════════════════════════ -->
+<section class="roadmap" id="roadmap">
+  <div class="roadmap-inner">
+
+    <div class="roadmap-header">
+      <p class="section-label">The Build</p>
+      <h2 class="section-title">From Sovereign Perimeter<br>to National Infrastructure.</h2>
+      <hr class="gold-rule">
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-dot active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="tl-content">
+          <p class="tl-version">v1.0</p>
+          <p class="tl-title">Sovereign<br>Perimeter</p>
+          <p class="tl-desc">Single-school deployment. Evidence vault, attendance, welfare &amp; qualifications — all within the school's own Google Workspace.</p>
+          <span class="tl-status">National Pilot</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <div class="tl-content">
+          <p class="tl-version">v2.0</p>
+          <p class="tl-title">Federated<br>Bridge</p>
+          <p class="tl-desc">LA oversight layer. Cross-school evidence federation, parent portal, and read-only cloud mirror for regional reporting.</p>
+          <span class="tl-status upcoming">In Design</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <div class="tl-content">
+          <p class="tl-version">v3.0</p>
+          <p class="tl-title">Regional<br>Infrastructure</p>
+          <p class="tl-desc">Federated regional hubs. Mainstream Google Classroom integration. Unified LA heatmaps. National reform tooling.</p>
+          <span class="tl-status upcoming">Roadmap</span>
+        </div>
+      </div>
+
+    </div>
   </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ENDORSEMENT
+══════════════════════════════════════════ -->
+<section class="endorsement" id="endorsement">
+  <div class="quote-wrap">
+    <span class="quote-mark" aria-hidden="true">"</span>
+    <p class="quote-text">
+      Sovereign Evidence is both <em>timely and necessary</em><br>
+      for the UK's inclusion journey.
+    </p>
+    <p class="quote-attr">
+      <strong>Dr. R. Baldev</strong>
+      Founder, Global Open University
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════ -->
+<section class="cta-banner">
+  <h2>Ready to see the full architecture?</h2>
+  <p>Download the Master Concept Reference or speak to the team about bringing Arena to your school or LA.</p>
+  <div class="hero-ctas">
+    <a href="The Arena Hub Master Concept.pdf" class="btn-primary" target="_blank" rel="noopener"
+       onclick="gtag('event','pdf_download',{'event_category':'footer_cta','event_label':'master_concept'})">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download the Master Concept Reference
+    </a>
+    <a href="company.html" class="btn-ghost"
+       onclick="gtag('event','click',{'event_category':'footer_cta','event_label':'company_site'})">
+      Explore the Platform &amp; Request a Pilot
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <p>
+    The Arena Hub Ltd &nbsp;·&nbsp; Companies House #1708605 &nbsp;·&nbsp;
+    <a href="company.html">thearenahub.co.uk</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms</a>
+  </p>
+  <p style="margin-top:0.4rem; font-size:0.75rem; opacity:0.5;">
+    Sovereign Infrastructure for AP &amp; SEMH Education
+  </p>
 </footer>
 
 <script>
-// ── Stripe Checkout ───────────────────────────────────────────────────────────
-// Replace BACKEND_URL with your Cloud Run service URL after deploy.
-// Arena Ingestor endpoint: POST /createCheckout → returns { url: <stripe_checkout_url> }
-var BACKEND_URL = 'https://arena-ingestor-820703761059.europe-west2.run.app';
-
-function startCheckout(plan) {
-  var btn = event && event.target ? event.target : null;
-  if (btn) { btn.disabled = true; btn.textContent = 'Loading…'; }
-
-  fetch(BACKEND_URL + '/createCheckout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ plan: plan })
-  })
-  .then(function(res) {
-    if (!res.ok) throw new Error('Server error ' + res.status);
-    return res.json();
-  })
-  .then(function(data) {
-    if (data && data.url) {
-      window.location.href = data.url;
-    } else {
-      throw new Error('No checkout URL returned');
-    }
-  })
-  .catch(function(err) {
-    if (btn) { btn.disabled = false; btn.textContent = plan === 'annual' ? 'Get Arena Lite — Annual →' : 'Get Arena Lite →'; }
-    alert('Checkout unavailable right now. Please email info@thearenahub.co.uk to sign up.');
-    console.error('Checkout error:', err);
-  });
-}
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
 </script>
 
 </body>

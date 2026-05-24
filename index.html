@@ -423,7 +423,7 @@ footer {
     <a href="#how">How it works</a>
     <a href="#features">Features</a>
     <a href="#pricing">Pricing</a>
-    <a href="mailto:hello@thearenahub.co.uk">Contact</a>
+    <a href="mailto:info@thearenahub.co.uk">Contact</a>
     <a href="login.html" class="btn-nav-login">Log in</a>
     <a href="#pricing" class="btn-nav-cta">Get Arena Lite</a>
   </div>
@@ -694,8 +694,8 @@ footer {
       </div>
       <div class="footer-col">
         <h4>Support</h4>
-        <a href="mailto:hello@thearenahub.co.uk">Email support</a>
-        <a href="mailto:hello@thearenahub.co.uk">Contact us</a>
+        <a href="mailto:info@thearenahub.co.uk">Email support</a>
+        <a href="mailto:info@thearenahub.co.uk">Contact us</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
@@ -740,75 +740,10 @@ function startCheckout(plan) {
   })
   .catch(function(err) {
     if (btn) { btn.disabled = false; btn.textContent = plan === 'annual' ? 'Get Arena Lite — Annual →' : 'Get Arena Lite →'; }
-    alert('Checkout unavailable right now. Please email hello@thearenahub.co.uk to sign up.');
+    alert('Checkout unavailable right now. Please email info@thearenahub.co.uk to sign up.');
     console.error('Checkout error:', err);
   });
 }
-</script>
-
-</body>
-</html>
-  </div>
-</footer>
-
-
-<script>
-// Stripe Checkout integration
-// Replace STRIPE_PRICE_ID with the actual Arena Lite monthly price ID from Stripe Dashboard
-var STRIPE_PRICE_ID       = 'price_REPLACE_WITH_ACTUAL_PRICE_ID';
-var STRIPE_PUBLISHABLE_KEY = 'pk_live_REPLACE_WITH_ACTUAL_PUBLISHABLE_KEY';
-var CLOUD_RUN_URL          = 'https://arena-ingestor-820703761059.europe-west2.run.app';
-
-function startCheckout(plan) {
-  // Default to monthly if no plan supplied
-  plan = plan || 'monthly';
-  // Collect basic info before Stripe redirect
-  var email     = prompt('Enter your email address to get started:');
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  var orgName   = prompt('School or organisation name:');
-  if (!orgName) return;
-  var pracName  = prompt('Your full name:');
-  if (!pracName) return;
-
-  // Call Cloud Run to create a Stripe Checkout session
-  // (In production this would be a form → fetch → redirect, not prompt())
-  fetch(CLOUD_RUN_URL + '/createCheckout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      email:            email,
-      orgName:          orgName,
-      practitionerName: pracName,
-      priceId:          STRIPE_PRICE_ID,
-      plan:             plan
-    })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (data.checkoutUrl) {
-      window.location.href = data.checkoutUrl;
-    } else {
-      alert('Something went wrong. Please email hello@thearenahub.co.uk');
-    }
-  })
-  .catch(function() {
-    // Fallback: direct Stripe Payment Link (set in Stripe Dashboard)
-    // Replace with your actual Stripe Payment Link URL
-    window.location.href = 'https://buy.stripe.com/REPLACE_WITH_PAYMENT_LINK';
-  });
-}
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    var target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      document.querySelector('.nav-links').classList.remove('open');
-    }
-  });
-});
 </script>
 
 </body>

@@ -13,8 +13,10 @@
   ASSET MAP (all assets in assets/ — push this folder to repo):
   ─────────────────────────────────────────────────────────────
   Arena Lite Landing Page Video.mp4  ← Hero cinematic section
-  Dashboard_UI.png                   ← Hero panel + Workflow step 4
+  Dashboard_UI.png                   ← Hero panel + Workflow step 3 + video poster
   Capture_Evidence_UI.png            ← Workflow step 1
+  COP_Report_UI.png                  ← Workflow step 2 (qualifications screen)
+  Arena_Combined_Seamless.mov        ← Workflow video walkthrough
   SafeGuarding_UI.png                ← Safeguarding section
   ─────────────────────────────────────────────────────────────
 ============================================================ -->
@@ -1747,29 +1749,14 @@ a {
         </div>
       </div>
 
-      <!-- Step 2: AI Confirmation -->
+      <!-- Step 2: AI Qualification Confirmation — real screenshot -->
       <div class="workflow__step reveal reveal--delay-2">
         <div class="workflow__step-num" aria-hidden="true">2</div>
-        <div class="workflow__screen" role="img" aria-label="AI qualification suggestion screen">
-          <div class="screen__bar">
-            <div class="screen__dot"></div>
-            <div class="screen__dot"></div>
-            <div class="screen__dot"></div>
-          </div>
-          <div class="screen__body">
-            <div class="ui-bar" style="height:6px;width:90%;opacity:.3;"></div>
-            <div class="ui-block" style="padding:.6rem .5rem;margin-top:.25rem;">
-              <div class="ui-bar ui-bar--gold-solid ui-bar--medium" style="height:5px;margin-bottom:.4rem;"></div>
-              <div class="ui-bar" style="width:100%;height:4px;opacity:.3;"></div>
-              <div class="ui-bar" style="width:70%;height:4px;opacity:.2;margin-top:.3rem;"></div>
-            </div>
-            <div style="margin-top:.4rem;font-size:.58rem;color:rgba(197,160,89,.8);font-family:'Source Sans 3',sans-serif;line-height:1.4;font-style:italic;padding:0 .1rem;">
-              "Was this Functional Skills<br>Measurement &amp; Ratios?"
-            </div>
-            <div style="display:flex;gap:.3rem;margin-top:.5rem;">
-              <div class="ui-btn-small" style="background:var(--gold);font-size:.55rem;">Yes, that's it</div>
-              <div class="ui-btn-small" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);font-size:.55rem;">Adjust</div>
-            </div>
+        <div class="phone-frame" style="max-width:none;">
+          <div class="phone-frame__screen">
+            <img src="assets/COP_Report_UI.png"
+                 alt="Arena Lite COP Report — cross-referencing qualifications screen showing evidence mapped to curriculum units with AI-suggested matches"
+                 width="270">
           </div>
         </div>
         <div class="workflow__step-label">
@@ -1800,26 +1787,16 @@ a {
     <div class="workflow__video-preview reveal">
       <div class="workflow__video-preview__inner">
 
-        <!--
-          ═══════════════════════════════════════════════════
-          ASSET: Replace placeholder when iPhone walkthrough
-          video is ready. Jonathan will provide filename.
-
-          When ready, replace .workflow__video-preview__placeholder
-          with:
-            <video autoplay loop muted playsinline
-                   class="workflow__video-preview__video"
-                   poster="assets/[POSTER_FILE]">
-              <source src="assets/[VIDEO_FILE]"
-                      type="video/mp4">
-            </video>
-          ═══════════════════════════════════════════════════
-        -->
-        <div class="workflow__video-preview__placeholder"
-             role="img" aria-label="App walkthrough video — coming soon">
-          <div class="workflow__video-preview__play" aria-hidden="true"></div>
-          <span class="workflow__video-preview__coming-soon">Walkthrough video coming soon</span>
-        </div>
+        <video autoplay loop muted playsinline
+               class="workflow__video-preview__video"
+               poster="assets/Dashboard_UI.png"
+               aria-label="Arena Lite full app walkthrough — iPhone screen recording showing evidence capture, AI qualification suggestion, and Trophy Hub">
+          <source src="assets/Arena_Combined_Seamless.mov" type="video/quicktime">
+          <source src="assets/Arena_Combined_Seamless.mov" type="video/mp4">
+          <!-- Fallback for browsers without video support -->
+          <img src="assets/Dashboard_UI.png"
+               alt="Arena Lite dashboard — evidence capture workflow">
+        </video>
 
         <div class="workflow__video-preview__copy">
           <span class="eyebrow">Full App Walkthrough</span>

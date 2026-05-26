@@ -1,9 +1,6 @@
 {
   "version": 2,
   "name": "thearenahub",
-  "builds": [
-    { "src": "*.html", "use": "@vercel/static" }
-  ],
   "routes": [
     { "src": "/",          "dest": "/index.html" },
     { "src": "/login",     "dest": "/login.html" },

@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<!-- ============================================================
+  Arena Lite — Landing Page Rebuild
+  Version:   2.0.0
+  Session:   S79 — 25 May 2026
+  Author:    Jonathan Baguley · The Arena Hub Ltd
+  Framework: Emotional Asymmetry — "Lite as relief, not system"
+  GA4:       G-N2PRX87LVE
+
+  ASSET MAP (all assets in assets/Website_Resources/ — push this folder to repo):
+  ─────────────────────────────────────────────────────────────
+  Arena Lite Landing Page Video.mp4  ← Hero cinematic section
+  Dashboard_UI.png                   ← Hero panel + Workflow step 4
+  Capture_Evidence_UI.png            ← Workflow step 1
+  SafeGuarding_UI.png                ← Safeguarding section
+  ─────────────────────────────────────────────────────────────
+============================================================ -->
+
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2PRX87LVE"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -8,709 +27,1944 @@
   gtag('js', new Date());
   gtag('config', 'G-N2PRX87LVE');
 </script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#1B263B">
-<meta name="description" content="Arena Hub — The Sovereign Master Layer for AP & SEND. Practitioner-led digital infrastructure for Alternative Provision schools across the UK.">
+<meta name="description" content="Arena Lite — Capture evidence in the moment. Reduce your workload. Keep the human relationship at the centre of every session.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="The Arena Hub">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%231B263B' width='180' height='180'/><text x='50%' y='50%' font-size='60' font-weight='700' font-family='Rajdhani, sans-serif' fill='%23C5A059' text-anchor='middle' dominant-baseline='middle'>A</text></svg>">
+<meta name="apple-mobile-web-app-title" content="Arena Lite">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Arena Lite — Get your evenings back.">
+<meta property="og:description" content="Capture learning in the moment. Let Arena Lite remember the evidence so you don't have to.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.thearenahub.com">
+
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%231B263B' width='180' height='180'/><text x='50%' y='50%' font-size='60' font-weight='700' font-family='Rajdhani,sans-serif' fill='%23C5A059' text-anchor='middle' dominant-baseline='middle'>A</text></svg>">
 <link rel="manifest" href="manifest.json">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-<title>Arena Hub — The Sovereign Master Layer for AP & SEND</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+<title>Arena Lite — Capture Learning. Keep the Human Moment.</title>
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════ */
+:root {
+  /* Brand */
+  --navy:         #1B263B;
+  --navy-mid:     #243552;
+  --navy-deep:    #141E2E;
+  --navy-light:   #2E4270;
+  --gold:         #C5A059;
+  --gold-hover:   #D4B87A;
+  --gold-muted:   rgba(197, 160, 89, 0.12);
+
+  /* Neutrals */
+  --cream:        #F7F4EF;
+  --cream-warm:   #EDE9E3;
+  --white:        #FFFFFF;
+  --charcoal:     #1C1C1E;
+  --body-text:    #374151;
+  --muted:        #6B7280;
+  --border:       rgba(197, 160, 89, 0.2);
+  --border-light: rgba(0, 0, 0, 0.07);
+
+  /* Typography */
+  --font-display: 'Rajdhani', sans-serif;
+  --font-body:    'Source Sans 3', sans-serif;
+
+  /* Scale */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.5rem;
+  --text-5xl:  3.25rem;
+  --text-6xl:  4.25rem;
+
+  /* Spacing */
+  --section-pad:     clamp(4rem, 8vw, 7rem);
+  --container-max:   1200px;
+  --container-pad:   clamp(1.25rem, 5vw, 3rem);
+
+  /* Motion */
+  --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --dur-fast: 0.2s;
+  --dur-mid:  0.35s;
+  --dur-slow: 0.5s;
+
+  /* Radii */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--body-text);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════════════ */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+}
+
+.eyebrow--dark {
+  color: var(--navy);
+  opacity: 0.55;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  border: none;
+  transition: background var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--gold);
+  color: var(--navy);
+  box-shadow: 0 2px 12px rgba(197,160,89,0.25);
+}
+
+.btn--primary:hover {
+  background: var(--gold-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(197,160,89,0.35);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.btn--ghost:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.45);
+}
+
+.btn--outline-gold {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+}
+
+.btn--outline-gold:hover {
+  background: var(--gold-muted);
+}
+
+/* ═══════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.1rem 0;
+  transition: background var(--dur-mid) var(--ease),
+              box-shadow var(--dur-mid) var(--ease),
+              padding var(--dur-mid) var(--ease);
+}
+
+.nav--scrolled {
+  background: rgba(27, 38, 59, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(197,160,89,0.12);
+  padding: 0.75rem 0;
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.nav__logo-mark {
+  width: 34px;
+  height: 34px;
+  background: var(--gold);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.nav__logo-text {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+
+.nav__logo-text span {
+  color: var(--gold);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav__links a {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.02em;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.nav__links a:hover {
+  color: var(--white);
+}
+
+.nav__cta {
+  flex-shrink: 0;
+}
+
+.nav__cta .btn {
+  padding: 0.55rem 1.35rem;
+  font-size: var(--text-base);
+}
+
+/* Mobile nav toggle */
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--white);
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav__toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--dur-fast) var(--ease),
+              opacity var(--dur-fast) var(--ease);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 1 — HERO
+═══════════════════════════════════════════════════════ */
+.hero {
+  background: var(--navy);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 5rem;
+  padding-bottom: var(--section-pad);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background texture — organic, not geometric */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(197,160,89,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 10% 70%, rgba(46,66,112,0.5) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Left: Copy */
+.hero__copy {}
+
+.hero__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.hero__headline em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.hero__subtext {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.68);
+  max-width: 44ch;
+  margin-bottom: 2.5rem;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.hero__trust-line {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.38);
+  letter-spacing: 0.02em;
+}
+
+.hero__trust-line strong {
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+}
+
+/* Right: Media */
+.hero__media {
+  position: relative;
+}
+
+
+  50% { opacity: 0.45; }
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 2 — CINEMATIC DEMO
+═══════════════════════════════════════════════════════ */
+.cinematic {
+  background: var(--navy-deep);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cinematic__video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 75vh;
+  overflow: hidden;
+}
+
+.cinematic__video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay gradient — keeps text readable, doesn't obscure content */
+.cinematic__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(20,30,46,0.35) 0%, transparent 30%, transparent 60%, rgba(20,30,46,0.7) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.cinematic__caption {
+  max-width: 52ch;
+}
+
+.cinematic__caption-text {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+
+.cinematic__caption-text em {
+  font-style: normal;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* Video placeholder (before asset is added) */
+.cinematic__video-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 75vh;
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cinematic__video-placeholder .placeholder-inner {
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+}
+
+.cinematic__video-placeholder .placeholder-inner::before {
+  content: '▶';
+  display: block;
+  font-size: 3rem;
+  color: var(--gold);
+  opacity: 0.3;
+  margin-bottom: 1rem;
+}
+
+.cinematic__video-placeholder .placeholder-inner p {
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 3 — THE PROBLEM
+═══════════════════════════════════════════════════════ */
+.problem {
+  background: var(--cream);
+  padding: var(--section-pad) 0;
+}
+
+.problem__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.problem__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+
+.problem__body {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--body-text);
+  max-width: 44ch;
+}
+
+.problem__pains {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  list-style: none;
+}
+
+.problem__pains li {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  padding: 1.25rem 1.5rem;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: box-shadow var(--dur-fast) var(--ease);
+}
+
+.problem__pains li:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+}
+
+.problem__pain-accent {
+  width: 3px;
+  min-width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--gold);
+  opacity: 0.6;
+  align-self: stretch;
+}
+
+.problem__pain-text {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--body-text);
+}
+
+.problem__pain-text strong {
+  display: block;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 0.2rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 4 — 60-SECOND WORKFLOW
+═══════════════════════════════════════════════════════ */
+.workflow {
+  background: var(--navy);
+  padding: var(--section-pad) 0;
+  overflow: hidden;
+}
+
+.workflow__header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.workflow__title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.workflow__subtitle {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  max-width: 50ch;
+  margin-inline: auto;
+  line-height: 1.65;
+}
+
+/* Horizontal steps grid — 3 active tiles */
+.workflow__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  position: relative;
+}
+
+/* Connecting line between steps */
+.workflow__steps::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  left: calc(16.67% + 0.5rem);
+  right: calc(16.67% + 0.5rem);
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(197,160,89,0.3) 15%,
+    rgba(197,160,89,0.3) 85%,
+    transparent
+  );
+  z-index: 0;
+}
+
+.workflow__step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Step number badge */
+.workflow__step-num {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid rgba(197,160,89,0.3);
+  background: var(--navy-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: background var(--dur-mid) var(--ease),
+              border-color var(--dur-mid) var(--ease);
+}
+
+.workflow__step:hover .workflow__step-num {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+}
+
+/* App screen mockup — CSS only, no screenshots */
+.workflow__screen {
+  background: var(--navy-mid);
+  border: 1px solid rgba(197,160,89,0.12);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 9/16;
+  max-height: 300px;
+  position: relative;
+  transition: border-color var(--dur-mid) var(--ease),
+              box-shadow var(--dur-mid) var(--ease);
+}
+
+.workflow__step:hover .workflow__screen {
+  border-color: rgba(197,160,89,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Screen top bar */
+.screen__bar {
+  background: var(--navy-deep);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.screen__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+}
+
+.screen__dot:first-child { background: rgba(197,160,89,0.4); }
+
+/* Screen content area */
+.screen__body {
+  padding: 1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  height: calc(100% - 2.5rem);
+  overflow: hidden;
+}
+
+/* Micro UI elements — abstract but readable */
+.ui-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.07);
+}
+
+.ui-bar--gold { background: rgba(197,160,89,0.3); }
+.ui-bar--gold-solid { background: var(--gold); opacity: 0.7; }
+.ui-bar--short { width: 55%; }
+.ui-bar--medium { width: 78%; }
+.ui-bar--full { width: 100%; }
+
+.ui-block {
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.ui-block--img {
+  height: 80px;
+  background: linear-gradient(135deg, rgba(197,160,89,0.08) 0%, rgba(197,160,89,0.04) 100%);
+  border-color: rgba(197,160,89,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1.25rem;
+  opacity: 0.5;
+}
+
+.ui-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ui-tag--gold {
+  background: rgba(197,160,89,0.15);
+  color: var(--gold);
+  border: 1px solid rgba(197,160,89,0.25);
+}
+
+.ui-tag--green {
+  background: rgba(74, 222, 128, 0.12);
+  color: #4ADE80;
+  border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.ui-btn-small {
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: fit-content;
+}
+
+.ui-confirm-tick {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(74,222,128,0.15);
+  border: 1.5px solid rgba(74,222,128,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin: 0.5rem auto 0;
+}
+
+/* Step label / description */
+.workflow__step-label {
+  padding-top: 0.5rem;
+}
+
+.workflow__step-label h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.35rem;
+}
+
+.workflow__step-label p {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.45);
+  line-height: 1.55;
+}
+
+/* ── Workflow video preview (coming soon) ────────────── */
+.workflow__video-preview {
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+  padding-top: clamp(2.5rem, 4vw, 3.5rem);
+  border-top: 1px solid rgba(197,160,89,0.15);
+}
+
+.workflow__video-preview__inner {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  background: rgba(197,160,89,0.04);
+  border: 1px solid rgba(197,160,89,0.14);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3rem);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle corner accent */
+.workflow__video-preview__inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+.workflow__video-preview__placeholder {
+  background: var(--navy-mid);
+  border: 1px solid rgba(197,160,89,0.12);
+  border-radius: var(--radius-xl);
+  aspect-ratio: 9/19.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.workflow__video-preview__placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%,
+    rgba(197,160,89,0.06) 0%, transparent 70%);
+}
+
+.workflow__video-preview__play {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(197,160,89,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.workflow__video-preview__play::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 14px;
+  border-color: transparent transparent transparent rgba(197,160,89,0.5);
+  margin-left: 3px;
+}
+
+.workflow__video-preview__coming-soon {
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(197,160,89,0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.workflow__video-preview__copy {}
+
+.workflow__video-preview__copy .eyebrow {
+  margin-bottom: 0.75rem;
+}
+
+.workflow__video-preview__copy h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.85rem;
+}
+
+.workflow__video-preview__copy p {
+  font-size: var(--text-base);
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.workflow__video-preview__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  font-size: var(--text-xs);
+  color: rgba(197,160,89,0.5);
+  letter-spacing: 0.04em;
+}
+
+.workflow__video-preview__note::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: rgba(197,160,89,0.35);
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .workflow__video-preview__inner {
+    grid-template-columns: 1fr;
+  }
+  .workflow__video-preview__placeholder {
+    aspect-ratio: 16/9;
+    max-height: 180px;
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 5 — CONTRAST GRID
+═══════════════════════════════════════════════════════ */
+.contrast {
+  background: var(--white);
+  padding: var(--section-pad) 0;
+}
+
+.contrast__header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.contrast__title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.contrast__subtitle {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 46ch;
+  margin-inline: auto;
+}
+
+.contrast__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+}
+
+/* Column headers */
+.contrast__table thead th {
+  padding: 1.25rem 1.75rem;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.contrast__table thead th:first-child {
+  background: #F3F1EF;
+  color: var(--muted);
+  width: 50%;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.contrast__table thead th:last-child {
+  background: var(--navy);
+  color: var(--gold);
+  border-bottom: 1px solid rgba(197,160,89,0.15);
+}
+
+/* Table rows */
+.contrast__table tbody tr td {
+  padding: 1.1rem 1.75rem;
+  vertical-align: top;
+  font-size: var(--text-base);
+  line-height: 1.55;
+  border-bottom: 1px solid transparent;
+}
+
+.contrast__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Odd rows */
+.contrast__table tbody tr:nth-child(odd) td:first-child {
+  background: #F9F8F6;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.contrast__table tbody tr:nth-child(odd) td:last-child {
+  background: var(--navy-mid);
+  border-bottom: 1px solid rgba(197,160,89,0.06);
+}
+
+/* Even rows */
+.contrast__table tbody tr:nth-child(even) td:first-child {
+  background: #F3F1EF;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.contrast__table tbody tr:nth-child(even) td:last-child {
+  background: var(--navy);
+  border-bottom: 1px solid rgba(197,160,89,0.06);
+}
+
+/* Before/after cell styles */
+.cell--before {
+  color: var(--muted);
+  padding-left: 2.25rem;
+  position: relative;
+}
+
+.cell--before::before {
+  content: '—';
+  position: absolute;
+  left: 1.75rem;
+  color: rgba(0,0,0,0.2);
+  font-weight: 300;
+  display: none;
+}
+
+.cell--after {
+  color: rgba(255,255,255,0.82);
+  padding-left: 2.5rem;
+  position: relative;
+}
+
+.cell--after::before {
+  content: '→';
+  position: absolute;
+  left: 1.75rem;
+  color: var(--gold);
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 6 — SOVEREIGNTY / TRUST
+═══════════════════════════════════════════════════════ */
+.trust {
+  background: var(--cream);
+  padding: var(--section-pad) 0;
+}
+
+.trust__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.trust__copy {}
+
+.trust__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+}
+
+.trust__body {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--body-text);
+  max-width: 40ch;
+}
+
+/* Sovereignty points grid */
+.trust__points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+
+.trust__point {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease);
+}
+
+.trust__point:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  border-color: rgba(197,160,89,0.25);
+}
+
+/* Gold top accent bar */
+.trust__point::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.trust__point:hover::before {
+  opacity: 0.6;
+}
+
+.trust__point-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.trust__point-text {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 6B — SAFEGUARDING SCREEN (Image Stub)
+   Replace .safeguard__stub img src when ready
+═══════════════════════════════════════════════════════ */
+.safeguard {
+  background: var(--navy);
+  padding: var(--section-pad) 0;
+}
+
+.safeguard__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.safeguard__copy {}
+
+.safeguard__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+}
+
+.safeguard__body {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.62);
+  max-width: 42ch;
+  margin-bottom: 1.75rem;
+}
+
+.safeguard__detail {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ── ASSET STUB: Replace when safeguarding UI image is ready ── */
+.safeguard__stub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 7 — FINAL CTA
+═══════════════════════════════════════════════════════ */
+.cta-final {
+  background: var(--navy-deep);
+  padding: var(--section-pad) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-final::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(197,160,89,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-final__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.cta-final__eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  opacity: 0.8;
+}
+
+.cta-final__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+}
+
+.cta-final__body {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 44ch;
+  margin-inline: auto;
+  margin-bottom: 2.5rem;
+}
+
+.cta-final__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.cta-final__actions .btn {
+  padding: 1rem 2.75rem;
+  font-size: var(--text-xl);
+}
+
+.cta-final__guarantees {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.cta-final__guarantee {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.03em;
+}
+
+.cta-final__guarantee::before {
+  content: '✓';
+  color: var(--gold);
+  opacity: 0.7;
+  font-size: 0.7rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════ */
+.footer {
+  background: var(--navy-deep);
+  border-top: 1px solid rgba(197,160,89,0.1);
+  padding: 2.5rem 0 2rem;
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer__logo-mark {
+  width: 28px;
+  height: 28px;
+  background: rgba(197,160,89,0.15);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.footer__logo-text {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer__logo-text strong {
+  color: rgba(255,255,255,0.75);
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer__links a {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.35);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.footer__links a:hover {
+  color: rgba(255,255,255,0.65);
+}
+
+.footer__copy {
+  width: 100%;
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.22);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PHONE FRAME (device mockup for UI screenshots)
+═══════════════════════════════════════════════════════ */
+.phone-frame {
+  background: #0F1724;
+  border-radius: 2.75rem;
+  padding: 0.55rem;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.07),
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 40px 100px rgba(0,0,0,0.55),
+    0 12px 30px rgba(0,0,0,0.3);
+  max-width: 270px;
+  margin-inline: auto;
+}
+
+/* Dynamic island / notch */
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 5px;
+  background: #0F1724;
+  border-radius: 3px;
+  z-index: 10;
+}
+
+/* Side buttons */
+.phone-frame::after {
+  content: '';
+  position: absolute;
+  top: 4rem;
+  right: -3px;
+  width: 3px;
+  height: 2rem;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  box-shadow: 0 2.5rem 0 rgba(255,255,255,0.06);
+}
+
+.phone-frame__screen {
+  border-radius: 2.2rem;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  line-height: 0;
+}
+
+.phone-frame__screen img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL REVEAL (lightweight, no dependencies)
+═══════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--dur-slow) var(--ease),
+              transform var(--dur-slow) var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal--delay-1 { transition-delay: 0.1s; }
+.reveal--delay-2 { transition-delay: 0.2s; }
+.reveal--delay-3 { transition-delay: 0.3s; }
+.reveal--delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__headline { font-size: var(--text-4xl); }
+  .hero__media { order: -1; max-width: 520px; margin-inline: auto; }
+
+  .problem__inner { grid-template-columns: 1fr; }
+  .trust__inner { grid-template-columns: 1fr; }
+  .safeguard__inner { grid-template-columns: 1fr; }
+  .safeguard__stub { max-width: 320px; margin-inline: auto; }
+
+  .workflow__steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .workflow__steps::before { display: none; }
+}
+
+@media (max-width: 640px) {
   :root {
-    --navy:       #1B263B;
-    --navy-mid:   #243552;
-    --navy-light: #2E4270;
-    --gold:       #C5A059;
-    --gold-light: #D4B475;
-    --gold-dim:   rgba(197,160,89,0.15);
-    --gold-line:  rgba(197,160,89,0.3);
-    --white:      #F4F1EB;
-    --grey:       #8C9BB0;
-    --text:       #CBD5E0;
+    --text-5xl: 2.5rem;
+    --text-4xl: 2rem;
+    --text-3xl: 1.6rem;
   }
 
-  html { scroll-behavior: smooth; }
+  .workflow__steps { grid-template-columns: 1fr 1fr; }
+  .hero__actions { flex-direction: column; align-items: flex-start; }
+  .hero__actions .btn { width: 100%; justify-content: center; }
+  .cta-final__actions .btn { width: 100%; justify-content: center; }
+  .trust__points { grid-template-columns: 1fr; }
+  .contrast__table { font-size: var(--text-sm); }
+  .contrast__table thead th,
+  .contrast__table tbody tr td { padding: 0.9rem 1rem; }
+  .nav__links { display: none; }
+  .nav__toggle { display: flex; }
+  .footer__inner { flex-direction: column; align-items: flex-start; }
+}
 
-  body {
-    font-family: 'Source Sans 3', sans-serif;
-    background: var(--navy);
-    color: var(--white);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  /* ── SKIP LINK ── */
-  .skip { position: absolute; top: -60px; left: 0; background: var(--gold); color: var(--navy);
-    padding: 10px 18px; font-weight: 600; text-decoration: none; z-index: 200; }
-  .skip:focus { top: 0; }
-
-  /* ══════════════════════════════════════════
-     HERO
-  ══════════════════════════════════════════ */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 6rem 2rem 5rem;
-    position: relative;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  /* radial glow behind heading */
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 50% 40%, rgba(197,160,89,0.07) 0%, transparent 65%),
-      radial-gradient(ellipse at 80% 90%, rgba(46,66,112,0.5) 0%, transparent 55%);
-    pointer-events: none;
-  }
-
-  /* subtle grid texture */
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(197,160,89,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(197,160,89,0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 780px;
-  }
-
-  .wordmark {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 2.5rem;
-    opacity: 0.9;
-  }
-
-  .hero-tag {
-    display: inline-block;
-    border: 1px solid var(--gold-line);
-    color: var(--gold);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 2px;
-    margin-bottom: 1.75rem;
-    background: var(--gold-dim);
-  }
-
-  .hero h1 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(2.6rem, 6vw, 4.2rem);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.5px;
-    color: var(--white);
-    margin-bottom: 1.25rem;
-  }
-
-  .hero h1 span { color: var(--gold); }
-
-  .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    font-weight: 300;
-    color: var(--text);
-    line-height: 1.65;
-    max-width: 620px;
-    margin: 0 auto 2.75rem;
-  }
-
-  .hero-ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 3.5rem;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 15px 32px;
-    background: var(--gold);
-    color: var(--navy);
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 3px;
-    transition: background 0.2s, transform 0.15s;
-    letter-spacing: 0.2px;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 15px 32px;
-    background: transparent;
-    color: var(--gold);
-    border: 1.5px solid var(--gold-line);
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 3px;
-    transition: border-color 0.2s, background 0.2s, transform 0.15s;
-    letter-spacing: 0.2px;
-  }
-  .btn-ghost:hover { border-color: var(--gold); background: var(--gold-dim); transform: translateY(-2px); }
-
-  .scroll-hint {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    color: var(--grey);
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    animation: pulse 2.5s ease-in-out infinite;
-  }
-  .scroll-hint svg { opacity: 0.5; }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; transform: translateY(0); }
-    50%       { opacity: 1;   transform: translateY(4px); }
-  }
-
-  /* ══════════════════════════════════════════
-     SECTION SHARED
-  ══════════════════════════════════════════ */
-  section { padding: 6rem 2rem; }
-
-  .section-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.75rem;
-    opacity: 0.85;
-  }
-
-  .section-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 1rem;
-    line-height: 1.15;
-  }
-
-  .section-intro {
-    font-size: 1.05rem;
-    color: var(--text);
-    line-height: 1.65;
-    max-width: 580px;
-  }
-
-  .gold-rule {
-    width: 48px;
-    height: 2px;
-    background: var(--gold);
-    margin: 1.5rem 0;
-    border: none;
-  }
-
-  /* ══════════════════════════════════════════
-     THREE TRUTHS
-  ══════════════════════════════════════════ */
-  .truths { background: var(--navy-mid); }
-
-  .truths-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .truths-header { margin-bottom: 3.5rem; }
-
-  .truths-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-  }
-
-  .truth-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(197,160,89,0.12);
-    border-radius: 4px;
-    padding: 2rem;
-    transition: border-color 0.25s, background 0.25s;
-  }
-  .truth-card:hover { border-color: var(--gold-line); background: rgba(197,160,89,0.04); }
-
-  .truth-icon {
-    width: 44px;
-    height: 44px;
-    background: var(--gold-dim);
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-  }
-  .truth-icon svg { color: var(--gold); }
-
-  .truth-card h3 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: 0.3px;
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-  }
-
-  .truth-card p {
-    font-size: 0.97rem;
-    color: var(--text);
-    line-height: 1.65;
-  }
-
-  .truth-card p strong { color: var(--gold-light); font-weight: 600; }
-
-  /* ══════════════════════════════════════════
-     ROADMAP
-  ══════════════════════════════════════════ */
-  .roadmap { background: var(--navy); }
-
-  .roadmap-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .roadmap-header { margin-bottom: 4rem; }
-
-  .timeline {
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-    gap: 0;
-  }
-
-  /* connecting line */
-  .timeline::before {
-    content: '';
-    position: absolute;
-    top: 18px;
-    left: calc(16.66% + 18px);
-    right: calc(16.66% + 18px);
-    height: 2px;
-    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-line) 50%, rgba(197,160,89,0.1) 100%);
-    z-index: 0;
-  }
-
-  .timeline-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .tl-dot {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    background: var(--navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .tl-dot.active {
-    background: var(--gold);
-  }
-
-  .tl-dot.active svg { color: var(--navy); }
-  .tl-dot:not(.active) svg { color: var(--gold); opacity: 0.5; }
-
-  .tl-version {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
-
-  .tl-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-    line-height: 1.2;
-  }
-
-  .tl-desc {
-    font-size: 0.85rem;
-    color: var(--grey);
-    line-height: 1.5;
-  }
-
-  .tl-status {
-    display: inline-block;
-    margin-top: 0.6rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: var(--gold-dim);
-    border: 1px solid var(--gold-line);
-    padding: 3px 10px;
-    border-radius: 2px;
-  }
-
-  .tl-status.upcoming {
-    color: var(--grey);
-    background: rgba(255,255,255,0.03);
-    border-color: rgba(255,255,255,0.1);
-  }
-
-  /* Mobile roadmap — stack vertical */
-  @media (max-width: 640px) {
-    .timeline { flex-direction: column; gap: 0; }
-    .timeline::before {
-      top: 18px;
-      left: 17px;
-      right: auto;
-      bottom: 18px;
-      width: 2px;
-      height: auto;
-    }
-    .timeline-item { flex-direction: row; align-items: flex-start; text-align: left; gap: 1.25rem; padding: 0 0 2.5rem; }
-    .tl-dot { flex-shrink: 0; margin-bottom: 0; }
-    .tl-content { padding-top: 4px; }
-  }
-
-  /* ══════════════════════════════════════════
-     ENDORSEMENT
-  ══════════════════════════════════════════ */
-  .endorsement {
-    background: var(--navy-mid);
-    text-align: center;
-  }
-
-  .quote-wrap {
-    max-width: 680px;
-    margin: 0 auto;
-    position: relative;
-    padding: 0 2rem;
-  }
-
-  .quote-mark {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 5rem;
-    line-height: 0.6;
-    color: var(--gold);
-    opacity: 0.25;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  .quote-text {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 600;
-    color: var(--white);
-    line-height: 1.4;
-    margin-bottom: 1.75rem;
-    font-style: italic;
-  }
-
-  .quote-text em { color: var(--gold); font-style: normal; }
-
-  .quote-attr {
-    font-size: 0.9rem;
-    color: var(--grey);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
-
-  .quote-attr strong {
-    color: var(--gold-light);
-    display: block;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 2px;
-  }
-
-  /* ══════════════════════════════════════════
-     CTA BANNER
-  ══════════════════════════════════════════ */
-  .cta-banner {
-    background: var(--navy);
-    text-align: center;
-    padding: 5rem 2rem;
-    border-top: 1px solid var(--gold-line);
-  }
-
-  .cta-banner h2 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.75rem;
-  }
-
-  .cta-banner p {
-    font-size: 1rem;
-    color: var(--text);
-    margin-bottom: 2.25rem;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-  }
-
-  .cta-banner .hero-ctas { margin-bottom: 0; }
-
-  /* ══════════════════════════════════════════
-     FOOTER
-  ══════════════════════════════════════════ */
-  footer {
-    background: #111C2B;
-    padding: 1.75rem 2rem;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-
-  footer p {
-    font-size: 0.82rem;
-    color: var(--grey);
-    line-height: 1.8;
-  }
-
-  footer a {
-    color: var(--gold);
-    text-decoration: none;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-  footer a:hover { opacity: 1; }
-
-  /* ══════════════════════════════════════════
-     ANIMATIONS
-  ══════════════════════════════════════════ */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-tag    { animation: fadeUp 0.6s ease-out 0.1s both; }
-  .hero h1     { animation: fadeUp 0.6s ease-out 0.25s both; }
-  .hero-sub    { animation: fadeUp 0.6s ease-out 0.4s both; }
-  .hero-ctas   { animation: fadeUp 0.6s ease-out 0.55s both; }
-  .scroll-hint { animation: fadeUp 0.6s ease-out 0.7s both; }
-
-  /* ══════════════════════════════════════════
-     FOCUS / ACCESSIBILITY
-  ══════════════════════════════════════════ */
-  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 </style>
 </head>
+
 <body>
 
-<a href="#main" class="skip">Skip to content</a>
+<!-- ════════════════════════════════════════════════════
+  NAVIGATION
+════════════════════════════════════════════════════ -->
+<nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav__inner">
 
-<!-- ══════════════════════════════════════════
-     HERO
-══════════════════════════════════════════ -->
-<main id="main">
-<section class="hero">
-  <div class="hero-inner">
-
-    <div class="wordmark">The Arena Hub &nbsp;·&nbsp; JB-EMS</div>
-
-    <div class="hero-tag">National Pilot · 2026</div>
-
-    <h1>The Sovereign Master Layer<br>for <span>AP &amp; SEND.</span></h1>
-
-    <p class="hero-sub">
-      A practitioner-led infrastructure built to capture the social and vocational wins
-      that legacy systems ignore — and turn them into forensic evidence that counts.
-    </p>
-
-    <div class="hero-ctas">
-      <a href="The Arena Hub Master Concept.pdf" class="btn-primary" target="_blank" rel="noopener"
-         onclick="gtag('event','pdf_download',{'event_category':'hero','event_label':'master_concept'})">
-        <!-- download icon -->
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download the Master Concept Reference
+      <a href="/" class="nav__logo" aria-label="Arena Lite — Home">
+        <div class="nav__logo-mark" aria-hidden="true">A</div>
+        <span class="nav__logo-text">Arena <span>Lite</span></span>
       </a>
-      <a href="company.html" class="btn-ghost"
-         onclick="gtag('event','click',{'event_category':'hero','event_label':'company_site'})">
-        Explore the Platform &amp; Request a Pilot
-        <!-- arrow icon -->
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <a href="/signup.html" class="btn-ghost"
-         onclick="gtag('event','click',{'event_category':'hero','event_label':'signup'})">
-        New User? Create a free trial account
-        <!-- arrow icon -->
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#workflow">How It Works</a></li>
+        <li><a href="#trust">Data &amp; Privacy</a></li>
+        <li><a href="company.html">About</a></li>
+        <li><a href="platform.html">Full Platform</a></li>
+      </ul>
+
+      <div class="nav__cta">
+        <a href="signup.html" class="btn btn--primary" aria-label="Start your free trial">
+          Try Arena Lite Free
+        </a>
+      </div>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
     </div>
+  </div>
+</nav>
 
-    <div class="scroll-hint" aria-hidden="true">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+
+<!-- ════════════════════════════════════════════════════
+  SECTION 1 — HERO: EMOTIONAL ASYMMETRY
+════════════════════════════════════════════════════ -->
+<section class="hero" aria-labelledby="hero-headline">
+  <div class="container">
+    <div class="hero__grid">
+
+      <!-- Left: Emotional copy -->
+      <div class="hero__copy">
+        <span class="eyebrow">For AP &amp; SEMH Practitioners</span>
+
+        <h1 class="hero__headline" id="hero-headline">
+          Teach the child.<br>
+          Let Arena Lite <em>remember the evidence.</em>
+        </h1>
+
+        <p class="hero__subtext">
+          Most practitioners finish the session and then begin the real work —
+          reconstructing what happened, finding the right qualification, proving
+          the learning took place. Arena Lite closes that gap, quietly, in the moment.
+        </p>
+
+        <div class="hero__actions">
+          <a href="signup.html" class="btn btn--primary">
+            See Arena Lite in Action
+          </a>
+          <a href="#workflow" class="btn btn--ghost">
+            How It Works
+          </a>
+        </div>
+
+        <p class="hero__trust-line">
+          <strong>No credit card.</strong> No contract. 5 free evidence uploads — start today.
+        </p>
+      </div>
+
+      <!-- Right: Media panel -->
+      <div class="hero__media reveal">
+
+        <div class="phone-frame">
+          <div class="phone-frame__screen">
+            <img src="assets/Website_Resources/Dashboard_UI.png"
+                 alt="Arena Lite dashboard — Trophy Hub showing live student snapshot with Capture Evidence, Process Report, Safeguarding and Daily Register tiles"
+                 width="270">
+          </div>
+        </div>
+
+      </div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     THREE TRUTHS
-══════════════════════════════════════════ -->
-<section class="truths" id="about">
-  <div class="truths-inner">
 
-    <div class="truths-header">
-      <p class="section-label">Why Arena Exists</p>
-      <h2 class="section-title">Built in the classroom.<br>Scaled for national reform.</h2>
-      <hr class="gold-rule">
-      <p class="section-intro">
-        Arena Hub began as a single school's answer to a broken evidence gap.
-        It is now moving to a national pilot — because that gap is everywhere.
+<!-- ════════════════════════════════════════════════════
+  SECTION 2 — CINEMATIC DEMO
+════════════════════════════════════════════════════ -->
+<section class="cinematic" aria-label="Arena Lite in practice">
+
+  <div class="cinematic__video-wrap">
+    <video autoplay loop muted playsinline
+           poster="assets/Website_Resources/Dashboard_UI.png"
+           aria-label="Arena Lite in practice — evidence capture workflow demonstration">
+      <source src="assets/Website_Resources/Arena%20Lite%20Landing%20Page%20Video.mp4" type="video/mp4">
+      <!-- Fallback for browsers without video support -->
+      <img src="assets/Website_Resources/Dashboard_UI.png"
+           alt="Arena Lite dashboard — evidence capture in practice">
+    </video>
+    <div class="cinematic__overlay">
+      <div class="cinematic__caption">
+        <p class="cinematic__caption-text">
+          "The learning is happening <em>right now.</em><br>
+          Arena Lite captures it with you — not after you."
+        </p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+  SECTION 3 — THE PROBLEM
+════════════════════════════════════════════════════ -->
+<section class="problem" aria-labelledby="problem-headline">
+  <div class="container">
+    <div class="problem__inner">
+
+      <div class="problem__copy reveal">
+        <span class="eyebrow eyebrow--dark">The Reality</span>
+        <h2 class="problem__headline" id="problem-headline">
+          Most professionals spend more time proving the work than delivering it.
+        </h2>
+        <p class="problem__body">
+          You already know the learning is happening. The challenge has never
+          been the quality of your practice — it's the overhead of evidencing it
+          afterwards, in the wrong place, at the wrong time.
+        </p>
+      </div>
+
+      <ul class="problem__pains reveal reveal--delay-2" role="list">
+        <li>
+          <div class="problem__pain-accent" aria-hidden="true"></div>
+          <div class="problem__pain-text">
+            <strong>The evening reconstruction</strong>
+            Returning to scattered notes after the session ends to rebuild
+            what actually happened — draining the time that should be yours.
+          </div>
+        </li>
+        <li>
+          <div class="problem__pain-accent" aria-hidden="true"></div>
+          <div class="problem__pain-text">
+            <strong>The qualification guesswork</strong>
+            Searching through qualification frameworks to find the right unit
+            after the fact, when context has already faded.
+          </div>
+        </li>
+        <li>
+          <div class="problem__pain-accent" aria-hidden="true"></div>
+          <div class="problem__pain-text">
+            <strong>The fragmented portfolio</strong>
+            Evidence spread across folders, phone photos, notebooks, and platforms
+            that never quite tell a coherent story about the learner's progress.
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+  SECTION 4 — 60-SECOND WORKFLOW
+════════════════════════════════════════════════════ -->
+<section class="workflow" id="workflow" aria-labelledby="workflow-headline">
+  <div class="container">
+
+    <div class="workflow__header reveal">
+      <span class="eyebrow">The 60-Second Workflow</span>
+      <h2 class="workflow__title" id="workflow-headline">
+        Captured in the moment.<br>Committed before you leave the room.
+      </h2>
+      <p class="workflow__subtitle">
+        Three steps. Zero reconstruction. The evidence is complete before
+        you close the door.
       </p>
     </div>
 
-    <div class="truths-grid">
+    <div class="workflow__steps">
 
-      <!-- Truth 1: Origin -->
-      <div class="truth-card">
-        <div class="truth-icon">
-          <!-- building/origin icon -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <!-- Step 1: Evidence Capture — real screenshot -->
+      <div class="workflow__step reveal reveal--delay-1">
+        <div class="workflow__step-num" aria-hidden="true">1</div>
+        <div class="phone-frame" style="max-width:none;">
+          <div class="phone-frame__screen">
+            <img src="assets/Website_Resources/Capture_Evidence_UI.png"
+                 alt="Capture Evidence screen — student selector, photo upload, unit tag search, and Practitioner Verification with Commit Evidence button"
+                 width="270">
+          </div>
         </div>
-        <h3>The Origin</h3>
-        <p>
-          Designed by a practitioner to run a <strong>foundation-led AP site</strong> —
-          a "Perfect School" stalled by legacy tech fear and Big Tech lock-in.
-          Arena broke that stranglehold and is now entering its national pilot phase.
+        <div class="workflow__step-label">
+          <h3>Capture the moment</h3>
+          <p>Photograph or note the learning as it happens. No interruption to the session.</p>
+        </div>
+      </div>
+
+      <!-- Step 2: AI Confirmation -->
+      <div class="workflow__step reveal reveal--delay-2">
+        <div class="workflow__step-num" aria-hidden="true">2</div>
+        <div class="workflow__screen" role="img" aria-label="AI qualification suggestion screen">
+          <div class="screen__bar">
+            <div class="screen__dot"></div>
+            <div class="screen__dot"></div>
+            <div class="screen__dot"></div>
+          </div>
+          <div class="screen__body">
+            <div class="ui-bar" style="height:6px;width:90%;opacity:.3;"></div>
+            <div class="ui-block" style="padding:.6rem .5rem;margin-top:.25rem;">
+              <div class="ui-bar ui-bar--gold-solid ui-bar--medium" style="height:5px;margin-bottom:.4rem;"></div>
+              <div class="ui-bar" style="width:100%;height:4px;opacity:.3;"></div>
+              <div class="ui-bar" style="width:70%;height:4px;opacity:.2;margin-top:.3rem;"></div>
+            </div>
+            <div style="margin-top:.4rem;font-size:.58rem;color:rgba(197,160,89,.8);font-family:'Source Sans 3',sans-serif;line-height:1.4;font-style:italic;padding:0 .1rem;">
+              "Was this Functional Skills<br>Measurement &amp; Ratios?"
+            </div>
+            <div style="display:flex;gap:.3rem;margin-top:.5rem;">
+              <div class="ui-btn-small" style="background:var(--gold);font-size:.55rem;">Yes, that's it</div>
+              <div class="ui-btn-small" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);font-size:.55rem;">Adjust</div>
+            </div>
+          </div>
+        </div>
+        <div class="workflow__step-label">
+          <h3>Confirm the qualification</h3>
+          <p>Arena suggests the matching unit. You confirm or refine. The AI assists — you decide.</p>
+        </div>
+      </div>
+
+      <!-- Step 3: Portfolio/Dashboard — real screenshot (promoted from step 4) -->
+      <div class="workflow__step reveal reveal--delay-3">
+        <div class="workflow__step-num" aria-hidden="true">3</div>
+        <div class="phone-frame" style="max-width:none;">
+          <div class="phone-frame__screen">
+            <img src="assets/Website_Resources/Dashboard_UI.png"
+                 alt="Arena Lite Trophy Hub — live snapshot showing students, evidence items and review queue with quick-access tiles"
+                 width="270">
+          </div>
+        </div>
+        <div class="workflow__step-label">
+          <h3>Continuity builds quietly</h3>
+          <p>Over time, a complete, portfolio-ready record of learning — assembled without additional effort.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Video preview — asset pending, highlighted as separate element -->
+    <div class="workflow__video-preview reveal">
+      <div class="workflow__video-preview__inner">
+
+        <!--
+          ═══════════════════════════════════════════════════
+          ASSET: Replace placeholder when iPhone walkthrough
+          video is ready. Jonathan will provide filename.
+
+          When ready, replace .workflow__video-preview__placeholder
+          with:
+            <video autoplay loop muted playsinline
+                   class="workflow__video-preview__video"
+                   poster="assets/Website_Resources/[POSTER_FILE]">
+              <source src="assets/Website_Resources/[VIDEO_FILE]"
+                      type="video/mp4">
+            </video>
+          ═══════════════════════════════════════════════════
+        -->
+        <div class="workflow__video-preview__placeholder"
+             role="img" aria-label="App walkthrough video — coming soon">
+          <div class="workflow__video-preview__play" aria-hidden="true"></div>
+          <span class="workflow__video-preview__coming-soon">Walkthrough video coming soon</span>
+        </div>
+
+        <div class="workflow__video-preview__copy">
+          <span class="eyebrow">Full App Walkthrough</span>
+          <h3>See the complete experience — in your hands.</h3>
+          <p>
+            An unedited iPhone screen recording: opening Arena Lite from the home screen
+            and navigating through every tile in real time — evidence capture, the AI
+            qualification suggestion, and the Trophy Hub building quietly in the background.
+            No rehearsal. No editing. Just the workflow, exactly as it feels.
+          </p>
+          <span class="workflow__video-preview__note">
+            Recorded on-device · No staging · Real practitioner workflow
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+  SECTION 5 — CONTRAST GRID
+════════════════════════════════════════════════════ -->
+<section class="contrast" aria-labelledby="contrast-headline">
+  <div class="container">
+
+    <div class="contrast__header reveal">
+      <span class="eyebrow eyebrow--dark">The Difference</span>
+      <h2 class="contrast__title" id="contrast-headline">
+        The same session. A different ending.
+      </h2>
+      <p class="contrast__subtitle">
+        Nothing about the quality of your practice changes. Only the cost of evidencing it.
+      </p>
+    </div>
+
+    <div class="reveal">
+      <table class="contrast__table" role="table" aria-label="Comparison of traditional administrative burden versus Arena Lite workflow">
+        <thead>
+          <tr>
+            <th scope="col">Traditional Burden</th>
+            <th scope="col">The Arena Lite Workflow</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cell--before">Remembering and reconstructing evidence later, after the energy has gone</td>
+            <td class="cell--after">Capturing it in the moment — committed before you close the door</td>
+          </tr>
+          <tr>
+            <td class="cell--before">Writing compliance notes late in the evening, long after the session</td>
+            <td class="cell--after">Committing and closing the task on-site, in real time</td>
+          </tr>
+          <tr>
+            <td class="cell--before">Searching qualification frameworks manually to find the right unit</td>
+            <td class="cell--after">AI surfacing the most likely match — confirmed by you, not decided by software</td>
+          </tr>
+          <tr>
+            <td class="cell--before">Duplicate, fragmented documentation spread across devices and folders</td>
+            <td class="cell--after">Automatically accumulating learner continuity, in one place, owned by you</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+  SECTION 6 — SOVEREIGNTY / TRUST
+════════════════════════════════════════════════════ -->
+<section class="trust" id="trust" aria-labelledby="trust-headline">
+  <div class="container">
+    <div class="trust__inner">
+
+      <div class="trust__copy reveal">
+        <span class="eyebrow eyebrow--dark">Data &amp; Sovereignty</span>
+        <h2 class="trust__headline" id="trust-headline">
+          Your evidence stays yours.
+        </h2>
+        <p class="trust__body">
+          Arena Lite creates a folder in your own Google Drive. Your evidence
+          lives there — not on an external server, not shared with a third party,
+          not serialised into a database you don't control. Full stop.
         </p>
       </div>
 
-      <!-- Truth 2: Architecture -->
-      <div class="truth-card">
-        <div class="truth-icon">
-          <!-- lock/sovereign icon -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <h3>The Architecture</h3>
-        <p>
-          <strong>Sovereign Hybrid design.</strong> All student data remains inside
-          your school's own Google Workspace tenant. No central databases.
-          No third-party data exposure. Full ICO &amp; UK GDPR Article 28 compliance by design.
-        </p>
-      </div>
+      <div class="trust__points reveal reveal--delay-2" role="list">
 
-      <!-- Truth 3: Outcome -->
-      <div class="truth-card">
-        <div class="truth-icon">
-          <!-- trophy/outcome icon -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><polyline points="20 16 20 20 16 20"/><line x1="9" y1="15" x2="15" y2="9"/></svg>
+        <div class="trust__point" role="listitem">
+          <h3 class="trust__point-title">Your Drive. Your folder.</h3>
+          <p class="trust__point-text">Evidence is stored in a folder created inside your Google Drive during setup. Isolated, local, and completely within your own Google Workspace tenant.</p>
         </div>
-        <h3>The Outcome</h3>
-        <p>
-          <strong>The Equalizer Package.</strong> We convert vocational agency and
-          social progress into forensic evidence — professional credentials that
-          rival GCSE folders and are recognised at LA and national level.
-        </p>
+
+        <div class="trust__point" role="listitem">
+          <h3 class="trust__point-title">Zero central extraction.</h3>
+          <p class="trust__point-text">No student PII is stored on external SQL servers or third-party cloud databases. Nothing leaves your workspace without your explicit action.</p>
+        </div>
+
+        <div class="trust__point" role="listitem">
+          <h3 class="trust__point-title">Human-verified sharing.</h3>
+          <p class="trust__point-text">If continuity data needs to travel — to a school, an authority, a review — that is always a deliberate, manual, human act. Never automated.</p>
+        </div>
+
+        <div class="trust__point" role="listitem">
+          <h3 class="trust__point-title">Additive, not disruptive.</h3>
+          <p class="trust__point-text">Arena Lite places alongside your existing workflow. It does not replace your processes, change your systems, or require institutional IT involvement to begin.</p>
+        </div>
+
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     ROADMAP
-══════════════════════════════════════════ -->
-<section class="roadmap" id="roadmap">
-  <div class="roadmap-inner">
 
-    <div class="roadmap-header">
-      <p class="section-label">The Build</p>
-      <h2 class="section-title">From Sovereign Perimeter<br>to National Infrastructure.</h2>
-      <hr class="gold-rule">
-    </div>
+<!-- ════════════════════════════════════════════════════
+  SECTION 6B — SAFEGUARDING SCREEN (STUB)
+════════════════════════════════════════════════════ -->
+<section class="safeguard" aria-labelledby="safeguard-headline">
+  <div class="container">
+    <div class="safeguard__inner">
 
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <div class="tl-dot active">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div class="tl-content">
-          <p class="tl-version">v1.0</p>
-          <p class="tl-title">Sovereign<br>Perimeter</p>
-          <p class="tl-desc">Single-school deployment. Evidence vault, attendance, welfare &amp; qualifications — all within the school's own Google Workspace.</p>
-          <span class="tl-status">National Pilot</span>
-        </div>
+      <div class="safeguard__copy reveal">
+        <span class="eyebrow">Built-in Safeguarding</span>
+        <h2 class="safeguard__headline" id="safeguard-headline">
+          Welfare continuity — held quietly in the background.
+        </h2>
+        <p class="safeguard__body">
+          When a concern arises, Arena Lite holds the continuity of that child's
+          experience — a quiet, accurate record that supports informed conversation
+          rather than replacing professional judgement.
+        </p>
+        <p class="safeguard__detail">
+          The safeguarding interface is designed to support the practitioner,
+          not surveil the student. The record exists to protect — never to label.
+        </p>
       </div>
 
-      <div class="timeline-item">
-        <div class="tl-dot">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/></svg>
-        </div>
-        <div class="tl-content">
-          <p class="tl-version">v2.0</p>
-          <p class="tl-title">Federated<br>Bridge</p>
-          <p class="tl-desc">LA oversight layer. Cross-school evidence federation, parent portal, and read-only cloud mirror for regional reporting.</p>
-          <span class="tl-status upcoming">In Design</span>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="tl-dot">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/></svg>
-        </div>
-        <div class="tl-content">
-          <p class="tl-version">v3.0</p>
-          <p class="tl-title">Regional<br>Infrastructure</p>
-          <p class="tl-desc">Federated regional hubs. Mainstream Google Classroom integration. Unified LA heatmaps. National reform tooling.</p>
-          <span class="tl-status upcoming">Roadmap</span>
+      <div class="safeguard__stub reveal reveal--delay-2">
+        <div class="phone-frame" style="max-width:none;box-shadow:0 0 0 1px rgba(255,255,255,0.07),0 40px 100px rgba(0,0,0,0.6);">
+          <div class="phone-frame__screen">
+            <img src="assets/Website_Resources/SafeGuarding_UI.png"
+                 alt="Arena Lite Safeguarding Record — confidential sovereign vault screen showing learner and incident details with concern narrative, data stored in practitioner's own Google Drive"
+                 width="270">
+          </div>
         </div>
       </div>
 
@@ -718,67 +1972,132 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     ENDORSEMENT
-══════════════════════════════════════════ -->
-<section class="endorsement" id="endorsement">
-  <div class="quote-wrap">
-    <span class="quote-mark" aria-hidden="true">"</span>
-    <p class="quote-text">
-      Sovereign Evidence is both <em>timely and necessary</em><br>
-      for the UK's inclusion journey.
-    </p>
-    <p class="quote-attr">
-      <strong>Dr. R. Baldev</strong>
-      Founder, Global Open University
-    </p>
+
+<!-- ════════════════════════════════════════════════════
+  SECTION 7 — TRIAL CTA
+════════════════════════════════════════════════════ -->
+<section class="cta-final" aria-labelledby="cta-headline">
+  <div class="container">
+    <div class="cta-final__inner">
+
+      <span class="cta-final__eyebrow">Try Arena Lite</span>
+
+      <h2 class="cta-final__headline" id="cta-headline">
+        Experience the difference<br>in under 10 minutes.
+      </h2>
+
+      <p class="cta-final__body">
+        Start with your real workflow — not a demonstration environment.
+        Five free, unrestricted evidence uploads. No credit card, no commitment,
+        no IT ticket required.
+      </p>
+
+      <div class="cta-final__actions">
+        <a href="signup.html" class="btn btn--primary"
+           aria-label="Create your free Arena Lite account">
+          Create Your Free Account
+        </a>
+        <div class="cta-final__guarantees">
+          <span class="cta-final__guarantee">No credit card</span>
+          <span class="cta-final__guarantee">No contract</span>
+          <span class="cta-final__guarantee">5 free uploads</span>
+          <span class="cta-final__guarantee">Cancel any time</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     CTA BANNER
-══════════════════════════════════════════ -->
-<section class="cta-banner">
-  <h2>Ready to see the full architecture?</h2>
-  <p>Download the Master Concept Reference or speak to the team about bringing Arena to your school or LA.</p>
-  <div class="hero-ctas">
-    <a href="The Arena Hub Master Concept.pdf" class="btn-primary" target="_blank" rel="noopener"
-       onclick="gtag('event','pdf_download',{'event_category':'footer_cta','event_label':'master_concept'})">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download the Master Concept Reference
-    </a>
-    <a href="company.html" class="btn-ghost"
-       onclick="gtag('event','click',{'event_category':'footer_cta','event_label':'company_site'})">
-      Explore the Platform &amp; Request a Pilot
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
+
+<!-- ════════════════════════════════════════════════════
+  FOOTER
+════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+
+      <div class="footer__logo">
+        <div class="footer__logo-mark" aria-hidden="true">A</div>
+        <span class="footer__logo-text"><strong>Arena Lite</strong> · The Arena Hub Ltd</span>
+      </div>
+
+      <nav class="footer__links" aria-label="Footer navigation">
+        <a href="signup.html">Free Trial</a>
+        <a href="platform.html">Full Platform</a>
+        <a href="company.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+
+    </div>
+
+    <div class="footer__copy">
+      <span>© 2026 The Arena Hub Ltd · Company No. CH#1708605 · UK</span>
+      <span>Sovereign infrastructure for AP &amp; SEMH education.</span>
+    </div>
+
   </div>
-</section>
-
-</main>
-
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
-<footer>
-  <p>
-    The Arena Hub Ltd &nbsp;·&nbsp; Companies House #1708605 &nbsp;·&nbsp;
-    <a href="company.html">thearenahub.co.uk</a> &nbsp;·&nbsp;
-    <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
-    <a href="terms.html">Terms</a>
-  </p>
-  <p style="margin-top:0.4rem; font-size:0.75rem; opacity:0.5;">
-    Sovereign Infrastructure for AP &amp; SEMH Education
-  </p>
 </footer>
 
+
+<!-- ════════════════════════════════════════════════════
+  JAVASCRIPT
+════════════════════════════════════════════════════ -->
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js').catch(function () {});
+(function () {
+  'use strict';
+
+  // ── Scroll-triggered nav fill ──────────────────────────
+  const nav = document.getElementById('mainNav');
+  function handleNavScroll() {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  // ── Scroll reveal ──────────────────────────────────────
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    // Fallback for older browsers
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  // ── Mobile nav toggle ──────────────────────────────────
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav__links');
+  if (toggle && navLinks) {
+    toggle.addEventListener('click', function () {
+      const isOpen = navLinks.style.display === 'flex';
+      navLinks.style.display = isOpen ? '' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '100%';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'rgba(27,38,59,0.98)';
+      navLinks.style.padding = '1.25rem 1.5rem 1.75rem';
+      navLinks.style.borderTop = '1px solid rgba(197,160,89,0.12)';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
     });
   }
+
+})();
 </script>
 
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

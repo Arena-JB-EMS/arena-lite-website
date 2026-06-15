@@ -79,7 +79,7 @@ input:focus { border-color: var(--gold); }
 
   <hr class="divider">
   <div class="help">
-    Can't find your URL? Email <a href="mailto:support@thearenahub.co.uk">support@thearenahub.co.uk</a><br>
+    Can't find your URL? Email <a href="mailto:support@thearenahub.co.uk" data-config="email_support" data-config-href-prefix="mailto:" data-config-href-key="email_support">support@thearenahub.co.uk</a><br>
     Don't have an account? <a href="index.html#pricing">Get Arena Lite →</a>
   </div>
 </div>
@@ -97,5 +97,6 @@ document.getElementById('urlInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') goToUrl();
 });
 </script>
+  <script src="arena-config.js"></script>
 </body>
 </html>

@@ -239,11 +239,11 @@ footer a:hover { text-decoration: underline; }
     <div class="party-card">
       <div class="party-label">Data Processor</div>
       <p><strong>The Arena Hub Ltd</strong></p>
-      <p>Company No. CH#1708605<br>
+      <p>Company No. CH#<span data-config="company_number">1708605</span><br>
       Registered in England &amp; Wales<br>
-      D-U-N-S: 234652645<br>
-      Tel: 01618702916<br>
-      Email: <a href="mailto:compliance@thearenahub.co.uk">compliance@thearenahub.co.uk</a></p>
+      D-U-N-S: <span data-config="duns_number">234652645</span><br>
+      Tel: <a href="tel:01618702916" data-config="phone" data-config-href-prefix="tel:" data-config-href-key="phone">01618702916</a><br>
+      Email: <a href="mailto:compliance@thearenahub.co.uk" data-config="email_compliance" data-config-href-prefix="mailto:" data-config-href-key="email_compliance">compliance@thearenahub.co.uk</a></p>
     </div>
   </div>
   <p>This DPA takes effect upon completing the Arena Lite subscription checkout or executing a written agreement with The Arena Hub Ltd.</p>
@@ -301,7 +301,7 @@ footer a:hover { text-decoration: underline; }
   <p>The Processor shall assist the Controller in fulfilling data subject rights requests (access, rectification, erasure, portability, restriction, objection). Because all student data resides in the Controller's own Google Workspace, the Controller can action the majority of Subject Access Requests directly. Where technical assistance is required, the Processor shall respond within 48 hours of written request.</p>
 
   <h3>5.6 Audit Rights</h3>
-  <p>The Processor shall make available all information necessary to demonstrate compliance with this DPA. Written responses to compliance questionnaires will be provided within 10 working days. A completed DPIA (ARENA-DPIA-2026-001, v1.1, approved 2 May 2026) is available upon request from <a href="mailto:compliance@thearenahub.co.uk">compliance@thearenahub.co.uk</a>.</p>
+  <p>The Processor shall make available all information necessary to demonstrate compliance with this DPA. Written responses to compliance questionnaires will be provided within 10 working days. A completed DPIA (ARENA-DPIA-2026-001, v1.1, approved 2 May 2026) is available upon request from <a href="mailto:compliance@thearenahub.co.uk" data-config="email_compliance" data-config-href-prefix="mailto:" data-config-href-key="email_compliance">compliance@thearenahub.co.uk</a>.</p>
 
   <h2>6. Automated Processing and Article 22</h2>
   <p>Arena Lite includes AI-assisted components. The following applies to all automated processing:</p>
@@ -395,7 +395,7 @@ footer a:hover { text-decoration: underline; }
   <h2>10. V1 Pilot Conditions — Disclosed Access</h2>
   <div class="pilot-warning">
     <div class="warn-title">⚠ V1 Pilot Disclosure — Required Reading</div>
-    <p>During the V1 Pilot phase, Arena Lite operates with <strong>developmentMode: true</strong>. Under this configuration, the Processor Director (contactable at <a href="mailto:compliance@thearenahub.co.uk">compliance@thearenahub.co.uk</a>) holds range-level access to the deployed Google Spreadsheet for technical debugging and pilot support purposes.</p>
+    <p>During the V1 Pilot phase, Arena Lite operates with <strong>developmentMode: true</strong>. Under this configuration, the Processor Director (contactable at <a href="mailto:compliance@thearenahub.co.uk" data-config="email_compliance" data-config-href-prefix="mailto:" data-config-href-key="email_compliance">compliance@thearenahub.co.uk</a>) holds range-level access to the deployed Google Spreadsheet for technical debugging and pilot support purposes.</p>
     <p>This access is: (a) formally disclosed in this DPA; (b) time-limited to the V1 Pilot period; (c) subject to the VAR Sentry audit trail; and (d) governed by the confidentiality obligations in Clause 5.2. This access does not extend to the Welfare Silo, which remains under DSL-exclusive control at all times.</p>
     <p><strong>This condition will be resolved before production deployment beyond the Pilot phase.</strong> At transition, <code>developmentMode</code> will be set to <code>false</code> and Processor Director access revoked. The Controller will be notified in writing 14 days before this transition.</p>
   </div>
@@ -417,18 +417,19 @@ footer a:hover { text-decoration: underline; }
 
   <h2>14. Contact</h2>
   <p>For all DPA queries, DPIA requests, audit enquiries, or to exercise Controller rights:</p>
-  <p><strong>The Arena Hub Ltd</strong> &nbsp;·&nbsp; CH#1708605 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
-  <p>Email: <a href="mailto:compliance@thearenahub.co.uk">compliance@thearenahub.co.uk</a></p>
-  <p>Tel: <a href="tel:01618702916">01618702916</a></p>
+  <p><strong><span data-config="company_name">The Arena Hub Ltd</span></strong> &nbsp;·&nbsp; CH#<span data-config="company_number">1708605</span> &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+  <p>Email: <a href="mailto:compliance@thearenahub.co.uk" data-config="email_compliance" data-config-href-prefix="mailto:" data-config-href-key="email_compliance">compliance@thearenahub.co.uk</a></p>
+  <p>Tel: <a href="tel:01618702916" data-config="phone" data-config-href-prefix="tel:" data-config-href-key="phone">01618702916</a></p>
   <p>Response: all DPO queries acknowledged within 48 hours; documentation requests fulfilled within 5 working days.</p>
 
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 The Arena Hub Ltd. All rights reserved. Registered in England and Wales. CH#1708605</p>
+  <p>&copy; 2026 <span data-config="company_name">The Arena Hub Ltd</span>. All rights reserved. Registered in England and Wales. CH#<span data-config="company_number">1708605</span></p>
   <p><a href="index.html">← Return to Home</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></p>
 </footer>
 
+  <script src="arena-config.js"></script>
 </body>
 </html>

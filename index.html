@@ -4,8 +4,8 @@
 
 <!-- ============================================================
   Arena Lite — Landing Page Rebuild
-  Version:   2.0.0
-  Session:   S79 — 25 May 2026
+  Version:   2.1.0
+  Session:   S112 — 20 June 2026
   Author:    Jonathan Baguley · The Arena Hub Ltd
   Framework: Emotional Asymmetry — "Lite as relief, not system"
   GA4:       G-N2PRX87LVE
@@ -1540,6 +1540,404 @@ a {
   .footer__inner { flex-direction: column; align-items: flex-start; }
 }
 
+/* ═══════════════════════════════════════════════════════
+   VIDEO SPOTLIGHT — full app walkthrough (below hero)
+═══════════════════════════════════════════════════════ */
+.video-spotlight {
+  background: var(--navy-deep);
+  padding: var(--section-pad) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(197,160,89,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.video-spotlight__inner {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.video-spotlight__title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+}
+
+.video-spotlight__body {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  max-width: 52ch;
+  margin-bottom: 1.5rem;
+}
+
+.video-spotlight__proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-xs);
+  color: rgba(197,160,89,0.55);
+  letter-spacing: 0.05em;
+}
+
+.video-spotlight__proof::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: rgba(197,160,89,0.35);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .video-spotlight__inner {
+    grid-template-columns: 1fr;
+  }
+  .video-spotlight__inner .phone-frame {
+    max-width: 220px;
+    margin-inline: auto;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   POLICY & INSPECTION ALIGNMENT — accordion section
+═══════════════════════════════════════════════════════ */
+.align {
+  background: var(--navy);
+  padding: var(--section-pad) 0;
+}
+
+.align__header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.align__title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.align__subtitle {
+  font-size: var(--text-base);
+  font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  max-width: 62ch;
+  margin-inline: auto;
+  line-height: 1.75;
+}
+
+/* Tiles */
+.align__tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.align__tile {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(197,160,89,0.1);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.align__tile.is-open {
+  border-color: rgba(197,160,89,0.28);
+}
+
+.align__tile--featured {
+  border-color: rgba(197,160,89,0.2);
+  background: rgba(197,160,89,0.035);
+}
+
+.align__tile-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.15rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.align__tile-trigger-lhs {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.align__tile-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.align__tile-name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.01em;
+}
+
+.align__tile-sub {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.38);
+  letter-spacing: 0.02em;
+}
+
+.align__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.align__badge--unique  { background: rgba(197,160,89,0.15); color: var(--gold); border: 1px solid rgba(197,160,89,0.28); }
+.align__badge--yes     { background: rgba(74,222,128,0.09); color: #4ADE80;    border: 1px solid rgba(74,222,128,0.2); }
+.align__badge--found   { background: rgba(147,197,253,0.09); color: #93C5FD;   border: 1px solid rgba(147,197,253,0.2); }
+
+.align__chevron {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  border: 1px solid rgba(197,160,89,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease);
+  color: rgba(197,160,89,0.5);
+  font-size: 0.5rem;
+}
+
+.align__tile.is-open .align__chevron {
+  transform: rotate(180deg);
+  border-color: rgba(197,160,89,0.35);
+  color: var(--gold);
+}
+
+.align__tile-body {
+  display: none;
+  padding: 0 1.5rem 1.75rem;
+}
+
+.align__tile.is-open .align__tile-body {
+  display: block;
+}
+
+.align__tile-body-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.align__col-title {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.65;
+  margin-bottom: 0.7rem;
+}
+
+.align__col-text {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+}
+
+.align__checks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.align__checks li {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.align__checks li::before {
+  content: '✓';
+  color: #4ADE80;
+  font-size: 0.65rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.align__source {
+  grid-column: 1 / -1;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.align__source-label {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.align__source a {
+  font-size: var(--text-xs);
+  color: rgba(197,160,89,0.6);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  line-height: 1.8;
+  display: block;
+  word-break: break-all;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.align__source a:hover { color: var(--gold); }
+
+/* Last Reviewed bar */
+.align__reviewed {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-md);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.align__reviewed-item { display: flex; flex-direction: column; gap: 0.15rem; }
+
+.align__reviewed-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+.align__reviewed-value {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.65);
+}
+
+.align__reviewed-value--live {
+  color: #4ADE80;
+  font-weight: 500;
+}
+
+/* The Arena Difference block */
+.align__difference {
+  background: rgba(197,160,89,0.04);
+  border: 1px solid rgba(197,160,89,0.13);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.75rem, 4vw, 3rem);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.align__difference::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+.align__difference-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+}
+
+.align__difference-body {
+  font-size: var(--text-base);
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+  max-width: 68ch;
+  margin-bottom: 1.4rem;
+}
+
+.align__principles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.align__principle {
+  font-size: var(--text-sm);
+  color: rgba(197,160,89,0.65);
+  font-style: italic;
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.55;
+}
+
+.align__principle::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: rgba(197,160,89,0.35);
+  font-style: normal;
+}
+
+.align__disclaimer {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.2);
+  line-height: 1.7;
+  max-width: 80ch;
+}
+
+@media (max-width: 768px) {
+  .align__tile-body-inner { grid-template-columns: 1fr; gap: 1.25rem; }
+  .align__tile-trigger-lhs { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+
 </style>
 </head>
 
@@ -1560,8 +1958,8 @@ a {
       <ul class="nav__links" role="list">
         <li><a href="#workflow">How It Works</a></li>
         <li><a href="#trust">Data &amp; Privacy</a></li>
-        <li><a href="company.html">About</a></li>
-        <li><a href="platform.html">Full Platform</a></li>
+        <li><a href="https://www.thearenahub.co.uk/company.html">About</a></li>
+        <li><a href="https://www.thearenahub.co.uk/platform.html">Full Platform</a></li>
       </ul>
 
       <div class="nav__cta">
@@ -1631,6 +2029,39 @@ a {
         </div>
 
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+  SECTION 1B — VIDEO SPOTLIGHT (full app walkthrough)
+════════════════════════════════════════════════════ -->
+<section class="video-spotlight" aria-label="Arena Lite app walkthrough">
+  <div class="container">
+    <div class="video-spotlight__inner">
+
+      <div class="video-spotlight__copy reveal">
+        <h2 class="video-spotlight__title">This isn't a demo.<br>It's the real workflow.</h2>
+        <p class="video-spotlight__body">
+          Every screen you see is live production software — running inside a school's own
+          Google Workspace. No installs. No third-party servers. No data leaving the building.
+          Watch how a practitioner captures evidence, generates a report, and flags a safeguarding
+          concern in under three minutes.
+        </p>
+        <span class="video-spotlight__proof">RECORDED IN A LIVE ARENA LITE DEPLOYMENT</span>
+      </div>
+
+      <div class="phone-frame reveal">
+        <div class="phone-frame__screen">
+          <video autoplay loop muted playsinline
+                 poster="assets/Dashboard_UI.png"
+                 style="width:100%;display:block;border-radius:inherit;">
+            <source src="assets/Arena Lite Landing Page Video.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1783,37 +2214,6 @@ a {
 
     </div>
 
-    <!-- Video preview — asset pending, highlighted as separate element -->
-    <div class="workflow__video-preview reveal">
-      <div class="workflow__video-preview__inner">
-
-        <video autoplay loop muted playsinline
-               class="workflow__video-preview__video"
-               poster="assets/Dashboard_UI.png"
-               aria-label="Arena Lite full app walkthrough — iPhone screen recording showing evidence capture, AI qualification suggestion, and Trophy Hub">
-          <source src="assets/Arena_Combined_Seamless.mov" type="video/quicktime">
-          <source src="assets/Arena_Combined_Seamless.mov" type="video/mp4">
-          <!-- Fallback for browsers without video support -->
-          <img src="assets/Dashboard_UI.png"
-               alt="Arena Lite dashboard — evidence capture workflow">
-        </video>
-
-        <div class="workflow__video-preview__copy">
-          <span class="eyebrow">Full App Walkthrough</span>
-          <h3>See the complete experience — in your hands.</h3>
-          <p>
-            An unedited iPhone screen recording: opening Arena Lite from the home screen
-            and navigating through every tile in real time — evidence capture, the AI
-            qualification suggestion, and the Trophy Hub building quietly in the background.
-            No rehearsal. No editing. Just the workflow, exactly as it feels.
-          </p>
-          <span class="workflow__video-preview__note">
-            Recorded on-device · No staging · Real practitioner workflow
-          </span>
-        </div>
-
-      </div>
-    </div>
 
   </div>
 </section>
@@ -1955,6 +2355,312 @@ a {
 
 
 <!-- ════════════════════════════════════════════════════
+  SECTION 6B — POLICY & INSPECTION ALIGNMENT
+════════════════════════════════════════════════════ -->
+<section class="align" aria-labelledby="align-title">
+  <div class="container">
+
+    <div class="align__header reveal">
+      <h2 class="align__title" id="align-title">Standards &amp; Regulatory Alignment</h2>
+      <p class="align__subtitle">
+        Arena Lite is not a compliance tool. It is operational infrastructure — and operational
+        infrastructure that is built correctly is inherently compliant. Each tile below shows
+        where our sovereign-first design intersects with the standards that govern AP and SEMH provision.
+      </p>
+    </div>
+
+    <!-- Last Reviewed bar -->
+    <div class="align__reviewed reveal">
+      <div class="align__reviewed-item">
+        <span class="align__reviewed-label">Last Reviewed</span>
+        <span class="align__reviewed-value">June 2026</span>
+      </div>
+      <div class="align__reviewed-item">
+        <span class="align__reviewed-label">Frameworks</span>
+        <span class="align__reviewed-value">Ofsted EIF · DfE AP Improvement · SEND Code · KCSiE 2025</span>
+      </div>
+      <div class="align__reviewed-item">
+        <span class="align__reviewed-label">Status</span>
+        <span class="align__reviewed-value align__reviewed-value--live">Current</span>
+      </div>
+    </div>
+
+    <div class="align__tiles reveal">
+
+      <!-- Tile 1: SECO™ -->
+      <div class="align__tile align__tile--featured">
+        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
+          <div class="align__tile-trigger-lhs">
+            <div class="align__badge align__badge--unique">Arena Unique</div>
+            <div class="align__label">
+              <span class="align__tile-name">SECO™ — Sovereign Educational Continuity Object</span>
+              <span class="align__tile-sub">Forensic evidence architecture · Data sovereignty</span>
+            </div>
+          </div>
+          <span class="align__chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="align__tile-body" role="region">
+          <div class="align__tile-body-inner">
+            <div>
+              <p class="align__col-title">What it is</p>
+              <p class="align__col-text">
+                SECO™ is Arena's proprietary evidence architecture. Every piece of captured work —
+                a photograph, a voice note, a typed observation — is wrapped in a timestamped,
+                immutable forensic object stored exclusively within the school's own Google
+                Workspace Drive. No third-party server ever holds student data.
+              </p>
+            </div>
+            <div>
+              <p class="align__col-title">Why it matters</p>
+              <ul class="align__checks">
+                <li>Full audit trail: Who captured it, When, on Which device, in Which session</li>
+                <li>Evidence survives staff turnover — it belongs to the school, not the app</li>
+                <li>Supports pupil premium spend justification with verifiable impact data</li>
+                <li>Directly addresses Ofsted's requirement for "rich evidence of progress"</li>
+              </ul>
+            </div>
+            <div>
+              <p class="align__col-title">No equivalent exists elsewhere</p>
+              <p class="align__col-text">
+                Other AP tools store evidence in proprietary cloud databases. If the subscription
+                ends, the evidence is gone. SECO™ evidence lives in your Drive forever — accessible,
+                auditable, and completely under school control.
+              </p>
+            </div>
+            <div class="align__source">
+              <p class="align__source-label">Design rationale</p>
+              <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/accountability-framework/records-management/" target="_blank" rel="noopener">ICO Accountability Framework — Records Management</a>
+              <a href="https://www.gov.uk/government/publications/alternative-provision" target="_blank" rel="noopener">DfE: Alternative Provision statutory guidance</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 2: Inspection Readiness -->
+      <div class="align__tile">
+        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
+          <div class="align__tile-trigger-lhs">
+            <div class="align__badge align__badge--yes">Ofsted EIF</div>
+            <div class="align__label">
+              <span class="align__tile-name">Inspection Readiness</span>
+              <span class="align__tile-sub">Education Inspection Framework · AP quality indicators</span>
+            </div>
+          </div>
+          <span class="align__chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="align__tile-body" role="region">
+          <div class="align__tile-body-inner">
+            <div>
+              <p class="align__col-title">Ofsted's question</p>
+              <p class="align__col-text">
+                Under the EIF, inspectors evaluating AP settings look for consistent evidence of
+                curriculum intent, implementation, and impact — particularly for students whose
+                mainstream provision has broken down. The absence of structured, retrievable
+                records is the single most common inspection weakness in AP settings.
+              </p>
+            </div>
+            <div>
+              <p class="align__col-title">How Arena Lite responds</p>
+              <ul class="align__checks">
+                <li>COP Reports generated per student per session — ready for inspector review</li>
+                <li>Trophy Hub provides a cumulative, chronological learning record</li>
+                <li>Qualification mapping links each activity to a named curriculum framework</li>
+                <li>Safeguarding log is time-stamped and practitioner-attributed</li>
+              </ul>
+            </div>
+            <div>
+              <p class="align__col-title">What this does not do</p>
+              <p class="align__col-text">
+                Arena Lite does not coach inspection outcomes or produce synthetic judgement
+                language. The records it generates are factual, verifiable, and belong to the
+                school — not to us.
+              </p>
+            </div>
+            <div class="align__source">
+              <p class="align__source-label">Source</p>
+              <a href="https://www.gov.uk/government/publications/education-inspection-framework" target="_blank" rel="noopener">Ofsted: Education Inspection Framework (2019, updated 2023)</a>
+              <a href="https://www.gov.uk/government/publications/inspecting-alternative-provision-ap" target="_blank" rel="noopener">Ofsted: Inspecting alternative provision — guidance for inspectors</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 3: DfE Interoperability -->
+      <div class="align__tile">
+        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
+          <div class="align__tile-trigger-lhs">
+            <div class="align__badge align__badge--found">DfE 2025–2026</div>
+            <div class="align__label">
+              <span class="align__tile-name">DfE Interoperability &amp; AP Reform</span>
+              <span class="align__tile-sub">AP Improvement Plan · Data Standards · SEND &amp; AP improvement</span>
+            </div>
+          </div>
+          <span class="align__chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="align__tile-body" role="region">
+          <div class="align__tile-body-inner">
+            <div>
+              <p class="align__col-title">The policy direction</p>
+              <p class="align__col-text">
+                The DfE's SEND and AP Improvement Plan (2023) and subsequent 2025 progress
+                updates establish a clear direction: AP settings must demonstrate measurable
+                outcomes, maintain consistent records, and connect evidence to qualification
+                pathways. Data interoperability — the ability to share structured records across
+                settings — is a stated government priority for 2025–2026.
+              </p>
+            </div>
+            <div>
+              <p class="align__col-title">Arena's position</p>
+              <ul class="align__checks">
+                <li>All data held in structured Google Sheets — portable, readable by any system</li>
+                <li>Qualification taxonomy mapped to Ofqual-registered frameworks</li>
+                <li>COP Reports exportable as PDF — shareable with commissioners, LA officers</li>
+                <li>No proprietary lock-in: a school can export and leave with all their data</li>
+              </ul>
+            </div>
+            <div>
+              <p class="align__col-title">September 2026 context</p>
+              <p class="align__col-text">
+                New DfE guidance on AP commissioning and data reporting is expected in Autumn
+                2026. Arena Lite's architecture is designed to adapt — sovereign storage means
+                format changes require only an export template update, not a platform migration.
+              </p>
+            </div>
+            <div class="align__source">
+              <p class="align__source-label">Source</p>
+              <a href="https://www.gov.uk/government/publications/send-and-alternative-provision-improvement-plan" target="_blank" rel="noopener">DfE: SEND and Alternative Provision Improvement Plan (2023)</a>
+              <a href="https://www.gov.uk/government/publications/alternative-provision-ap-review" target="_blank" rel="noopener">DfE: Alternative Provision Review — improving outcomes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 4: SEND & Inclusive Practice -->
+      <div class="align__tile">
+        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
+          <div class="align__tile-trigger-lhs">
+            <div class="align__badge align__badge--yes">SEND Code</div>
+            <div class="align__label">
+              <span class="align__tile-name">SEND &amp; Inclusive Practice</span>
+              <span class="align__tile-sub">SEND Code of Practice 2015 · EHC plan evidence · Assess-Plan-Do-Review</span>
+            </div>
+          </div>
+          <span class="align__chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="align__tile-body" role="region">
+          <div class="align__tile-body-inner">
+            <div>
+              <p class="align__col-title">The APDR cycle</p>
+              <p class="align__col-text">
+                The SEND Code of Practice requires settings to follow the Assess-Plan-Do-Review
+                cycle for all pupils with identified SEND. Arena Lite's session-by-session
+                capture model directly supports this — each session generates a record of what
+                was planned, attempted, achieved, and flagged.
+              </p>
+            </div>
+            <div>
+              <p class="align__col-title">EHC plan evidence support</p>
+              <ul class="align__checks">
+                <li>Trophy Hub provides a longitudinal view of progress towards EHC outcomes</li>
+                <li>COP Reports serve as structured evidence for annual review meetings</li>
+                <li>Safeguarding log supports DSL reporting requirements</li>
+                <li>All records held within school's own system — SENCO can access directly</li>
+              </ul>
+            </div>
+            <div>
+              <p class="align__col-title">Important caveat</p>
+              <p class="align__col-text">
+                Arena Lite does not write or manage EHC plans. It generates the evidence that
+                informs them. The professional judgement of the SENCO and relevant specialists
+                remains the authority.
+              </p>
+            </div>
+            <div class="align__source">
+              <p class="align__source-label">Source</p>
+              <a href="https://www.gov.uk/government/publications/send-code-of-practice-0-to-25" target="_blank" rel="noopener">DfE / DoH: SEND Code of Practice: 0 to 25 years (2015, amended 2020)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 5: Safeguarding Context -->
+      <div class="align__tile">
+        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
+          <div class="align__tile-trigger-lhs">
+            <div class="align__badge align__badge--yes">KCSiE 2025</div>
+            <div class="align__label">
+              <span class="align__tile-name">Safeguarding Context</span>
+              <span class="align__tile-sub">Keeping Children Safe in Education · DSL log integrity</span>
+            </div>
+          </div>
+          <span class="align__chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="align__tile-body" role="region">
+          <div class="align__tile-body-inner">
+            <div>
+              <p class="align__col-title">KCSiE requirements</p>
+              <p class="align__col-text">
+                Keeping Children Safe in Education (2025) requires settings to maintain accurate,
+                contemporaneous safeguarding records — accessible to the DSL, stored securely,
+                and attributable to a named member of staff. The requirement for audit trails in
+                safeguarding is absolute.
+              </p>
+            </div>
+            <div>
+              <p class="align__col-title">How Arena Lite addresses this</p>
+              <ul class="align__checks">
+                <li>Safeguarding concerns captured at point-of-observation — practitioner-stamped</li>
+                <li>Stored in the school's own Google Workspace Drive — not a third-party server</li>
+                <li>DSL access is via standard Google permissions — no additional login required</li>
+                <li>Records cannot be edited post-submission — integrity preserved</li>
+              </ul>
+            </div>
+            <div>
+              <p class="align__col-title">What this is not</p>
+              <p class="align__col-text">
+                Arena Lite is not a case management system and does not replace MyConcern,
+                CPOMS, or equivalent DSL tools. It is the first-capture layer — the point at
+                which a concern is observed and logged by a practitioner in the room.
+              </p>
+            </div>
+            <div class="align__source">
+              <p class="align__source-label">Source</p>
+              <a href="https://www.gov.uk/government/publications/keeping-children-safe-in-education--2" target="_blank" rel="noopener">DfE: Keeping Children Safe in Education 2025</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.align__tiles -->
+
+    <!-- The Arena Difference block -->
+    <div class="align__difference reveal">
+      <h3 class="align__difference-title">The Arena Difference</h3>
+      <p class="align__difference-body">
+        Most EdTech approaches compliance as a feature to be bolted on — a checklist, a badge,
+        a report. We approach it differently. Arena Lite is built on three architectural
+        principles that make genuine compliance structurally inevitable rather than
+        procedurally managed.
+      </p>
+      <div class="align__principles">
+        <p class="align__principle">Sovereignty first — student data never leaves the school's own infrastructure, by design, not by policy</p>
+        <p class="align__principle">Forensic by default — every action generates an immutable, attributed, timestamped record without additional effort from staff</p>
+        <p class="align__principle">Infrastructure, not application — Arena Lite runs inside tools schools already own and understand, eliminating onboarding friction and vendor dependency</p>
+      </div>
+    </div>
+
+    <p class="align__disclaimer">
+      The information in this section reflects our understanding of current regulatory frameworks as at June 2026.
+      Policy references are provided for transparency and link directly to source documents.
+      Settings should seek independent professional advice for their specific regulatory position.
+      Arena Hub Ltd is not a legal or compliance advisory firm.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
   SECTION 7 — TRIAL CTA
 ════════════════════════════════════════════════════ -->
 <section class="cta-final" aria-labelledby="cta-headline">
@@ -2005,8 +2711,8 @@ a {
 
       <nav class="footer__links" aria-label="Footer navigation">
         <a href="signup.html">Free Trial</a>
-        <a href="platform.html">Full Platform</a>
-        <a href="company.html">About</a>
+        <a href="https://www.thearenahub.co.uk/platform.html">Full Platform</a>
+        <a href="https://www.thearenahub.co.uk/company.html">About</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
       </nav>
@@ -2077,6 +2783,25 @@ a {
   }
 
 })();
+
+// ── Alignment accordion toggle ──────────────────────
+function toggleAlignTile(btn) {
+  var tile = btn.closest('.align__tile');
+  var isOpen = tile.classList.contains('is-open');
+
+  // Close all tiles first
+  document.querySelectorAll('.align__tile').forEach(function(t) {
+    t.classList.remove('is-open');
+    t.querySelector('.align__tile-trigger').setAttribute('aria-expanded', 'false');
+  });
+
+  // If it wasn't open, open it
+  if (!isOpen) {
+    tile.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
 </script>
 
 </body>

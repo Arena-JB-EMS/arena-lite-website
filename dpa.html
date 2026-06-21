@@ -219,7 +219,7 @@ footer a:hover { text-decoration: underline; }
 <div class="page-header">
   <h1>Data Processing Agreement</h1>
   <p>The formal basis under UK GDPR Article 28 on which The Arena Hub Ltd processes data on behalf of subscribing practitioners and schools.</p>
-  <div class="updated">Ref: ARENA-DPA-2026-001 &nbsp;·&nbsp; Version 1.1 &nbsp;·&nbsp; May 2026</div>
+  <div class="updated">Ref: ARENA-DPA-2026-001 &nbsp;·&nbsp; Version 1.2 &nbsp;·&nbsp; June 2026</div>
 </div>
 
 <!-- CONTENT -->
@@ -250,7 +250,7 @@ footer a:hover { text-decoration: underline; }
 
   <h2>2. Subject Matter, Nature, and Duration</h2>
   <p><strong>Subject matter:</strong> Provision of Arena Lite — a cloud-based evidence management platform enabling practitioners in Alternative Provision and SEMH settings to capture, organise, and report on student evidence within a forensically structured, UK GDPR-compliant architecture.</p>
-  <p><strong>Nature of processing:</strong> Storage, retrieval, and automated cross-referencing of student educational evidence within your school's own Google Workspace environment. All student Personally Identifiable Information (PII) is processed and stored exclusively within your Google Workspace tenant. The Arena Hub Ltd's Cloud Run infrastructure (GCP europe-west2, United Kingdom — London) processes only anonymised licence validation handshakes and operational telemetry; no student PII transits or resides on Arena Hub servers during normal operation.</p>
+  <p><strong>Nature of processing:</strong> Storage, retrieval, and automated cross-referencing of student educational evidence within your own Google Workspace environment. All student Personally Identifiable Information (PII) is processed and stored exclusively within your Google Workspace tenant. The Arena Hub Ltd's Cloud Run infrastructure (GCP europe-west2, United Kingdom — London) processes only anonymised licence validation handshakes and operational telemetry; no student PII transits or resides on Arena Hub servers during normal operation.</p>
   <p><strong>Duration:</strong> This DPA remains in force for the duration of your active Arena Lite subscription. Processor obligations on data destruction take effect upon termination as set out in Clause 10.</p>
 
   <h2>3. Purpose of Processing</h2>
@@ -392,20 +392,28 @@ footer a:hover { text-decoration: underline; }
     <li>Not notify the ICO on the Controller's behalf unless explicitly instructed to do so. The Controller bears sole responsibility for its own ICO notifications under Article 33.</li>
   </ul>
 
-  <h2>10. V1 Pilot Conditions — Disclosed Access</h2>
-  <div class="pilot-warning">
-    <div class="warn-title">⚠ V1 Pilot Disclosure — Required Reading</div>
-    <p>During the V1 Pilot phase, Arena Lite operates with <strong>developmentMode: true</strong>. Under this configuration, the Processor Director (contactable at <a href="mailto:compliance@thearenahub.co.uk" data-config="email_compliance" data-config-href-prefix="mailto:" data-config-href-key="email_compliance">compliance@thearenahub.co.uk</a>) holds range-level access to the deployed Google Spreadsheet for technical debugging and pilot support purposes.</p>
-    <p>This access is: (a) formally disclosed in this DPA; (b) time-limited to the V1 Pilot period; (c) subject to the VAR Sentry audit trail; and (d) governed by the confidentiality obligations in Clause 5.2. This access does not extend to the Welfare Silo, which remains under DSL-exclusive control at all times.</p>
-    <p><strong>This condition will be resolved before production deployment beyond the Pilot phase.</strong> At transition, <code>developmentMode</code> will be set to <code>false</code> and Processor Director access revoked. The Controller will be notified in writing 14 days before this transition.</p>
+  <h2>10. Processor Director Access — User-Initiated Temporary Support Access</h2>
+  <div class="callout">
+    <p><strong>Zero persistent access:</strong> As of version 1.2, the Processor Director holds <em>no persistent editor access</em> to the Controller&#x2019;s Arena Lite spreadsheet. Access is granted only at the explicit, real-time request of the Controller for a defined support window, and is automatically revoked on expiry.</p>
   </div>
+  <p>Arena Lite operates on a Shell-owns-Drive architecture. The Arena Lite Portal Shell &#x2014; which executes as the accessing user (the Controller) &#x2014; creates the Arena Lite spreadsheet within the Controller&#x2019;s Google Workspace during activation. <strong>No editor access is granted to the Processor Director during this process.</strong> The Arena Engine Library runs as the accessing user for all normal platform operations.</p>
+  <p><strong>User-initiated temporary support access:</strong> If the Controller encounters a technical issue and wishes to grant the Processor Director (<strong>j.baguley@thearenahub.co.uk</strong>) access for debugging purposes, they may do so via the &#x201C;Grant Support Access&#x201D; function in the Arena Lite Portal Dashboard. This mechanism:</p>
+  <ul>
+    <li><strong>(a)</strong> Is initiated exclusively by the Controller &#x2014; no access can be granted without the Controller&#x2019;s explicit action;</li>
+    <li><strong>(b)</strong> Grants editor-level access to the Controller&#x2019;s Arena Lite spreadsheet only &#x2014; no other files in the Controller&#x2019;s Google Workspace are affected;</li>
+    <li><strong>(c)</strong> Is time-limited: the Controller selects a support window (default: 48 hours), after which a GAS time-based trigger automatically revokes access;</li>
+    <li><strong>(d)</strong> May be revoked at any time by the Controller via the &#x201C;Relinquish Access&#x201D; function in the Portal, or by the Processor Director via the Command Centre;</li>
+    <li><strong>(e)</strong> Is fully audited: every grant and revocation event is written to a forensic <code>SUPPORT_ACCESS_LOG</code> tab within the Controller&#x2019;s own Arena Lite spreadsheet, recording timestamp, granted account, duration, and action type;</li>
+    <li><strong>(f)</strong> Is subject to the full confidentiality obligations in Clause 5 &#x2014; the Processor Director will not access, copy, share, or use Controller data for any purpose other than resolving the specific technical issue raised by the Controller.</li>
+  </ul>
+  <p><strong>Protected ranges:</strong> Certain sheet ranges (including the <code>STUDENT_AUDIT_LOG</code> and <code>SUPPORT_ACCESS_LOG</code> tabs) are protected from manual editing via GAS sheet protection. These protections are enforced by the Google Apps Script execution model; no human has manual write access to these protected ranges.</p>
 
   <h2>11. Return and Deletion of Data</h2>
   <p>Because all student data resides in your own Google Workspace, you retain unconditional physical control at all times. Upon termination:</p>
   <ul>
     <li>Your student data remains in your GWS. Access is ended by revoking the platform's GWS API authorisation — no action by the Processor is required.</li>
     <li>The Processor shall destroy all configuration and licence data within <strong>30 days of termination</strong> and provide written confirmation upon request.</li>
-    <li>Account data (email, name, school name, licence record) is retained for a maximum of 30 days post-termination for query resolution, then permanently deleted.</li>
+    <li>Account data (email, name, organisation name, licence record) is retained for a maximum of 30 days post-termination for query resolution, then permanently deleted.</li>
   </ul>
   <p>The Controller's statutory retention obligations remain in force independently of this DPA: safeguarding records (25 years), student performance records (6 years), audit logs (7 years).</p>
 

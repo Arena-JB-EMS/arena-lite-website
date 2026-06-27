@@ -3,17 +3,18 @@
 // GAS portal calls are always network-only (never cached here).
 // thearenahub.com only — not the GAS portal itself.
 
-const CACHE_NAME    = 'arena-lite-site-v1.0.0';
+const CACHE_NAME    = 'arena-lite-site-v1.1.0';
 const NETWORK_ONLY  = ['script.google.com', 'run.app', 'stripe.com', 'fonts.googleapis.com'];
 
 const PRECACHE = [
   './',
   './index.html',
+  './app.html',
   './signup.html',
   './dpa.html',
-  './manifest.json',
-  './assets/arena-icon-192.png',
-  './assets/arena-icon-512.png'
+  './app-manifest.json',
+  './arena-icon-192.png',
+  './arena-icon-512.png'
 ];
 
 // ── Install: pre-cache shell ────────────────────────────────────────────────

@@ -4,11 +4,11 @@
 
 <!-- ============================================================
   Arena Lite — Landing Page Rebuild
-  Version:   2.1.0
-  Session:   S112 — 20 June 2026
+  Version:   2.1.1
+  Session:   S122 — 27 June 2026 (manifest ref fix) / header corrected S133 2026-07-04
   Author:    Jonathan Baguley · The Arena Hub Ltd
   Framework: Emotional Asymmetry — "Lite as relief, not system"
-  GA4:       G-N2PRX87LVE
+  GA4:       REMOVED S114 — no analytics cookies, PECR compliance
 
   ASSET MAP (all assets in assets/ — push this folder to repo):
   ─────────────────────────────────────────────────────────────
@@ -20,15 +20,6 @@
   SafeGuarding_UI.png                ← Safeguarding section
   ─────────────────────────────────────────────────────────────
 ============================================================ -->
-
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N2PRX87LVE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-N2PRX87LVE');
-</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +37,7 @@
 
 <!-- Apple Touch Icon -->
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%231B263B' width='180' height='180'/><text x='50%' y='50%' font-size='60' font-weight='700' font-family='Rajdhani,sans-serif' fill='%23C5A059' text-anchor='middle' dominant-baseline='middle'>A</text></svg>">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="app-manifest.json">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2044,8 +2035,8 @@ a {
       <div class="video-spotlight__copy reveal">
         <h2 class="video-spotlight__title">This isn't a demo.<br>It's the real workflow.</h2>
         <p class="video-spotlight__body">
-          Every screen you see is live production software — running inside a school's own
-          Google Workspace. No installs. No third-party servers. No data leaving the building.
+          Every screen you see is live production software — running inside your own
+          Google Workspace. No installs. No third-party servers. No data leaving your hands.
           Watch how a practitioner captures evidence, generates a report, and flags a safeguarding
           concern in under three minutes.
         </p>
@@ -2057,7 +2048,8 @@ a {
           <video autoplay loop muted playsinline
                  poster="assets/Dashboard_UI.png"
                  style="width:100%;display:block;border-radius:inherit;">
-            <source src="assets/Arena Lite Landing Page Video.mp4" type="video/mp4">
+            <source src="assets/Arena_Combined_Seamless.mov" type="video/quicktime">
+            <source src="assets/Arena_Combined_Seamless.mov" type="video/mp4">
           </video>
         </div>
       </div>
@@ -2326,16 +2318,18 @@ a {
       <div class="safeguard__copy reveal">
         <span class="eyebrow">Built-in Safeguarding</span>
         <h2 class="safeguard__headline" id="safeguard-headline">
-          Welfare continuity — held quietly in the background.
+          Your record. Your judgement. Your control.
         </h2>
         <p class="safeguard__body">
-          When a concern arises, Arena Lite holds the continuity of that child's
-          experience — a quiet, accurate record that supports informed conversation
-          rather than replacing professional judgement.
+          When a concern arises, that safeguarding record belongs to you — the practitioner
+          who observed it, logged it, and is accountable for it. It is your professional
+          judgement who that information is released to, and when. Arena Lite does not
+          automate disclosure. It gives you complete control over what leaves your vault
+          and to whom, through SECO — the Sovereign Evidence Compliance Output.
         </p>
         <p class="safeguard__detail">
-          The safeguarding interface is designed to support the practitioner,
-          not surveil the student. The record exists to protect — never to label.
+          No third party can access, extract, or forward your safeguarding records without
+          your explicit action. The record exists to protect — and you hold the key.
         </p>
       </div>
 
@@ -2364,274 +2358,32 @@ a {
       <h2 class="align__title" id="align-title">Standards &amp; Regulatory Alignment</h2>
       <p class="align__subtitle">
         Arena Lite is not a compliance tool. It is operational infrastructure — and operational
-        infrastructure that is built correctly is inherently compliant. Each tile below shows
-        where our sovereign-first design intersects with the standards that govern AP and SEMH provision.
+        infrastructure that is built correctly is inherently compliant. Each tile below maps
+        where Arena's sovereign-first design intersects directly with the frameworks you work within
+        as an individual AP and SEMH practitioner.
       </p>
     </div>
 
-    <!-- Last Reviewed bar -->
-    <div class="align__reviewed reveal">
+    <!-- Last Reviewed bar — populated dynamically from the Compliance Registry, see renderAlignTiles() -->
+    <div class="align__reviewed reveal" id="align-reviewed-bar">
       <div class="align__reviewed-item">
         <span class="align__reviewed-label">Last Reviewed</span>
-        <span class="align__reviewed-value">June 2026</span>
+        <span class="align__reviewed-value" id="align-reviewed-date">Loading…</span>
       </div>
       <div class="align__reviewed-item">
         <span class="align__reviewed-label">Frameworks</span>
-        <span class="align__reviewed-value">Ofsted EIF · DfE AP Improvement · SEND Code · KCSiE 2025</span>
+        <span class="align__reviewed-value" id="align-reviewed-frameworks">Loading…</span>
       </div>
       <div class="align__reviewed-item">
         <span class="align__reviewed-label">Status</span>
-        <span class="align__reviewed-value align__reviewed-value--live">Current</span>
+        <span class="align__reviewed-value align__reviewed-value--live" id="align-reviewed-status">Loading…</span>
       </div>
     </div>
 
-    <div class="align__tiles reveal">
+    <div class="align__tiles reveal" id="align-tiles-container">
+      <p class="align__loading" style="text-align:center;padding:2rem;opacity:0.6;">Loading current regulatory alignment…</p>
+    </div>
 
-      <!-- Tile 1: SECO™ -->
-      <div class="align__tile align__tile--featured">
-        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
-          <div class="align__tile-trigger-lhs">
-            <div class="align__badge align__badge--unique">Arena Unique</div>
-            <div class="align__label">
-              <span class="align__tile-name">SECO™ — Sovereign Educational Continuity Object</span>
-              <span class="align__tile-sub">Forensic evidence architecture · Data sovereignty</span>
-            </div>
-          </div>
-          <span class="align__chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="align__tile-body" role="region">
-          <div class="align__tile-body-inner">
-            <div>
-              <p class="align__col-title">What it is</p>
-              <p class="align__col-text">
-                SECO™ is Arena's proprietary evidence architecture. Every piece of captured work —
-                a photograph, a voice note, a typed observation — is wrapped in a timestamped,
-                immutable forensic object stored exclusively within the school's own Google
-                Workspace Drive. No third-party server ever holds student data.
-              </p>
-            </div>
-            <div>
-              <p class="align__col-title">Why it matters</p>
-              <ul class="align__checks">
-                <li>Full audit trail: Who captured it, When, on Which device, in Which session</li>
-                <li>Evidence survives staff turnover — it belongs to the school, not the app</li>
-                <li>Supports pupil premium spend justification with verifiable impact data</li>
-                <li>Directly addresses Ofsted's requirement for "rich evidence of progress"</li>
-              </ul>
-            </div>
-            <div>
-              <p class="align__col-title">No equivalent exists elsewhere</p>
-              <p class="align__col-text">
-                Other AP tools store evidence in proprietary cloud databases. If the subscription
-                ends, the evidence is gone. SECO™ evidence lives in your Drive forever — accessible,
-                auditable, and completely under school control.
-              </p>
-            </div>
-            <div class="align__source">
-              <p class="align__source-label">Design rationale</p>
-              <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/accountability-framework/records-management/" target="_blank" rel="noopener">ICO Accountability Framework — Records Management</a>
-              <a href="https://www.gov.uk/government/publications/alternative-provision" target="_blank" rel="noopener">DfE: Alternative Provision statutory guidance</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tile 2: Inspection Readiness -->
-      <div class="align__tile">
-        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
-          <div class="align__tile-trigger-lhs">
-            <div class="align__badge align__badge--yes">Ofsted EIF</div>
-            <div class="align__label">
-              <span class="align__tile-name">Inspection Readiness</span>
-              <span class="align__tile-sub">Education Inspection Framework · AP quality indicators</span>
-            </div>
-          </div>
-          <span class="align__chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="align__tile-body" role="region">
-          <div class="align__tile-body-inner">
-            <div>
-              <p class="align__col-title">Ofsted's question</p>
-              <p class="align__col-text">
-                Under the EIF, inspectors evaluating AP settings look for consistent evidence of
-                curriculum intent, implementation, and impact — particularly for students whose
-                mainstream provision has broken down. The absence of structured, retrievable
-                records is the single most common inspection weakness in AP settings.
-              </p>
-            </div>
-            <div>
-              <p class="align__col-title">How Arena Lite responds</p>
-              <ul class="align__checks">
-                <li>COP Reports generated per student per session — ready for inspector review</li>
-                <li>Trophy Hub provides a cumulative, chronological learning record</li>
-                <li>Qualification mapping links each activity to a named curriculum framework</li>
-                <li>Safeguarding log is time-stamped and practitioner-attributed</li>
-              </ul>
-            </div>
-            <div>
-              <p class="align__col-title">What this does not do</p>
-              <p class="align__col-text">
-                Arena Lite does not coach inspection outcomes or produce synthetic judgement
-                language. The records it generates are factual, verifiable, and belong to the
-                school — not to us.
-              </p>
-            </div>
-            <div class="align__source">
-              <p class="align__source-label">Source</p>
-              <a href="https://www.gov.uk/government/publications/education-inspection-framework" target="_blank" rel="noopener">Ofsted: Education Inspection Framework (2019, updated 2023)</a>
-              <a href="https://www.gov.uk/government/publications/inspecting-alternative-provision-ap" target="_blank" rel="noopener">Ofsted: Inspecting alternative provision — guidance for inspectors</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tile 3: DfE Interoperability -->
-      <div class="align__tile">
-        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
-          <div class="align__tile-trigger-lhs">
-            <div class="align__badge align__badge--found">DfE 2025–2026</div>
-            <div class="align__label">
-              <span class="align__tile-name">DfE Interoperability &amp; AP Reform</span>
-              <span class="align__tile-sub">AP Improvement Plan · Data Standards · SEND &amp; AP improvement</span>
-            </div>
-          </div>
-          <span class="align__chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="align__tile-body" role="region">
-          <div class="align__tile-body-inner">
-            <div>
-              <p class="align__col-title">The policy direction</p>
-              <p class="align__col-text">
-                The DfE's SEND and AP Improvement Plan (2023) and subsequent 2025 progress
-                updates establish a clear direction: AP settings must demonstrate measurable
-                outcomes, maintain consistent records, and connect evidence to qualification
-                pathways. Data interoperability — the ability to share structured records across
-                settings — is a stated government priority for 2025–2026.
-              </p>
-            </div>
-            <div>
-              <p class="align__col-title">Arena's position</p>
-              <ul class="align__checks">
-                <li>All data held in structured Google Sheets — portable, readable by any system</li>
-                <li>Qualification taxonomy mapped to Ofqual-registered frameworks</li>
-                <li>COP Reports exportable as PDF — shareable with commissioners, LA officers</li>
-                <li>No proprietary lock-in: a school can export and leave with all their data</li>
-              </ul>
-            </div>
-            <div>
-              <p class="align__col-title">September 2026 context</p>
-              <p class="align__col-text">
-                New DfE guidance on AP commissioning and data reporting is expected in Autumn
-                2026. Arena Lite's architecture is designed to adapt — sovereign storage means
-                format changes require only an export template update, not a platform migration.
-              </p>
-            </div>
-            <div class="align__source">
-              <p class="align__source-label">Source</p>
-              <a href="https://www.gov.uk/government/publications/send-and-alternative-provision-improvement-plan" target="_blank" rel="noopener">DfE: SEND and Alternative Provision Improvement Plan (2023)</a>
-              <a href="https://www.gov.uk/government/publications/alternative-provision-ap-review" target="_blank" rel="noopener">DfE: Alternative Provision Review — improving outcomes</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tile 4: SEND & Inclusive Practice -->
-      <div class="align__tile">
-        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
-          <div class="align__tile-trigger-lhs">
-            <div class="align__badge align__badge--yes">SEND Code</div>
-            <div class="align__label">
-              <span class="align__tile-name">SEND &amp; Inclusive Practice</span>
-              <span class="align__tile-sub">SEND Code of Practice 2015 · EHC plan evidence · Assess-Plan-Do-Review</span>
-            </div>
-          </div>
-          <span class="align__chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="align__tile-body" role="region">
-          <div class="align__tile-body-inner">
-            <div>
-              <p class="align__col-title">The APDR cycle</p>
-              <p class="align__col-text">
-                The SEND Code of Practice requires settings to follow the Assess-Plan-Do-Review
-                cycle for all pupils with identified SEND. Arena Lite's session-by-session
-                capture model directly supports this — each session generates a record of what
-                was planned, attempted, achieved, and flagged.
-              </p>
-            </div>
-            <div>
-              <p class="align__col-title">EHC plan evidence support</p>
-              <ul class="align__checks">
-                <li>Trophy Hub provides a longitudinal view of progress towards EHC outcomes</li>
-                <li>COP Reports serve as structured evidence for annual review meetings</li>
-                <li>Safeguarding log supports DSL reporting requirements</li>
-                <li>All records held within school's own system — SENCO can access directly</li>
-              </ul>
-            </div>
-            <div>
-              <p class="align__col-title">Important caveat</p>
-              <p class="align__col-text">
-                Arena Lite does not write or manage EHC plans. It generates the evidence that
-                informs them. The professional judgement of the SENCO and relevant specialists
-                remains the authority.
-              </p>
-            </div>
-            <div class="align__source">
-              <p class="align__source-label">Source</p>
-              <a href="https://www.gov.uk/government/publications/send-code-of-practice-0-to-25" target="_blank" rel="noopener">DfE / DoH: SEND Code of Practice: 0 to 25 years (2015, amended 2020)</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tile 5: Safeguarding Context -->
-      <div class="align__tile">
-        <button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">
-          <div class="align__tile-trigger-lhs">
-            <div class="align__badge align__badge--yes">KCSiE 2025</div>
-            <div class="align__label">
-              <span class="align__tile-name">Safeguarding Context</span>
-              <span class="align__tile-sub">Keeping Children Safe in Education · DSL log integrity</span>
-            </div>
-          </div>
-          <span class="align__chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="align__tile-body" role="region">
-          <div class="align__tile-body-inner">
-            <div>
-              <p class="align__col-title">KCSiE requirements</p>
-              <p class="align__col-text">
-                Keeping Children Safe in Education (2025) requires settings to maintain accurate,
-                contemporaneous safeguarding records — accessible to the DSL, stored securely,
-                and attributable to a named member of staff. The requirement for audit trails in
-                safeguarding is absolute.
-              </p>
-            </div>
-            <div>
-              <p class="align__col-title">How Arena Lite addresses this</p>
-              <ul class="align__checks">
-                <li>Safeguarding concerns captured at point-of-observation — practitioner-stamped</li>
-                <li>Stored in the school's own Google Workspace Drive — not a third-party server</li>
-                <li>DSL access is via standard Google permissions — no additional login required</li>
-                <li>Records cannot be edited post-submission — integrity preserved</li>
-              </ul>
-            </div>
-            <div>
-              <p class="align__col-title">What this is not</p>
-              <p class="align__col-text">
-                Arena Lite is not a case management system and does not replace MyConcern,
-                CPOMS, or equivalent DSL tools. It is the first-capture layer — the point at
-                which a concern is observed and logged by a practitioner in the room.
-              </p>
-            </div>
-            <div class="align__source">
-              <p class="align__source-label">Source</p>
-              <a href="https://www.gov.uk/government/publications/keeping-children-safe-in-education--2" target="_blank" rel="noopener">DfE: Keeping Children Safe in Education 2025</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /.align__tiles -->
 
     <!-- The Arena Difference block -->
     <div class="align__difference reveal">
@@ -2643,16 +2395,17 @@ a {
         procedurally managed.
       </p>
       <div class="align__principles">
-        <p class="align__principle">Sovereignty first — student data never leaves the school's own infrastructure, by design, not by policy</p>
-        <p class="align__principle">Forensic by default — every action generates an immutable, attributed, timestamped record without additional effort from staff</p>
-        <p class="align__principle">Infrastructure, not application — Arena Lite runs inside tools schools already own and understand, eliminating onboarding friction and vendor dependency</p>
+        <p class="align__principle">Sovereignty first — student data never leaves your own infrastructure, by design, not by policy</p>
+        <p class="align__principle">Forensic by default — every action generates an immutable, attributed, timestamped record without additional effort from you</p>
+        <p class="align__principle">Infrastructure, not application — Arena Lite runs inside tools you already own and understand, eliminating onboarding friction and vendor dependency</p>
       </div>
     </div>
 
     <p class="align__disclaimer">
-      The information in this section reflects our understanding of current regulatory frameworks as at June 2026.
+      The information in this section is drawn live from Arena's central compliance registry and reflects our
+      understanding of current regulatory frameworks as of the "Last Reviewed" date above.
       Policy references are provided for transparency and link directly to source documents.
-      Settings should seek independent professional advice for their specific regulatory position.
+      You should seek independent professional advice for your specific regulatory position.
       Arena Hub Ltd is not a legal or compliance advisory firm.
     </p>
 
@@ -2802,8 +2555,125 @@ function toggleAlignTile(btn) {
   }
 }
 
+// ── Standards & Regulatory Alignment — sheet-driven, added S137 2026-07-09 ──
+// Replaces the previously hardcoded 5-tile block. Pulls from the same Arena Hub
+// Compliance Registry that feeds thearenahub.co.uk/compliance.html, filtered to
+// ARENA_LITE via the ?product= query param added in COMPLIANCE_REGISTRY.gs v2.0.0.
+// NOTE: this only renders anything once the ARENA_LITE rows in the sheet are
+// flipped to ACTIVE = TRUE (they are seeded but inactive by default — see
+// COMPLIANCE_REGISTRY_FLIP_LITE_LIVE.gs). Until then this section will show
+// the "no items found" state below, which fails safe rather than showing stale
+// or broken content.
+var ALIGN_DATA_URL = 'https://script.google.com/macros/s/AKfycbzKIxvEFG8QzgWI3TAR9xltV1UAGOgslk8jdzXiGXl-cwWhJOrPOD6tCFMKAVcqYLqe/exec?product=ARENA_LITE';
+
+function _alignEsc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function _alignToBullets(text) {
+  if (!text) return [];
+  return text
+    .split(/(?<=[.!?])\s+(?=[A-Z])/)
+    .map(function(s) { return s.trim(); })
+    .filter(function(s) { return s.length > 8; });
+}
+
+function _alignBadge(status) {
+  var s = (status || '').toLowerCase();
+  if (s === 'active')       return { cls: 'align__badge--yes',   label: 'Active' };
+  if (s === 'upcoming')     return { cls: 'align__badge--found', label: 'Upcoming' };
+  if (s === 'reform')       return { cls: 'align__badge--found', label: 'Reform' };
+  if (s === 'consultation') return { cls: 'align__badge--found', label: 'Consultation' };
+  return { cls: 'align__badge--yes', label: status || 'Active' };
+}
+
+function renderAlignTiles() {
+  var container = document.getElementById('align-tiles-container');
+  var dateEl    = document.getElementById('align-reviewed-date');
+  var fwEl      = document.getElementById('align-reviewed-frameworks');
+  var statusEl  = document.getElementById('align-reviewed-status');
+  if (!container) return;
+
+  fetch(ALIGN_DATA_URL)
+    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(data) {
+      if (!data.success) throw new Error(data.error || 'Unknown error from registry');
+
+      if (dateEl)   dateEl.textContent = data.lastUpdated || '-';
+      if (statusEl) statusEl.textContent = 'Current';
+
+      if (!data.regulations || data.regulations.length === 0) {
+        container.innerHTML = '<p class="align__loading" style="text-align:center;padding:2rem;opacity:0.6;">' +
+          'Regulatory alignment content is being migrated to this section - check back shortly, or see ' +
+          '<a href="https://thearenahub.co.uk/compliance.html" target="_blank" rel="noopener">Arena Hub\'s compliance page</a> in the meantime.</p>';
+        if (fwEl) fwEl.textContent = '-';
+        return;
+      }
+
+      if (fwEl) {
+        var fw = data.regulations.map(function(r){ return (r.sourceLabel || r.title).split(':').pop().split(',')[0].trim(); });
+        fw = fw.filter(function(v, i){ return fw.indexOf(v) === i; });
+        fwEl.textContent = fw.slice(0, 5).join(' · ');
+      }
+
+      var html = data.regulations.map(function(reg, idx) {
+        var badge = _alignBadge(reg.status);
+        var bullets = _alignToBullets(reg.arenaCompliance);
+        var sources = (reg.sourceUrl || '').split(';').map(function(u){ return u.trim(); }).filter(Boolean);
+        var labels  = (reg.sourceLabel || '').split(';').map(function(l){ return l.trim(); }).filter(Boolean);
+
+        return (
+          '<div class="align__tile' + (idx === 0 ? ' align__tile--featured' : '') + '">' +
+            '<button class="align__tile-trigger" aria-expanded="false" onclick="toggleAlignTile(this)">' +
+              '<div class="align__tile-trigger-lhs">' +
+                '<div class="align__badge ' + badge.cls + '">' + _alignEsc(badge.label) + '</div>' +
+                '<div class="align__label">' +
+                  '<span class="align__tile-name">' + _alignEsc(reg.title) + '</span>' +
+                  '<span class="align__tile-sub">' + _alignEsc(reg.statusDate || reg.sourceLabel || '') + '</span>' +
+                '</div>' +
+              '</div>' +
+              '<span class="align__chevron" aria-hidden="true">▼</span>' +
+            '</button>' +
+            '<div class="align__tile-body" role="region">' +
+              '<div class="align__tile-body-inner">' +
+                '<div>' +
+                  '<p class="align__col-title">What this requires</p>' +
+                  '<p class="align__col-text">' + _alignEsc(reg.summary) + '</p>' +
+                '</div>' +
+                '<div>' +
+                  '<p class="align__col-title">How Arena Lite responds</p>' +
+                  '<ul class="align__checks">' +
+                    bullets.map(function(b){ return '<li>' + _alignEsc(b) + '</li>'; }).join('') +
+                  '</ul>' +
+                '</div>' +
+                '<div class="align__source">' +
+                  '<p class="align__source-label">Source</p>' +
+                  sources.map(function(u, i){
+                    return '<a href="' + _alignEsc(u) + '" target="_blank" rel="noopener">' + _alignEsc(labels[i] || labels[0] || 'Source') + '</a>';
+                  }).join('') +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+
+      container.innerHTML = html;
+    })
+    .catch(function(err) {
+      container.innerHTML = '<p class="align__loading" style="text-align:center;padding:2rem;opacity:0.6;">' +
+        'Could not load current regulatory alignment (' + _alignEsc(err.message) + '). See ' +
+        '<a href="https://thearenahub.co.uk/compliance.html" target="_blank" rel="noopener">Arena Hub\'s compliance page</a> in the meantime.</p>';
+      if (dateEl)   dateEl.textContent = '-';
+      if (fwEl)     fwEl.textContent = '-';
+      if (statusEl) statusEl.textContent = 'Unavailable';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', renderAlignTiles);
+
 </script>
 
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

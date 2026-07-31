@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- ============================================================
+  Hestia — Product Page
+  Version:   1.0.0
+  Session:   S146 — 31 July 2026. NEW FILE — part of the thearenahub.com
+             family-landing restructure (see index.html, lite.html headers).
+             Shares lite.html's design system/tokens for visual consistency.
+             No real product screenshots exist yet for Hestia, so device
+             mockups use CSS-only abstract UI (same .ui-bar/.ui-block pattern
+             lite.html's own CSS comments describe as the no-screenshot
+             fallback) rather than fabricated images. Swap for real
+             screenshots when available.
+  Author:    Jonathan Baguley · The Arena Hub Ltd
+  Pricing:   £14.99/mo, £134.99/yr — Stripe Live products created S146
+             (prod_Uz1xowwLS1rzZ4, price_1Tz3trKDJYSl9R7nigHBUQI7 monthly,
+             price_1Tz3wzKDJYSl9R7ntjbjuEPt annual).
+  Known gap: No self-service trial/activation flow exists yet
+             (HESTIA_ACTIVATE.html unbuilt — see DOCUMENT_REGISTRY.json).
+             Checkout collects details and goes straight to Stripe; Jonathan
+             follows up manually post-payment (matches main.py v2.6.0's
+             honest-placeholder email copy for the same reason).
+============================================================ -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1B263B">
+<meta name="description" content="Hestia — AI-guided daily planning, evidence capture and safeguarding for parents and carers of SEMH children. Built on the same sovereign engine as Arena Lite.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Hestia">
+
+<meta property="og:title" content="Hestia — Home support for parents and carers of SEMH children">
+<meta property="og:description" content="Plan the day, capture what happened, track routine and mood — with AI support built for parents, not caseworkers.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.thearenahub.com/hestia.html">
+
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%231B263B' width='180' height='180'/><text x='50%' y='50%' font-size='60' font-weight='700' font-family='Rajdhani,sans-serif' fill='%23C5A059' text-anchor='middle' dominant-baseline='middle'>H</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+<title>Hestia — Home Support for Parents &amp; Carers of SEMH Children</title>
+
+<style>
+
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — matches index.html / lite.html
+═══════════════════════════════════════════════════════ */
+:root {
+  --navy:         #1B263B;
+  --navy-mid:     #243552;
+  --navy-deep:    #141E2E;
+  --navy-light:   #2E4270;
+  --gold:         #C5A059;
+  --gold-hover:   #D4B87A;
+  --gold-muted:   rgba(197, 160, 89, 0.12);
+
+  --cream:        #F7F4EF;
+  --cream-warm:   #EDE9E3;
+  --white:        #FFFFFF;
+  --charcoal:     #1C1C1E;
+  --body-text:    #374151;
+  --muted:        #6B7280;
+  --border:       rgba(197, 160, 89, 0.2);
+  --border-light: rgba(0, 0, 0, 0.07);
+
+  --font-display: 'Rajdhani', sans-serif;
+  --font-body:    'Source Sans 3', sans-serif;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.5rem;
+  --text-5xl:  3.25rem;
+  --text-6xl:  4.25rem;
+
+  --section-pad:     clamp(4rem, 8vw, 7rem);
+  --container-max:   1200px;
+  --container-pad:   clamp(1.25rem, 5vw, 3rem);
+
+  --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --dur-fast: 0.2s;
+  --dur-mid:  0.35s;
+  --dur-slow: 0.5s;
+
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--body-text);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.container { width: 100%; max-width: var(--container-max); margin-inline: auto; padding-inline: var(--container-pad); }
+
+.eyebrow { display: inline-block; font-family: var(--font-body); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+.eyebrow--dark { color: var(--navy); opacity: 0.55; }
+
+/* ── Buttons ── */
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: var(--radius-sm); font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; letter-spacing: 0.03em; cursor: pointer; border: none; transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease); white-space: nowrap; }
+.btn--primary { background: var(--gold); color: var(--navy); box-shadow: 0 2px 12px rgba(197,160,89,0.25); }
+.btn--primary:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 4px 18px rgba(197,160,89,0.35); }
+.btn--ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
+.btn--ghost:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.45); }
+
+/* ── Nav (identical to lite.html) ── */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.1rem 0; transition: background var(--dur-mid) var(--ease), box-shadow var(--dur-mid) var(--ease), padding var(--dur-mid) var(--ease); }
+.nav--scrolled { background: rgba(27, 38, 59, 0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(197,160,89,0.12); padding: 0.75rem 0; }
+.nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.nav__logo { display: flex; align-items: center; gap: 0.65rem; flex-shrink: 0; }
+.nav__logo-mark { width: 34px; height: 34px; background: var(--gold); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--navy); flex-shrink: 0; }
+.nav__logo-text { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; color: var(--white); letter-spacing: 0.02em; }
+.nav__logo-text span { color: var(--gold); }
+.nav__links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav__links a { font-size: var(--text-sm); font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 0.02em; transition: color var(--dur-fast) var(--ease); }
+.nav__links a:hover { color: var(--white); }
+.nav__cta { flex-shrink: 0; }
+.nav__cta .btn { padding: 0.55rem 1.35rem; font-size: var(--text-base); }
+.nav__toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; color: var(--white); flex-direction: column; gap: 5px; }
+.nav__toggle span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; }
+
+/* ── Hero ── */
+.hero { background: var(--navy); min-height: 92svh; display: flex; align-items: center; padding-top: 5rem; padding-bottom: var(--section-pad); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(197,160,89,0.04) 0%, transparent 70%), radial-gradient(ellipse 50% 80% at 10% 70%, rgba(46,66,112,0.5) 0%, transparent 65%); pointer-events: none; }
+.hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: center; position: relative; z-index: 1; }
+.hero__headline { font-family: var(--font-display); font-size: var(--text-5xl); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; color: var(--white); margin-bottom: 1.5rem; }
+.hero__headline em { font-style: normal; color: var(--gold); }
+.hero__subtext { font-size: var(--text-lg); font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.68); max-width: 44ch; margin-bottom: 2.5rem; }
+.hero__actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.hero__trust-line { font-size: var(--text-sm); color: rgba(255,255,255,0.38); letter-spacing: 0.02em; }
+.hero__trust-line strong { color: rgba(255,255,255,0.55); font-weight: 500; }
+.hero__media { position: relative; }
+
+/* ── Phone frame (CSS-only mockups, no screenshots) ── */
+.phone-frame { background: #0F1724; border-radius: 2.75rem; padding: 0.55rem; position: relative; box-shadow: 0 0 0 1px rgba(255,255,255,0.07), inset 0 0 0 1px rgba(255,255,255,0.04), 0 40px 100px rgba(0,0,0,0.55), 0 12px 30px rgba(0,0,0,0.3); max-width: 270px; margin-inline: auto; }
+.phone-frame::before { content: ''; position: absolute; top: 0.85rem; left: 50%; transform: translateX(-50%); width: 52px; height: 5px; background: #0F1724; border-radius: 3px; z-index: 10; }
+.phone-frame__screen { border-radius: 2.2rem; overflow: hidden; background: var(--navy-mid); position: relative; aspect-ratio: 9/17.5; }
+.screen__bar { background: var(--navy-deep); padding: 0.65rem 0.85rem; display: flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.screen__dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.12); }
+.screen__dot:first-child { background: rgba(197,160,89,0.4); }
+.screen__body { padding: 1rem 0.85rem; display: flex; flex-direction: column; gap: 0.65rem; }
+.ui-bar { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.07); }
+.ui-bar--gold { background: rgba(197,160,89,0.3); }
+.ui-bar--gold-solid { background: var(--gold); opacity: 0.7; }
+.ui-bar--short { width: 55%; } .ui-bar--medium { width: 78%; } .ui-bar--full { width: 100%; }
+.ui-block { border-radius: var(--radius-sm); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); padding: 0.6rem; }
+.ui-tag { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.ui-tag--gold { background: rgba(197,160,89,0.15); color: var(--gold); border: 1px solid rgba(197,160,89,0.25); }
+.ui-tag--green { background: rgba(74, 222, 128, 0.12); color: #4ADE80; border: 1px solid rgba(74, 222, 128, 0.2); }
+.ui-btn-small { padding: 0.4rem 0.75rem; border-radius: var(--radius-sm); background: var(--gold); color: var(--navy); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.3rem; width: fit-content; }
+
+/* ── Problem ── */
+.problem { background: var(--cream); padding: var(--section-pad) 0; }
+.problem__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+.problem__headline { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 700; color: var(--navy); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
+.problem__body { font-size: var(--text-lg); font-weight: 300; line-height: 1.75; color: var(--body-text); max-width: 44ch; }
+.problem__pains { display: flex; flex-direction: column; gap: 1.25rem; list-style: none; }
+.problem__pains li { display: flex; gap: 1.1rem; align-items: flex-start; padding: 1.25rem 1.5rem; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.problem__pain-accent { width: 3px; min-width: 3px; height: 100%; border-radius: 2px; background: var(--gold); opacity: 0.6; align-self: stretch; }
+.problem__pain-text { font-size: var(--text-base); line-height: 1.6; color: var(--body-text); }
+.problem__pain-text strong { display: block; font-weight: 600; color: var(--charcoal); margin-bottom: 0.2rem; }
+
+/* ── Workflow (CSS-only mockups) ── */
+.workflow { background: var(--navy); padding: var(--section-pad) 0; overflow: hidden; }
+.workflow__header { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.workflow__title { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 700; color: var(--white); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1rem; }
+.workflow__subtitle { font-size: var(--text-lg); font-weight: 300; color: rgba(255,255,255,0.55); max-width: 50ch; margin-inline: auto; line-height: 1.65; }
+.workflow__steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; position: relative; }
+.workflow__step { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.25rem; }
+.workflow__step-num { width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 1px solid rgba(197,160,89,0.3); background: var(--navy-mid); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--gold); flex-shrink: 0; }
+.workflow__step-label { padding-top: 0.5rem; }
+.workflow__step-label h3 { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; color: var(--white); margin-bottom: 0.35rem; }
+.workflow__step-label p { font-size: var(--text-sm); color: rgba(255,255,255,0.45); line-height: 1.55; }
+
+/* ── Contrast ── */
+.contrast { background: var(--white); padding: var(--section-pad) 0; }
+.contrast__header { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.contrast__title { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 700; color: var(--navy); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.75rem; }
+.contrast__subtitle { font-size: var(--text-lg); font-weight: 300; color: var(--muted); max-width: 46ch; margin-inline: auto; }
+.contrast__table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,0.07); }
+.contrast__table thead th { padding: 1.25rem 1.75rem; text-align: left; font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; letter-spacing: 0.02em; }
+.contrast__table thead th:first-child { background: #F3F1EF; color: var(--muted); width: 50%; border-bottom: 1px solid rgba(0,0,0,0.06); }
+.contrast__table thead th:last-child { background: var(--navy); color: var(--gold); border-bottom: 1px solid rgba(197,160,89,0.15); }
+.contrast__table tbody tr td { padding: 1.1rem 1.75rem; vertical-align: top; font-size: var(--text-base); line-height: 1.55; border-bottom: 1px solid transparent; }
+.contrast__table tbody tr:last-child td { border-bottom: none; }
+.contrast__table tbody tr:nth-child(odd) td:first-child { background: #F9F8F6; border-bottom: 1px solid rgba(0,0,0,0.04); }
+.contrast__table tbody tr:nth-child(odd) td:last-child { background: var(--navy-mid); border-bottom: 1px solid rgba(197,160,89,0.06); }
+.contrast__table tbody tr:nth-child(even) td:first-child { background: #F3F1EF; border-bottom: 1px solid rgba(0,0,0,0.04); }
+.contrast__table tbody tr:nth-child(even) td:last-child { background: var(--navy); border-bottom: 1px solid rgba(197,160,89,0.06); }
+.cell--before { color: var(--muted); padding-left: 2.25rem; position: relative; }
+.cell--after { color: rgba(255,255,255,0.82); padding-left: 2.5rem; position: relative; }
+.cell--after::before { content: '→'; position: absolute; left: 1.75rem; color: var(--gold); font-weight: 400; opacity: 0.7; }
+
+/* ── Trust ── */
+.trust { background: var(--cream); padding: var(--section-pad) 0; }
+.trust__inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(3rem, 6vw, 6rem); align-items: center; }
+.trust__headline { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 700; color: var(--navy); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.1rem; }
+.trust__body { font-size: var(--text-lg); font-weight: 300; line-height: 1.75; color: var(--body-text); max-width: 40ch; }
+.trust__points { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.trust__point { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.5rem 1.4rem; position: relative; overflow: hidden; }
+.trust__point-title { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; letter-spacing: 0.01em; }
+.trust__point-text { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+
+/* ── Safeguard ── */
+.safeguard { background: var(--navy); padding: var(--section-pad) 0; }
+.safeguard__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
+.safeguard__headline { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--white); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 1.1rem; }
+.safeguard__body { font-size: var(--text-lg); font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.62); max-width: 42ch; margin-bottom: 1.75rem; }
+.safeguard__detail { font-size: var(--text-sm); color: rgba(255,255,255,0.35); font-style: italic; line-height: 1.6; }
+.safeguard__stub { display: flex; align-items: center; justify-content: center; position: relative; }
+
+/* ── Pricing (identical pattern to lite.html) ── */
+.pricing { background: var(--cream); padding: var(--section-pad) 0; }
+.pricing__header { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.pricing__title { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 700; color: var(--navy); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.75rem; }
+.pricing__subtitle { font-size: var(--text-lg); font-weight: 300; color: var(--muted); max-width: 46ch; margin-inline: auto; }
+.pricing__toggle { display: flex; align-items: center; justify-content: center; gap: 0.85rem; margin: 1.75rem 0 0; }
+.pricing__toggle-label { font-size: var(--text-sm); font-weight: 600; color: var(--muted); cursor: pointer; }
+.pricing__toggle-label.is-active { color: var(--navy); }
+.pricing__switch { width: 46px; height: 26px; border-radius: 13px; background: var(--navy); border: none; cursor: pointer; position: relative; padding: 0; flex-shrink: 0; }
+.pricing__switch-knob { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--gold); transition: transform var(--dur-fast) var(--ease); }
+.pricing__switch.is-annual .pricing__switch-knob { transform: translateX(20px); }
+.pricing__save-badge { display: inline-block; background: var(--gold-muted); color: #8B6914; border: 1px solid rgba(197,160,89,0.3); border-radius: 20px; padding: 0.2rem 0.7rem; font-size: var(--text-xs); font-weight: 600; margin-left: 0.4rem; }
+.pricing__card { max-width: 440px; margin: 2.5rem auto 0; background: var(--white); border-radius: var(--radius-xl); border: 1px solid var(--border-light); box-shadow: 0 8px 40px rgba(0,0,0,0.08); padding: clamp(2rem, 4vw, 2.75rem); text-align: center; }
+.pricing__card-name { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.pricing__card-amount { font-family: var(--font-display); font-size: var(--text-6xl); font-weight: 700; color: var(--navy); line-height: 1; margin: 0.75rem 0 0.25rem; }
+.pricing__card-amount span { font-size: var(--text-lg); font-weight: 500; color: var(--muted); }
+.pricing__card-period-note { font-size: var(--text-sm); color: var(--muted); margin-bottom: 1.75rem; }
+.pricing__card-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+.pricing__card-features li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: var(--text-sm); line-height: 1.5; color: var(--body-text); }
+.pricing__card-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+.pricing__card .btn { width: 100%; justify-content: center; }
+.pricing__trial-note { text-align: center; margin-top: 1.5rem; font-size: var(--text-sm); color: var(--muted); }
+.pricing__trial-note a { color: var(--navy); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ── Checkout modal (identical to lite.html) ── */
+.checkout-modal { display: none; position: fixed; inset: 0; z-index: 200; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(15,23,36,0.6); backdrop-filter: blur(3px); }
+.checkout-modal.is-open { display: flex; }
+.checkout-modal__card { background: var(--white); border-radius: var(--radius-lg); padding: 2rem 2rem 1.75rem; max-width: 420px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+.checkout-modal__title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+.checkout-modal__subtitle { font-size: var(--text-sm); color: var(--muted); margin-bottom: 1.5rem; line-height: 1.5; }
+.checkout-modal__field { margin-bottom: 1rem; }
+.checkout-modal__field label { display: block; font-size: var(--text-xs); font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.checkout-modal__field input { width: 100%; padding: 0.7rem 0.8rem; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-size: var(--text-base); font-family: inherit; outline: none; }
+.checkout-modal__field input:focus { border-color: var(--gold); }
+.checkout-modal__field input.err { border-color: #C62828; }
+.checkout-modal__actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+.checkout-modal__actions .btn { flex: 1; justify-content: center; }
+.checkout-modal__cancel { background: none; border: 1.5px solid var(--border-light); color: var(--muted); border-radius: var(--radius-sm); font-family: var(--font-display); font-weight: 600; cursor: pointer; }
+.checkout-modal__status { font-size: var(--text-sm); color: #C62828; margin-top: 0.75rem; display: none; }
+.checkout-modal__status.is-visible { display: block; }
+
+/* ── Final CTA ── */
+.cta-final { background: var(--navy-deep); padding: var(--section-pad) 0; text-align: center; position: relative; overflow: hidden; }
+.cta-final::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(197,160,89,0.05) 0%, transparent 70%); pointer-events: none; }
+.cta-final__inner { position: relative; z-index: 1; max-width: 640px; margin-inline: auto; }
+.cta-final__eyebrow { display: inline-block; font-family: var(--font-body); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; opacity: 0.8; }
+.cta-final__headline { font-family: var(--font-display); font-size: var(--text-5xl); font-weight: 700; color: var(--white); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
+.cta-final__body { font-size: var(--text-lg); font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 2.5rem; max-width: 44ch; margin-inline: auto; }
+.cta-final__actions { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+.cta-final__actions .btn { padding: 1rem 2.75rem; font-size: var(--text-xl); }
+.cta-final__guarantees { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.25rem; }
+.cta-final__guarantee { display: flex; align-items: center; gap: 0.4rem; font-size: var(--text-xs); color: rgba(255,255,255,0.35); letter-spacing: 0.03em; }
+.cta-final__guarantee::before { content: '✓'; color: var(--gold); opacity: 0.7; font-size: 0.7rem; }
+
+/* ── Footer ── */
+.footer { background: var(--navy-deep); border-top: 1px solid rgba(197,160,89,0.1); padding: 2.5rem 0 2rem; }
+.footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; }
+.footer__logo { display: flex; align-items: center; gap: 0.6rem; }
+.footer__logo-mark { width: 28px; height: 28px; background: rgba(197,160,89,0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--gold); }
+.footer__logo-text { font-family: var(--font-display); font-size: var(--text-base); font-weight: 600; color: rgba(255,255,255,0.5); }
+.footer__logo-text strong { color: rgba(255,255,255,0.75); }
+.footer__links { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.footer__links a { font-size: var(--text-sm); color: rgba(255,255,255,0.35); }
+.footer__links a:hover { color: rgba(255,255,255,0.65); }
+.footer__copy { width: 100%; font-size: var(--text-xs); color: rgba(255,255,255,0.22); padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 0.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal--delay-1 { transition-delay: 0.1s; } .reveal--delay-2 { transition-delay: 0.2s; } .reveal--delay-3 { transition-delay: 0.3s; }
+
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; } .hero__headline { font-size: var(--text-4xl); } .hero__media { order: -1; max-width: 320px; margin-inline: auto; }
+  .problem__inner { grid-template-columns: 1fr; } .trust__inner { grid-template-columns: 1fr; } .safeguard__inner { grid-template-columns: 1fr; }
+  .safeguard__stub { max-width: 280px; margin-inline: auto; }
+  .workflow__steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  :root { --text-5xl: 2.5rem; --text-4xl: 2rem; --text-3xl: 1.6rem; }
+  .workflow__steps { grid-template-columns: 1fr; }
+  .hero__actions { flex-direction: column; align-items: flex-start; } .hero__actions .btn { width: 100%; justify-content: center; }
+  .cta-final__actions .btn { width: 100%; justify-content: center; }
+  .trust__points { grid-template-columns: 1fr; }
+  .nav__links { display: none; } .nav__toggle { display: flex; }
+  .footer__inner { flex-direction: column; align-items: flex-start; }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" aria-label="The Arena Hub — Home">
+        <div class="nav__logo-mark" aria-hidden="true">H</div>
+        <span class="nav__logo-text">Hestia</span>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="#workflow">How It Works</a></li>
+        <li><a href="#trust">Data &amp; Privacy</a></li>
+        <li><a href="/">Other Arena Products</a></li>
+      </ul>
+      <div class="nav__cta">
+        <a href="#pricing" class="btn btn--primary">Get Started</a>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-headline">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <span class="eyebrow">For Parents &amp; Carers of SEMH Children</span>
+        <h1 class="hero__headline" id="hero-headline">
+          You already do the hard part.<br>
+          Let Hestia <em>help you plan it.</em>
+        </h1>
+        <p class="hero__subtext">
+          Most evenings end with the same question: what actually happened today, and
+          what do we try tomorrow? Hestia gives you an AI-guided plan for the day ahead,
+          and a quiet place to log what really happened — built for home, not a classroom.
+        </p>
+        <div class="hero__actions">
+          <a href="#pricing" class="btn btn--primary">See Pricing</a>
+          <a href="#workflow" class="btn btn--ghost">How It Works</a>
+        </div>
+        <p class="hero__trust-line"><strong>Your data, your Google account.</strong> Nothing shared with school or anyone else without your say-so.</p>
+      </div>
+      <div class="hero__media reveal">
+        <div class="phone-frame">
+          <div class="phone-frame__screen">
+            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
+            <div class="screen__body">
+              <div class="ui-tag ui-tag--gold">PLAN THE DAY</div>
+              <div class="ui-bar ui-bar--gold-solid ui-bar--medium"></div>
+              <div class="ui-block">
+                <div class="ui-bar ui-bar--short" style="margin-bottom:.4rem;"></div>
+                <div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div>
+                <div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div>
+                <div class="ui-bar ui-bar--medium"></div>
+              </div>
+              <div class="ui-tag ui-tag--green">TIER 2 — HIVEMIND</div>
+              <div class="ui-bar ui-bar--gold ui-bar--short"></div>
+              <div class="ui-btn-small">Generate Plan →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" aria-labelledby="problem-headline">
+  <div class="container">
+    <div class="problem__inner">
+      <div class="problem__copy reveal">
+        <span class="eyebrow eyebrow--dark">The Reality</span>
+        <h2 class="problem__headline" id="problem-headline">Nobody hands you a plan for a day like this.</h2>
+        <p class="problem__body">You know your child better than anyone. What's missing isn't judgement — it's a
+        moment, at the start of the day, to think it through, and a place afterwards to note what actually worked.</p>
+      </div>
+      <ul class="problem__pains reveal reveal--delay-2" role="list">
+        <li><div class="problem__pain-accent" aria-hidden="true"></div><div class="problem__pain-text"><strong>The blank-page morning</strong>Not knowing where to start when today looks different from yesterday.</div></li>
+        <li><div class="problem__pain-accent" aria-hidden="true"></div><div class="problem__pain-text"><strong>The evidence nobody sees</strong>Everything you notice and manage at home, invisible to the people making decisions about your child.</div></li>
+        <li><div class="problem__pain-accent" aria-hidden="true"></div><div class="problem__pain-text"><strong>The safeguarding record with nowhere to live</strong>Concerns worth remembering, scattered across texts, notes apps and memory.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="workflow" id="workflow" aria-labelledby="workflow-headline">
+  <div class="container">
+    <div class="workflow__header reveal">
+      <span class="eyebrow">How Hestia Works</span>
+      <h2 class="workflow__title" id="workflow-headline">Three ways Hestia meets you where the day actually is.</h2>
+      <p class="workflow__subtitle">No new routine to learn — Hestia sits alongside the day you're already having.</p>
+    </div>
+    <div class="workflow__steps">
+      <div class="workflow__step reveal reveal--delay-1">
+        <div class="workflow__step-num" aria-hidden="true">1</div>
+        <div class="phone-frame" style="max-width:none;">
+          <div class="phone-frame__screen">
+            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
+            <div class="screen__body">
+              <div class="ui-bar ui-bar--gold ui-bar--medium"></div>
+              <div class="ui-block"><div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div><div class="ui-bar ui-bar--short"></div></div>
+              <div class="ui-btn-small">Generate →</div>
+            </div>
+          </div>
+        </div>
+        <div class="workflow__step-label"><h3>Plan the day</h3><p>Tell Hestia what today needs — it drafts an AI-guided plan tailored to your child, grounded in what's worked before.</p></div>
+      </div>
+      <div class="workflow__step reveal reveal--delay-2">
+        <div class="workflow__step-num" aria-hidden="true">2</div>
+        <div class="phone-frame" style="max-width:none;">
+          <div class="phone-frame__screen">
+            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
+            <div class="screen__body">
+              <div class="ui-tag ui-tag--green">COMMITTED</div>
+              <div class="ui-block"><div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div><div class="ui-bar ui-bar--medium"></div></div>
+              <div class="ui-bar ui-bar--gold ui-bar--short"></div>
+            </div>
+          </div>
+        </div>
+        <div class="workflow__step-label"><h3>Capture what happened</h3><p>A quick note or photo, logged in the moment — park it for later or commit it straight away.</p></div>
+      </div>
+      <div class="workflow__step reveal reveal--delay-3">
+        <div class="workflow__step-num" aria-hidden="true">3</div>
+        <div class="phone-frame" style="max-width:none;">
+          <div class="phone-frame__screen">
+            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
+            <div class="screen__body">
+              <div class="ui-bar ui-bar--gold-solid ui-bar--medium"></div>
+              <div class="ui-block"><div class="ui-bar ui-bar--short" style="margin-bottom:.3rem;"></div><div class="ui-bar ui-bar--full"></div></div>
+              <div class="ui-bar ui-bar--full"></div>
+            </div>
+          </div>
+        </div>
+        <div class="workflow__step-label"><h3>See the pattern over time</h3><p>Routine and mood tracked day by day — building a picture that's yours, ready when you need to show it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRAST -->
+<section class="contrast" aria-labelledby="contrast-headline">
+  <div class="container">
+    <div class="contrast__header reveal">
+      <span class="eyebrow eyebrow--dark">The Difference</span>
+      <h2 class="contrast__title" id="contrast-headline">The same day. A different evening.</h2>
+      <p class="contrast__subtitle">Nothing about how much you care changes. Only how much of it you have to carry alone.</p>
+    </div>
+    <div class="reveal">
+      <table class="contrast__table" role="table" aria-label="Comparison of managing SEMH support alone versus with Hestia">
+        <thead><tr><th scope="col">Without Hestia</th><th scope="col">With Hestia</th></tr></thead>
+        <tbody>
+          <tr><td class="cell--before">Starting each day from scratch, unsure what to try</td><td class="cell--after">An AI-guided plan, grounded in what's worked before</td></tr>
+          <tr><td class="cell--before">What happened today lives in memory, then fades</td><td class="cell--after">Captured in the moment, kept where you can find it</td></tr>
+          <tr><td class="cell--before">Safeguarding concerns noted wherever's convenient</td><td class="cell--after">One sovereign record, under your control</td></tr>
+          <tr><td class="cell--before">Routine and mood changes noticed, then forgotten</td><td class="cell--after">Tracked over time — a pattern you can actually see</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" id="trust" aria-labelledby="trust-headline">
+  <div class="container">
+    <div class="trust__inner">
+      <div class="trust__copy reveal">
+        <span class="eyebrow eyebrow--dark">Data &amp; Sovereignty</span>
+        <h2 class="trust__headline" id="trust-headline">Your family's record stays yours.</h2>
+        <p class="trust__body">Hestia keeps your family's evidence in your own Google account — not on an external
+        server, not shared with your child's school or anyone else, unless you decide to share it.</p>
+      </div>
+      <div class="trust__points reveal reveal--delay-2" role="list">
+        <div class="trust__point" role="listitem"><h3 class="trust__point-title">Your account. Your record.</h3><p class="trust__point-text">Everything Hestia captures lives in a space tied to your own Google account, not a shared database.</p></div>
+        <div class="trust__point" role="listitem"><h3 class="trust__point-title">Zero central extraction.</h3><p class="trust__point-text">No child data sold, profiled, or handed to a third party. Nothing leaves without your explicit action.</p></div>
+        <div class="trust__point" role="listitem"><h3 class="trust__point-title">You decide who sees it.</h3><p class="trust__point-text">If a record needs to go to a school, a professional, or a review meeting — that's always your deliberate choice.</p></div>
+        <div class="trust__point" role="listitem"><h3 class="trust__point-title">Built for home, not institutions.</h3><p class="trust__point-text">Hestia doesn't ask you to change how your family already works. It sits alongside your day.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFEGUARD -->
+<section class="safeguard" aria-labelledby="safeguard-headline">
+  <div class="container">
+    <div class="safeguard__inner">
+      <div class="safeguard__copy reveal">
+        <span class="eyebrow">Built-in Safeguarding</span>
+        <h2 class="safeguard__headline" id="safeguard-headline">Your judgement. Your record. Your control.</h2>
+        <p class="safeguard__body">When something worth flagging happens, that record belongs to you — the
+        parent or carer who noticed it. Hestia gives you a dedicated safeguarding space, kept separate from
+        day-to-day notes, ready if and when you need to share it.</p>
+        <p class="safeguard__detail">No one else can access your safeguarding record without your explicit action. It exists to protect — and you hold the key.</p>
+      </div>
+      <div class="safeguard__stub reveal reveal--delay-2">
+        <div class="phone-frame" style="max-width:none;box-shadow:0 0 0 1px rgba(255,255,255,0.07),0 40px 100px rgba(0,0,0,0.6);">
+          <div class="phone-frame__screen">
+            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
+            <div class="screen__body">
+              <div class="ui-tag ui-tag--gold">SAFEGUARDING</div>
+              <div class="ui-block"><div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div><div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div><div class="ui-bar ui-bar--medium"></div></div>
+              <div class="ui-btn-small">Save Record</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="pricing__header reveal">
+      <span class="eyebrow eyebrow--dark">Pricing</span>
+      <h2 class="pricing__title" id="pricing-title">One plan. Everything included.</h2>
+      <p class="pricing__subtitle">No tiers, no feature gates — every family gets the full Hestia engine.</p>
+      <div class="pricing__toggle">
+        <span class="pricing__toggle-label is-active" id="toggleMonthlyLabel">Monthly</span>
+        <button class="pricing__switch" id="billingSwitch" onclick="toggleBilling()" aria-label="Toggle annual billing"><span class="pricing__switch-knob"></span></button>
+        <span class="pricing__toggle-label" id="toggleAnnualLabel">Annual</span>
+        <span class="pricing__save-badge">Save ~25%</span>
+      </div>
+    </div>
+    <div class="pricing__card reveal reveal--delay-1">
+      <div class="pricing__card-name">Hestia</div>
+      <div class="pricing__card-amount" id="priceAmount">£14.99<span>/month</span></div>
+      <p class="pricing__card-period-note" id="priceNote">Billed monthly · cancel any time</p>
+      <ul class="pricing__card-features">
+        <li>AI-guided daily planning</li>
+        <li>Evidence capture built for home</li>
+        <li>Routine and mood tracking</li>
+        <li>Dedicated safeguarding record</li>
+        <li>Your own Google account — nothing shared without consent</li>
+      </ul>
+      <button class="btn btn--primary" onclick="openCheckout()">Subscribe — £14.99/mo</button>
+    </div>
+    <p class="pricing__trial-note reveal">
+      Questions first? Email <a href="mailto:hello@thearenahub.co.uk">hello@thearenahub.co.uk</a>.
+    </p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final" aria-labelledby="cta-headline">
+  <div class="container">
+    <div class="cta-final__inner">
+      <span class="cta-final__eyebrow">Try Hestia</span>
+      <h2 class="cta-final__headline" id="cta-headline">Give tomorrow a plan.</h2>
+      <p class="cta-final__body">You're already doing the hard part. Let Hestia help with the planning and the remembering.</p>
+      <div class="cta-final__actions">
+        <a href="#pricing" class="btn btn--primary" aria-label="See Hestia pricing">See Pricing</a>
+        <div class="cta-final__guarantees">
+          <span class="cta-final__guarantee">Your own Google account</span>
+          <span class="cta-final__guarantee">Cancel any time</span>
+          <span class="cta-final__guarantee">Nothing shared without consent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__logo"><div class="footer__logo-mark" aria-hidden="true">H</div><span class="footer__logo-text"><strong>Hestia</strong> · The Arena Hub</span></div>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <a href="/">Other Arena Products</a>
+        <a href="https://www.thearenahub.co.uk/company.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+    <div class="footer__copy">
+      <span>© 2026 The Arena Hub Ltd · Company No. CH#1708605 · UK</span>
+      <span>Sovereign infrastructure for AP &amp; SEMH education.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutModalTitle">
+  <div class="checkout-modal__card">
+    <h3 class="checkout-modal__title" id="checkoutModalTitle">Almost there</h3>
+    <p class="checkout-modal__subtitle">A few details so we can set up your licence, then you'll be taken to Stripe to complete payment securely.</p>
+    <div class="checkout-modal__field"><label for="ckFirstName">First name</label><input type="text" id="ckFirstName" autocomplete="given-name"></div>
+    <div class="checkout-modal__field"><label for="ckLastName">Last name</label><input type="text" id="ckLastName" autocomplete="family-name"></div>
+    <div class="checkout-modal__field"><label for="ckEmail">Email address</label><input type="email" id="ckEmail" autocomplete="email" autocapitalize="none"></div>
+    <div class="checkout-modal__field"><label for="ckOrgName">Family / household name</label><input type="text" id="ckOrgName" autocomplete="off"></div>
+    <div class="checkout-modal__status" id="checkoutModalStatus"></div>
+    <div class="checkout-modal__actions">
+      <button class="checkout-modal__cancel" onclick="closeCheckout()">Cancel</button>
+      <button class="btn btn--primary" id="checkoutSubmitBtn" onclick="submitCheckout()">Continue to payment</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var nav = document.getElementById('mainNav');
+  function handleNavScroll() { nav.classList.toggle('nav--scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  var toggle = document.getElementById('navToggle');
+  var navLinks = document.querySelector('.nav__links');
+  if (toggle && navLinks) {
+    toggle.addEventListener('click', function () {
+      var isOpen = navLinks.style.display === 'flex';
+      navLinks.style.display = isOpen ? '' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '100%';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'rgba(27,38,59,0.98)';
+      navLinks.style.padding = '1.25rem 1.5rem 1.75rem';
+      navLinks.style.borderTop = '1px solid rgba(197,160,89,0.12)';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+})();
+
+// ── Pricing + Checkout ──────────────────────────────────────────────────────
+var PRODUCT       = 'hestia';
+var CHECKOUT_URL  = 'https://arena-hub-ingestor-820703761059.europe-west2.run.app/createCheckout';
+var PRICE_IDS     = {
+  monthly: 'price_1Tz3trKDJYSl9R7nigHBUQI7',   // £14.99/mo
+  annual:  'price_1Tz3wzKDJYSl9R7ntjbjuEPt'    // £134.99/yr
+};
+var PRICE_DISPLAY = {
+  monthly: { amount: '£14.99', unit: '/month', note: 'Billed monthly · cancel any time', btn: 'Subscribe — £14.99/mo' },
+  annual:  { amount: '£134.99', unit: '/year', note: 'Billed annually · ~25% cheaper than monthly', btn: 'Subscribe — £134.99/yr' }
+};
+var _billingPeriod = 'monthly';
+var _checkoutSubmitting = false;
+
+function toggleBilling() {
+  _billingPeriod = (_billingPeriod === 'monthly') ? 'annual' : 'monthly';
+  var isAnnual = _billingPeriod === 'annual';
+  document.getElementById('billingSwitch').classList.toggle('is-annual', isAnnual);
+  document.getElementById('toggleMonthlyLabel').classList.toggle('is-active', !isAnnual);
+  document.getElementById('toggleAnnualLabel').classList.toggle('is-active', isAnnual);
+  var d = PRICE_DISPLAY[_billingPeriod];
+  document.getElementById('priceAmount').innerHTML = d.amount + '<span>' + d.unit + '</span>';
+  document.getElementById('priceNote').textContent  = d.note;
+  var btn = document.querySelector('.pricing__card .btn');
+  if (btn) btn.textContent = d.btn;
+}
+
+function openCheckout() { document.getElementById('checkoutModal').classList.add('is-open'); hideCheckoutError(); }
+function closeCheckout() { document.getElementById('checkoutModal').classList.remove('is-open'); }
+function hideCheckoutError() { var el = document.getElementById('checkoutModalStatus'); el.className = 'checkout-modal__status'; el.textContent = ''; }
+function showCheckoutError(msg) { var el = document.getElementById('checkoutModalStatus'); el.textContent = msg; el.className = 'checkout-modal__status is-visible'; }
+
+function submitCheckout() {
+  if (_checkoutSubmitting) return;
+  hideCheckoutError();
+
+  var firstName = (document.getElementById('ckFirstName').value || '').trim();
+  var lastName  = (document.getElementById('ckLastName').value  || '').trim();
+  var email     = (document.getElementById('ckEmail').value     || '').trim().toLowerCase();
+  var orgName   = (document.getElementById('ckOrgName').value   || '').trim();
+
+  ['ckFirstName','ckLastName','ckEmail','ckOrgName'].forEach(function(id) { document.getElementById(id).classList.remove('err'); });
+
+  var ok = true;
+  if (!firstName) { document.getElementById('ckFirstName').classList.add('err'); ok = false; }
+  if (!lastName)  { document.getElementById('ckLastName').classList.add('err');  ok = false; }
+  if (!email || email.indexOf('@') === -1) { document.getElementById('ckEmail').classList.add('err'); ok = false; }
+  if (!orgName)   { document.getElementById('ckOrgName').classList.add('err');   ok = false; }
+  if (!ok) { showCheckoutError('Please fill in all fields.'); return; }
+
+  _checkoutSubmitting = true;
+  var btn = document.getElementById('checkoutSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Redirecting to Stripe…';
+
+  fetch(CHECKOUT_URL, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: email, orgName: orgName, practitionerName: (firstName + ' ' + lastName).trim(),
+      plan: _billingPeriod, product: PRODUCT, priceId: PRICE_IDS[_billingPeriod]
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data && data.checkoutUrl) {
+      window.location.href = data.checkoutUrl;
+    } else {
+      _checkoutSubmitting = false;
+      btn.disabled = false;
+      btn.textContent = 'Continue to payment';
+      showCheckoutError((data && data.error) || 'Something went wrong. Please try again or contact hello@thearenahub.co.uk');
+    }
+  })
+  .catch(function() {
+    _checkoutSubmitting = false;
+    btn.disabled = false;
+    btn.textContent = 'Continue to payment';
+    showCheckoutError('Connection error — please try again. If this persists, email hello@thearenahub.co.uk');
+  });
+}
+</script>
+
+</body>
+</html>

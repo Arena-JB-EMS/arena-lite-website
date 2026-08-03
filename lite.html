@@ -315,11 +315,25 @@ a {
 
 .nav__cta {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
 }
 
 .nav__cta .btn {
   padding: 0.55rem 1.35rem;
   font-size: var(--text-base);
+}
+
+.nav__back { display: flex; align-items: center; gap: 0.55rem; flex-shrink: 0; }
+.nav__back img { width: 30px; height: 30px; object-fit: contain; flex-shrink: 0; }
+.nav__back-text { display: flex; flex-direction: column; line-height: 1.2; }
+.nav__back-label { font-family: var(--font-display); font-weight: 600; font-size: 0.82rem; color: rgba(255,255,255,0.75); transition: color var(--dur-fast) var(--ease); }
+.nav__back:hover .nav__back-label { color: var(--gold); }
+.nav__back-caption { font-size: 0.68rem; color: rgba(255,255,255,0.35); }
+@media (max-width: 640px) {
+  .nav__back-text { display: none; }
+  .nav__cta { gap: 0.75rem; }
 }
 
 /* Mobile nav toggle */
@@ -2230,6 +2244,13 @@ a {
       </ul>
 
       <div class="nav__cta">
+        <a href="index.html" class="nav__back" aria-label="Back to Arena.com">
+          <img src="assets/hub-crest.png" alt="">
+          <span class="nav__back-text">
+            <span class="nav__back-label">The Arena Hub</span>
+            <span class="nav__back-caption">back to Arena.com</span>
+          </span>
+        </a>
         <a href="https://script.google.com/macros/s/AKfycbxmoYy5bDPTdOZHcHETbYliXMtJFJS7dhMcq4Ntwe1h06Y_VutZVr3zsDk4Rq80xN0eGA/exec"
            class="btn btn--ghost btn--sm" aria-label="Log in to Arena Lite">
           Log In

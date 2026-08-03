@@ -81,45 +81,25 @@ p { font-size: .9rem; color: rgba(255,255,255,.55); margin-bottom: 28px; line-he
 </div>
 
 <script>
-// ── Portal URL storage ─────────────────────────────────────────────────────
-// On first visit the URL is taken from the query string: /app?url=PORTAL_URL
-// It is stored in localStorage so future taps go straight there.
-// To update the portal URL: visit /app?url=NEW_PORTAL_URL
+// ── Portal redirect ──────────────────────────────────────────────────────
+// S148: hardened. Previously depended on localStorage set by a one-time
+// ?url= visit — iOS "Add to Home Screen" isolates storage from Safari and
+// can clear it silently, which is exactly what broke this bookmark (see
+// KNOWN_FAILURES.md / session notes, 2026-08-02). Confirmed via
+// ARENA_LITE_PORTAL_SHELL.gs.txt and COMMAND_CENTRE_PROVISIONING.gs.txt
+// that there is no such thing as a per-customer portal URL — every Lite
+// customer shares this exact same deployment, tenant-scoped by their own
+// signed-in Google account. So there is nothing to store or look up:
+// this always redirects to the one real portal URL.
 
-var STORAGE_KEY = 'arena_lite_portal_url';
+var PORTAL_URL = 'https://script.google.com/macros/s/AKfycbxmoYy5bDPTdOZHcHETbYliXMtJFJS7dhMcq4Ntwe1h06Y_VutZVr3zsDk4Rq80xN0eGA/exec';
 
-function getPortalUrl() {
-  // Check query param first (allows override)
-  var params = new URLSearchParams(window.location.search);
-  var fromParam = params.get('url');
-  if (fromParam) {
-    try { localStorage.setItem(STORAGE_KEY, fromParam); } catch(e) {}
-    return fromParam;
-  }
-  // Fall back to stored URL
-  try { return localStorage.getItem(STORAGE_KEY); } catch(e) { return null; }
-}
-
-var portalUrl = getPortalUrl();
-
-if (portalUrl) {
-  document.getElementById('status').textContent = 'Opening Arena Lite…';
-  document.getElementById('direct-link').href = portalUrl;
-  // Show manual link after 2s as fallback
-  setTimeout(function() {
-    document.getElementById('manual-link').style.display = 'block';
-  }, 2000);
-  // Redirect immediately
-  window.location.replace(portalUrl);
-} else {
-  // No URL stored — show setup instructions
-  document.querySelector('.spinner').style.display = 'none';
-  document.getElementById('status').textContent = '';
-  document.querySelector('p').textContent = 'Your Arena Lite portal link hasn\'t been set up yet.';
+document.getElementById('status').textContent = 'Opening Arena Lite…';
+document.getElementById('direct-link').href = PORTAL_URL;
+setTimeout(function() {
   document.getElementById('manual-link').style.display = 'block';
-  document.getElementById('direct-link').href = 'https://www.thearenahub.com';
-  document.getElementById('direct-link').textContent = 'Go to thearenahub.com';
-}
+}, 2000);
+window.location.replace(PORTAL_URL);
 </script>
 </body>
 </html>

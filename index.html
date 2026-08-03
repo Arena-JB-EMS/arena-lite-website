@@ -4,22 +4,27 @@
 
 <!-- ============================================================
   The Arena Hub — Ecosystem Homepage
-  Version:   2.0.0
-  Session:   S147 — 31 July 2026. CONTENT & STRUCTURAL REBUILD per Jon's
-             brief: repositions Arena from an AP/SEMH-led two-product
-             chooser to a sovereign learning-and-evidence ECOSYSTEM —
-             four edge products (Lite/Hestia/Athena/Harmonia), three
-             shared technologies (HIVEMIND/Armoury/SECO), the
-             institutional layer (Arena Main), and Demeter as a named
-             future concept. SEND/SEMH/AP/EOTAS/safeguarding language
-             retained but pushed into product detail, not the homepage
-             framing. Design tokens, nav shell, footer shell and JS
-             pattern reused from v1.0.0 (S146) — this is a content/
-             architecture rebuild, not a visual-identity change.
+  Version:   2.1.0
+  Session:   S148 — 3 August 2026. VISUAL/CONTENT PASS per Jon's feedback
+             round: "sovereign products" → "sovereign tools" wording;
+             SECO tech-card now lists live destinations (Local Authority,
+             Police, Subject Access Request, Social Worker, Awarding Body,
+             Mainstream School); nav Log In removed (login/signup now lives
+             per-product, not on the index); product cards alternate media
+             side (Lite/Athena left, Hestia/Harmonia right); Hestia card is
+             now Live — real app screenshot in a phone-mockup frame, links
+             to hestia.html; Athena/Harmonia cards link to new coming-soon
+             placeholder pages instead of a toast. Section 4 "Arena Model"
+             flow chart replaced with a radial diagram — Hub crest centred,
+             the 4 products named around it with inward-pointing arrows.
   Author:    Jonathan Baguley · The Arena Hub Ltd
   Images:    assets/Dashboard_UI.png (Arena Lite) reused, blurred + single
              diagonal "UNDER CONSTRUCTION" ribbon, as the placeholder tile
-             image for Hestia/Athena/Harmonia until real screenshots exist.
+             image for Athena/Harmonia until real screenshots exist.
+             assets/hestia-app-screenshot.png — real Hestia app screenshot
+             (portrait), shown via .phone-mock. assets/hub-crest.png — Arena
+             Hub crest, used as the radial diagram's centre and (from S148
+             onward) the shared "back to Arena.com" mark on product pages.
 ============================================================ -->
 
 <meta charset="UTF-8">
@@ -405,6 +410,32 @@ a { color: inherit; text-decoration: none; }
   .product-card__features { grid-template-columns: 1fr; }
 }
 
+/* Alternating media side — Lite/Athena left, Hestia/Harmonia right */
+.product-card--reverse { grid-template-columns: 1fr 42%; }
+.product-card--reverse .product-card__media { order: 2; }
+.product-card--reverse .product-card__body { order: 1; }
+@media (max-width: 900px) {
+  .product-card--reverse { grid-template-columns: 1fr; }
+  .product-card--reverse .product-card__media,
+  .product-card--reverse .product-card__body { order: 0; }
+}
+
+/* Phone-mockup media (portrait app screenshots, e.g. Hestia) */
+.product-card__media--phone {
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem 1.5rem;
+}
+.phone-mock {
+  width: clamp(120px, 14vw, 160px);
+  border: 6px solid #0c1420;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+  background: #0c1420;
+  flex-shrink: 0;
+}
+.phone-mock img { width: 100%; display: block; }
+
 /* ═══════════════════════════════════════════════════════
    TECHNOLOGY — shared infrastructure, deliberately distinct
    from the product cards above
@@ -446,14 +477,35 @@ a { color: inherit; text-decoration: none; }
 }
 .model__note { margin-top: 1rem; font-size: var(--text-sm); color: var(--muted); line-height: 1.65; }
 
-.flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
-.flow__node {
-  width: 100%; max-width: 320px; text-align: center;
-  background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-md);
-  padding: 0.9rem 1.25rem; font-family: var(--font-display); font-weight: 600; color: var(--navy);
-  box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+.radial {
+  position: relative;
+  width: 100%; max-width: 420px; aspect-ratio: 1;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(0.75rem, 3vw, 2rem);
 }
-.flow__arrow { font-size: var(--text-xl); color: var(--gold); padding: 0.35rem 0; }
+.radial__hub {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: clamp(92px, 22vw, 130px); height: clamp(92px, 22vw, 130px);
+  z-index: 2;
+}
+.radial__hub img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.18)); }
+.radial__node { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; text-align: center; }
+.radial__name {
+  display: inline-block;
+  background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-md);
+  padding: 0.7rem 1.1rem; font-family: var(--font-display); font-weight: 600; color: var(--navy);
+  font-size: var(--text-base); box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.radial__name:hover { border-color: var(--gold); color: var(--gold); }
+.radial__arrow { font-size: var(--text-xl); color: var(--gold); line-height: 1; }
+@media (max-width: 640px) {
+  .radial { max-width: 260px; }
+  .radial__name { font-size: var(--text-sm); padding: 0.55rem 0.75rem; }
+}
 
 /* ═══════════════════════════════════════════════════════
    SOVEREIGN PRINCIPLE
@@ -538,17 +590,6 @@ a { color: inherit; text-decoration: none; }
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
 }
 
-/* ── Toast (under-construction notice) ── */
-.uc-toast {
-  position: fixed; left: 50%; bottom: 2rem; transform: translateX(-50%) translateY(120%);
-  background: var(--navy); color: var(--white); padding: 0.9rem 1.5rem; border-radius: var(--radius-md);
-  border: 1px solid rgba(197,160,89,0.3); box-shadow: 0 12px 32px rgba(0,0,0,0.35);
-  font-size: var(--text-sm); max-width: min(420px, 88vw); text-align: center; z-index: 500;
-  transition: transform var(--dur-mid) var(--ease);
-}
-.uc-toast.is-visible { transform: translateX(-50%) translateY(0); }
-.uc-toast a { color: var(--gold); font-weight: 600; }
-
 /* ═══════════════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════════════ */
@@ -580,7 +621,7 @@ a { color: inherit; text-decoration: none; }
           <a href="#ecosystem">Products ▾</a>
           <ul class="nav__dropdown">
             <li><a href="#arena-lite"><span class="status-dot" style="background:var(--status-live)"></span> Arena Lite</a></li>
-            <li><a href="#arena-hestia"><span class="status-dot" style="background:var(--status-build)"></span> Hestia</a></li>
+            <li><a href="#arena-hestia"><span class="status-dot" style="background:var(--status-live)"></span> Hestia</a></li>
             <li><a href="#arena-athena"><span class="status-dot" style="background:var(--status-build)"></span> Athena</a></li>
             <li><a href="#arena-harmonia"><span class="status-dot" style="background:var(--status-build)"></span> Harmonia</a></li>
           </ul>
@@ -591,7 +632,6 @@ a { color: inherit; text-decoration: none; }
       </ul>
 
       <div class="nav__cta">
-        <a href="lite.html" class="btn btn--ghost btn--sm" aria-label="Log in">Log In</a>
         <a href="#ecosystem" class="btn btn--primary">Get Started</a>
       </div>
 
@@ -641,7 +681,7 @@ a { color: inherit; text-decoration: none; }
       <p class="section-head__sub">
         Learning does not happen in one place, and the people supporting a child rarely work
         from the same system. Arena is being built as a connected ecosystem of sovereign
-        products — each designed for a particular context, while sharing a common approach
+        tools — each designed for a particular context, while sharing a common approach
         to evidence, continuity, human judgement and data sovereignty.
       </p>
     </div>
@@ -681,13 +721,14 @@ a { color: inherit; text-decoration: none; }
       </article>
 
       <!-- PRODUCT 2 — ARENA HESTIA -->
-      <article class="product-card" id="arena-hestia">
-        <div class="product-card__media">
-          <img class="is-placeholder" src="assets/Dashboard_UI.png" alt="Arena Hestia — interface under construction">
-          <div class="uc-ribbon"><span>Under Construction</span></div>
+      <article class="product-card product-card--reverse" id="arena-hestia">
+        <div class="product-card__media product-card__media--phone">
+          <div class="phone-mock">
+            <img src="assets/hestia-app-screenshot.png" alt="Arena Hestia app — current interface">
+          </div>
         </div>
         <div class="product-card__body">
-          <span class="status-badge status-badge--build"><span class="dot"></span> Under Construction</span>
+          <span class="status-badge status-badge--live"><span class="dot"></span> Live</span>
           <h3 class="product-card__name">Arena Hestia</h3>
           <p class="product-card__tagline">Learning support for home.</p>
           <p class="product-card__desc">
@@ -708,7 +749,7 @@ a { color: inherit; text-decoration: none; }
           </ul>
           <p class="product-card__note">Designed around the home as a place of learning — including home education and EOTAS contexts.</p>
           <div class="product-card__foot">
-            <button type="button" class="btn btn--muted" data-uc="Hestia">Hestia — Under Construction</button>
+            <a href="hestia.html" class="btn btn--primary">Explore Arena Hestia</a>
           </div>
         </div>
       </article>
@@ -739,13 +780,13 @@ a { color: inherit; text-decoration: none; }
           </ul>
           <p class="product-card__note">Potential audience: SaLTs · OTs · counsellors · support professionals · other specialist practitioners.</p>
           <div class="product-card__foot">
-            <button type="button" class="btn btn--muted" data-uc="Athena">Athena — Under Construction</button>
+            <a href="athena.html" class="btn btn--muted">Athena — Coming Soon</a>
           </div>
         </div>
       </article>
 
       <!-- PRODUCT 4 — ARENA HARMONIA -->
-      <article class="product-card" id="arena-harmonia">
+      <article class="product-card product-card--reverse" id="arena-harmonia">
         <div class="product-card__media">
           <img class="is-placeholder" src="assets/Dashboard_UI.png" alt="Arena Harmonia — interface under construction">
           <div class="uc-ribbon"><span>Under Construction</span></div>
@@ -772,7 +813,7 @@ a { color: inherit; text-decoration: none; }
           </ul>
           <p class="product-card__note">A planned business/community partnership variant for external organisations such as employers, community providers, local authorities and arts organisations, with controlled evidence exchange from Arena Lite deployments.</p>
           <div class="product-card__foot">
-            <button type="button" class="btn btn--muted" data-uc="Harmonia">Harmonia — Under Construction</button>
+            <a href="harmonia.html" class="btn btn--muted">Harmonia — Coming Soon</a>
           </div>
         </div>
       </article>
@@ -859,6 +900,7 @@ a { color: inherit; text-decoration: none; }
           <li>School/practitioner controlled exchange</li>
           <li>No requirement for the receiving organisation to access the source environment</li>
         </ul>
+        <p class="tech-card__note">Current destinations: Local Authority · Police · Subject Access Request · Social Worker · Awarding Body · Mainstream School.</p>
       </div>
 
     </div>
@@ -890,16 +932,26 @@ a { color: inherit; text-decoration: none; }
         </p>
       </div>
 
-      <div class="flow" role="img" aria-label="Flow diagram: Home, then Practitioner, then Support Professional, then School, then Wider Network">
-        <div class="flow__node">Home</div>
-        <div class="flow__arrow">↓</div>
-        <div class="flow__node">Practitioner</div>
-        <div class="flow__arrow">↓</div>
-        <div class="flow__node">Support Professional</div>
-        <div class="flow__arrow">↓</div>
-        <div class="flow__node">School</div>
-        <div class="flow__arrow">↓</div>
-        <div class="flow__node">Wider Network</div>
+      <div class="radial" role="group" aria-label="Arena Lite, Hestia, Athena and Harmonia each connect inward to a shared Arena Hub at the centre">
+        <div class="radial__hub">
+          <img src="assets/hub-crest.png" alt="" aria-hidden="true">
+        </div>
+        <div class="radial__node radial__node--tl">
+          <a class="radial__name" href="lite.html">Arena Lite</a>
+          <span class="radial__arrow" aria-hidden="true">↘</span>
+        </div>
+        <div class="radial__node radial__node--tr">
+          <a class="radial__name" href="hestia.html">Arena Hestia</a>
+          <span class="radial__arrow" aria-hidden="true">↙</span>
+        </div>
+        <div class="radial__node radial__node--bl">
+          <span class="radial__arrow" aria-hidden="true">↗</span>
+          <a class="radial__name" href="athena.html">Arena Athena</a>
+        </div>
+        <div class="radial__node radial__node--br">
+          <span class="radial__arrow" aria-hidden="true">↖</span>
+          <a class="radial__name" href="harmonia.html">Arena Harmonia</a>
+        </div>
       </div>
 
     </div>
@@ -1036,8 +1088,6 @@ a { color: inherit; text-decoration: none; }
   </div>
 </footer>
 
-<div class="uc-toast" id="ucToast" role="status" aria-live="polite"></div>
-
 <!-- ════════════════════════════════════════════════════
   JAVASCRIPT
 ════════════════════════════════════════════════════ -->
@@ -1070,19 +1120,6 @@ a { color: inherit; text-decoration: none; }
       toggle.setAttribute('aria-expanded', String(!isOpen));
     });
   }
-
-  // Under-construction product buttons
-  var toast = document.getElementById('ucToast');
-  var toastTimer;
-  document.querySelectorAll('[data-uc]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var product = btn.getAttribute('data-uc');
-      toast.innerHTML = product + ' is under construction. Please request information regarding this product from <a href="mailto:sales@thearenahub.co.uk">sales@thearenahub.co.uk</a>.';
-      toast.classList.add('is-visible');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(function () { toast.classList.remove('is-visible'); }, 6000);
-    });
-  });
 })();
 </script>
 

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--
+  Arena Hestia — Self-Service Trial Signup Page
+  File:    hestia-signup.html
+  Version: 1.0.0
+  Session: S148 — 3 August 2026. NEW FILE — Hestia's equivalent of Lite's
+           signup.html, adapted for a parent/carer audience (household name,
+           not org type/setting type) and a 5-DAY day-count trial (not
+           Lite's 5-capture-count model). POSTs to the new Cloud Run route
+           /createHestiaTrialAccount (main.py v2.9.0). Unlike Lite's flow,
+           the confirmation email links straight to a one-tap activation URL
+           rather than asking the family to retype their email + key.
+  Live at: https://www.thearenahub.com/hestia-signup.html
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Your Free Trial — Arena Hestia</title>
+<meta name="description" content="Start your Arena Hestia 5-day free trial. No credit card required.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:     #1B263B;
+    --gold:     #C5A059;
+    --gold-lt:  rgba(197,160,89,.12);
+    --light:    #F5F7FA;
+    --mid:      #E0E4EB;
+    --text:     #1B263B;
+    --muted:    #6B7280;
+    --ok:       #2E7D32;
+    --ok-bg:    #E8F5E9;
+    --err:      #C62828;
+    --err-bg:   #FFEBEE;
+    --radius:   14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav {
+    background: var(--navy);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    flex-shrink: 0;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+  .nav-logo {
+    width: 36px; height: 36px;
+    background: rgba(197,160,89,.15);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--gold);
+  }
+  .nav-name { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; }
+  .nav-links { display: flex; gap: 20px; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,.7); text-decoration: none; font-size: .88rem; }
+  .nav-links a:hover { color: var(--gold); }
+
+  .page { flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 40px 16px 60px; }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 28px rgba(27,38,59,.10);
+    padding: 40px 36px 36px;
+    width: 100%;
+    max-width: 460px;
+  }
+  @media (max-width: 500px) { .card { padding: 28px 20px 24px; } }
+
+  .logo-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: var(--navy); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--gold);
+  }
+  .logo-name { font-size: 1.1rem; font-weight: 700; color: var(--navy); letter-spacing: -.3px; line-height: 1.2; }
+  .logo-sub  { font-size: .72rem; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: .8px; }
+
+  .trial-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold-lt); border: 1px solid rgba(197,160,89,.3);
+    color: #8B6914; border-radius: 20px;
+    padding: 5px 12px; font-size: .78rem; font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  h1 { font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .subtitle { font-size: .85rem; color: var(--muted); margin-bottom: 24px; line-height: 1.55; }
+
+  .form-row { display: flex; gap: 14px; }
+  .form-row .field { flex: 1; }
+
+  .field { margin-bottom: 16px; }
+  label {
+    display: block; font-size: .78rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 5px; text-transform: uppercase; letter-spacing: .4px;
+  }
+  input {
+    width: 100%; padding: 12px 13px;
+    border: 1.5px solid var(--mid); border-radius: 8px;
+    font-size: .95rem; color: var(--text); background: #fff;
+    outline: none; transition: border-color .15s;
+    -webkit-appearance: none; appearance: none;
+    font-family: inherit;
+  }
+  input:focus { border-color: var(--gold); }
+  input.err { border-color: var(--err); }
+
+  .status {
+    display: none; border-radius: 8px; padding: 12px 14px;
+    font-size: .85rem; line-height: 1.5; margin-bottom: 16px;
+  }
+  .status.ok  { background: var(--ok-bg);  color: var(--ok);  display: block; }
+  .status.err { background: var(--err-bg); color: var(--err); display: block; }
+
+  .btn {
+    width: 100%; background: var(--navy); color: #fff;
+    border: none; border-radius: 10px; padding: 15px;
+    font-size: 1rem; font-weight: 700; cursor: pointer;
+    transition: background .15s, transform .08s; margin-top: 4px;
+    font-family: inherit; -webkit-appearance: none;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn:disabled { background: var(--muted); cursor: not-allowed; transform: none; }
+
+  .spinner {
+    display: inline-block; width: 16px; height: 16px;
+    border: 2.5px solid rgba(255,255,255,.35); border-top-color: #fff;
+    border-radius: 50%; animation: spin .7s linear infinite;
+    margin-right: 8px; vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .trust {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin: 20px 0 0; padding-top: 18px;
+    border-top: 1px solid var(--mid);
+    font-size: .76rem; color: var(--muted);
+  }
+  .trust span { display: flex; align-items: center; gap: 5px; }
+
+  .success-panel { display: none; text-align: center; padding: 8px 0; }
+  .success-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .success-title { font-size: 1.1rem; font-weight: 700; color: var(--ok); margin-bottom: 8px; }
+  .success-msg { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+  footer { text-align: center; padding: 20px; font-size: .76rem; color: var(--muted); flex-shrink: 0; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="hestia.html" class="nav-brand">
+    <div class="nav-logo">H</div>
+    <span class="nav-name">Arena Hestia</span>
+  </a>
+  <div class="nav-links">
+    <a href="hestia.html#pricing">Pricing</a>
+    <a href="https://script.google.com/macros/s/AKfycbyWhDeHPvO8pFtjWqnUKsr5z2LVENmQjPRSDQYnvJ0lACDw-IM_hKuSw6Gxa-U76CJqsQ/exec">Already activated?</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="card">
+
+    <div class="logo-bar">
+      <div class="logo-icon">H</div>
+      <div>
+        <div class="logo-name">Arena Hestia</div>
+        <div class="logo-sub">The Arena Hub</div>
+      </div>
+    </div>
+
+    <div id="formPanel">
+      <div class="trial-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#8B6914" stroke-width="2"/><path d="M12 8v4l3 3" stroke="#8B6914" stroke-width="2" stroke-linecap="round"/></svg>
+        5-day free trial — no credit card required
+      </div>
+
+      <h1>Create your free account</h1>
+      <p class="subtitle">Your family's Evidence Vault is created in your own Google Drive — Arena Hub holds zero child data.</p>
+
+      <div id="statusBanner" class="status"></div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" placeholder="Jane" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input type="text" id="lastName" placeholder="Smith" autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="jane@example.com" autocomplete="email" autocapitalize="none">
+      </div>
+
+      <div class="field">
+        <label for="householdName">Family / household name</label>
+        <input type="text" id="householdName" placeholder="The Smith Family" autocomplete="off">
+      </div>
+
+      <button class="btn" id="submitBtn" onclick="submitSignup()">
+        Start free trial
+      </button>
+
+      <div class="trust">
+        <span>🔐 Your own Google account</span>
+        <span>🏡 Data in your Drive</span>
+        <span>📋 GDPR Art. 28</span>
+        <span>🚫 No credit card</span>
+      </div>
+    </div>
+
+    <div class="success-panel" id="successPanel">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Account created!</div>
+      <p class="success-msg">
+        Check your inbox — a one-tap link to start your 5-day trial is on its way.<br><br>
+        <strong>Can't see the email?</strong> Check your spam folder, or contact
+        <a href="mailto:hestia@thearenahub.co.uk" style="color:var(--navy)">hestia@thearenahub.co.uk</a>.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="terms.html">Terms</a> &nbsp;·&nbsp;
+  © 2026 The Arena Hub Ltd
+</footer>
+
+<script>
+  var CLOUD_RUN_URL = 'https://arena-hub-ingestor-820703761059.europe-west2.run.app/createHestiaTrialAccount';
+
+  var _submitting = false;
+
+  function showStatus(msg, type) {
+    var el = document.getElementById('statusBanner');
+    el.textContent = msg;
+    el.className = 'status ' + type;
+  }
+  function hideStatus() {
+    var el = document.getElementById('statusBanner');
+    el.className = 'status';
+  }
+  function setErr(id) { document.getElementById(id).classList.add('err'); }
+  function clearErrs() {
+    ['firstName','lastName','email','householdName'].forEach(function(id) {
+      document.getElementById(id).classList.remove('err');
+    });
+  }
+
+  function submitSignup() {
+    if (_submitting) return;
+    clearErrs();
+    hideStatus();
+
+    var firstName     = (document.getElementById('firstName').value     || '').trim();
+    var lastName      = (document.getElementById('lastName').value      || '').trim();
+    var email         = (document.getElementById('email').value         || '').trim().toLowerCase();
+    var householdName = (document.getElementById('householdName').value || '').trim();
+
+    var ok = true;
+    if (!firstName) { setErr('firstName'); ok = false; }
+    if (!lastName)  { setErr('lastName');  ok = false; }
+    if (!email || !email.includes('@')) { setErr('email'); ok = false; }
+    if (!householdName) { setErr('householdName'); ok = false; }
+    if (!ok) {
+      showStatus('Please fill in all required fields.', 'err');
+      return;
+    }
+
+    _submitting = true;
+    var btn = document.getElementById('submitBtn');
+    btn.disabled  = true;
+    btn.innerHTML = '<span class="spinner"></span>Creating your account&hellip;';
+
+    fetch(CLOUD_RUN_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ firstName: firstName, lastName: lastName,
+                                email: email, householdName: householdName })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      _submitting = false;
+      if (data && data.success) {
+        document.getElementById('formPanel').style.display    = 'none';
+        document.getElementById('successPanel').style.display = 'block';
+      } else {
+        btn.disabled  = false;
+        btn.innerHTML = 'Start free trial';
+        var msg = (data && data.message) ? data.message
+                  : 'Something went wrong. Please try again or contact hestia@thearenahub.co.uk';
+        showStatus(msg, 'err');
+      }
+    })
+    .catch(function(err) {
+      _submitting = false;
+      btn.disabled  = false;
+      btn.innerHTML = 'Start free trial';
+      showStatus('Connection error — please try again. If this persists, email hestia@thearenahub.co.uk', 'err');
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !_submitting) submitSignup();
+  });
+</script>
+</body>
+</html>

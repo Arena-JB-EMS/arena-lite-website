@@ -1,9 +1,23 @@
 <!DOCTYPE html>
+<!--
+  Arena Lite — Log In
+  File:    login.html
+  Version: 2.0.0
+  Session: S148 — 3 August 2026. REWRITE. The old v1.0 asked returning
+           customers to paste "your unique Arena Lite URL" — this was
+           factually wrong. Confirmed via ARENA_LITE_PORTAL_SHELL.gs.txt
+           and COMMAND_CENTRE_PROVISIONING.gs.txt (CC_PORTAL_URL, same
+           value as this file's PORTAL_URL) that every Lite customer shares
+           the SAME single web app deployment — tenant scoping happens via
+           the customer's own signed-in Google account, not a per-customer
+           URL. There is no URL to paste; there never was one to find. This
+           version just links straight to the shared portal.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Log in — The Arena Hub</title>
+<title>Log in — Arena Lite</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,17 +49,10 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; margin-bottom: 8px;
 }
 .info-box h3 { font-size: .9rem; margin-bottom: 8px; }
 .info-box p  { font-size: .85rem; color: var(--muted); line-height: 1.6; }
-label { display: block; font-size: .77rem; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
-input[type="url"] {
-  width: 100%; padding: 12px 14px; border: 1.5px solid var(--mid);
-  border-radius: 8px; font-size: .95rem; outline: none; margin-bottom: 16px;
-  transition: border-color .15s; -webkit-appearance: none;
-}
-input:focus { border-color: var(--gold); }
 .btn {
   display: block; width: 100%; background: var(--navy); color: #fff;
-  font-weight: 700; font-size: 1rem; padding: 14px;
-  border-radius: 10px; border: none; cursor: pointer;
+  font-weight: 700; font-size: 1rem; padding: 14px; text-align: center;
+  border-radius: 10px; border: none; cursor: pointer; text-decoration: none;
   font-family: 'Source Sans 3', sans-serif; transition: background .15s;
 }
 .btn:hover { background: #243650; }
@@ -66,37 +73,22 @@ input:focus { border-color: var(--gold); }
   </div>
 
   <h1>Log in to Arena Lite</h1>
-  <p class="sub">Arena Lite is accessed via your unique instance URL — sent to you in your welcome email.</p>
+  <p class="sub">Arena Lite opens in your own Google account — sign in with the same account you activated with, and your workspace is right there.</p>
 
   <div class="info-box">
-    <h3>Where is my URL?</h3>
-    <p>When your instance was set up, you received an email from <strong>support@thearenahub.co.uk</strong> with a link that looks like:<br><br><code style="font-size:.78rem;word-break:break-all;">https://script.google.com/macros/s/...</code><br><br>Bookmark that link — it's your direct access to Arena Lite.</p>
+    <h3>How this works</h3>
+    <p>Arena Lite is one shared portal — there's no separate password or personal link to keep track of. Open it below, and if your browser is signed into the Google account you activated with, your Evidence Vault loads automatically.</p>
   </div>
 
-  <label for="urlInput">Paste your Arena Lite URL</label>
-  <input type="url" id="urlInput" placeholder="https://script.google.com/macros/s/..." autocomplete="off">
-  <button class="btn" onclick="goToUrl()">Open Arena Lite →</button>
+  <a class="btn" href="https://script.google.com/macros/s/AKfycbxmoYy5bDPTdOZHcHETbYliXMtJFJS7dhMcq4Ntwe1h06Y_VutZVr3zsDk4Rq80xN0eGA/exec">Open Arena Lite →</a>
 
   <hr class="divider">
   <div class="help">
-    Can't find your URL? Email <a href="mailto:support@thearenahub.co.uk" data-config="email_support" data-config-href-prefix="mailto:" data-config-href-key="email_support">support@thearenahub.co.uk</a><br>
-    Don't have an account? <a href="index.html#pricing">Get Arena Lite →</a>
+    Signed into the wrong Google account? Switch accounts in your browser, then reopen the link above.<br>
+    Can't find your licence key? Email <a href="mailto:hello@thearenahub.co.uk">hello@thearenahub.co.uk</a><br>
+    Don't have an account? <a href="signup.html">Start a free trial →</a>
   </div>
 </div>
 
-<script>
-function goToUrl() {
-  var url = document.getElementById('urlInput').value.trim();
-  if (!url.startsWith('https://script.google.com/macros/')) {
-    alert('That doesn\'t look like an Arena Lite URL. Check your welcome email.');
-    return;
-  }
-  window.location.href = url;
-}
-document.getElementById('urlInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') goToUrl();
-});
-</script>
-  <script src="arena-config.js"></script>
 </body>
 </html>

@@ -4,24 +4,30 @@
 
 <!-- ============================================================
   Hestia — Product Page
-  Version:   1.0.0
-  Session:   S146 — 31 July 2026. NEW FILE — part of the thearenahub.com
-             family-landing restructure (see index.html, lite.html headers).
-             Shares lite.html's design system/tokens for visual consistency.
-             No real product screenshots exist yet for Hestia, so device
-             mockups use CSS-only abstract UI (same .ui-bar/.ui-block pattern
-             lite.html's own CSS comments describe as the no-screenshot
-             fallback) rather than fabricated images. Swap for real
-             screenshots when available.
+  Version:   1.2.0
+  Session:   S148 — 3 August 2026. ZERO-ADMIN SELF-SERVICE TRIAL LIVE.
+             Primary CTAs (hero, pricing card, final CTA) now point to the
+             new hestia-signup.html — a 5-day free trial, no card required,
+             calling main.py v2.9.0's /createHestiaTrialAccount. That route
+             issues an ACTIVE licence key and emails a one-tap activation
+             link straight into HESTIA_SHELL.gs.txt's existing key=&email=
+             auto-activate route (built S147, never previously linked to
+             from anywhere) — the family clicks once, their Evidence Vault
+             is created automatically in their own Drive, no step from
+             Jonathan required. The direct-to-Stripe checkout modal is kept
+             as a secondary "skip the trial" option on the pricing card.
+             Nav: added Arena Hub crest "back to Arena.com" link (→
+             index.html); nav also anchors to the new SECO section. New
+             SECO section added ("Share what's needed. Nothing more.") —
+             per-destination explainers (Local Authority, Mainstream
+             School, Awarding Body, Social Worker, Subject Access Request,
+             Police) in parent-appropriate language, deeper than
+             index.html's high-level list, matching the live destination
+             registry (COMPLIANCE_RULES).
   Author:    Jonathan Baguley · The Arena Hub Ltd
   Pricing:   £14.99/mo, £134.99/yr — Stripe Live products created S146
              (prod_Uz1xowwLS1rzZ4, price_1Tz3trKDJYSl9R7nigHBUQI7 monthly,
              price_1Tz3wzKDJYSl9R7ntjbjuEPt annual).
-  Known gap: No self-service trial/activation flow exists yet
-             (HESTIA_ACTIVATE.html unbuilt — see DOCUMENT_REGISTRY.json).
-             Checkout collects details and goes straight to Stripe; Jonathan
-             follows up manually post-payment (matches main.py v2.6.0's
-             honest-placeholder email copy for the same reason).
 ============================================================ -->
 
 <meta charset="UTF-8">
@@ -125,6 +131,8 @@ a { color: inherit; text-decoration: none; }
 .btn--primary:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 4px 18px rgba(197,160,89,0.35); }
 .btn--ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
 .btn--ghost:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.45); }
+.btn--outline-navy { background: transparent; color: var(--navy); border: 1.5px solid var(--border-light); }
+.btn--outline-navy:hover { background: var(--cream); border-color: var(--border); }
 
 /* ── Nav (identical to lite.html) ── */
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.1rem 0; transition: background var(--dur-mid) var(--ease), box-shadow var(--dur-mid) var(--ease), padding var(--dur-mid) var(--ease); }
@@ -137,8 +145,14 @@ a { color: inherit; text-decoration: none; }
 .nav__links { display: flex; align-items: center; gap: 2rem; list-style: none; }
 .nav__links a { font-size: var(--text-sm); font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 0.02em; transition: color var(--dur-fast) var(--ease); }
 .nav__links a:hover { color: var(--white); }
-.nav__cta { flex-shrink: 0; }
+.nav__cta { flex-shrink: 0; display: flex; align-items: center; gap: 1.25rem; }
 .nav__cta .btn { padding: 0.55rem 1.35rem; font-size: var(--text-base); }
+.nav__back { display: flex; align-items: center; gap: 0.55rem; flex-shrink: 0; }
+.nav__back img { width: 30px; height: 30px; object-fit: contain; flex-shrink: 0; }
+.nav__back-text { display: flex; flex-direction: column; line-height: 1.2; }
+.nav__back-label { font-family: var(--font-display); font-weight: 600; font-size: 0.82rem; color: rgba(255,255,255,0.75); transition: color var(--dur-fast) var(--ease); }
+.nav__back:hover .nav__back-label { color: var(--gold); }
+.nav__back-caption { font-size: 0.68rem; color: rgba(255,255,255,0.35); }
 .nav__toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; color: var(--white); flex-direction: column; gap: 5px; }
 .nav__toggle span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; }
 
@@ -232,6 +246,19 @@ a { color: inherit; text-decoration: none; }
 .safeguard__detail { font-size: var(--text-sm); color: rgba(255,255,255,0.35); font-style: italic; line-height: 1.6; }
 .safeguard__stub { display: flex; align-items: center; justify-content: center; position: relative; }
 
+/* ── SECO (controlled sharing) ── */
+.seco { background: var(--white); padding: var(--section-pad) 0; }
+.seco__header { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.seco__title { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 700; color: var(--navy); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.75rem; }
+.seco__subtitle { font-size: var(--text-lg); font-weight: 300; color: var(--muted); max-width: 56ch; margin-inline: auto; line-height: 1.7; }
+.seco__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.seco__card { background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.6rem 1.5rem; }
+.seco__card-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.seco__card-text { font-size: var(--text-sm); color: var(--body-text); line-height: 1.65; }
+.seco__note { text-align: center; max-width: 52ch; margin: 2rem auto 0; font-size: var(--text-sm); color: var(--muted); font-style: italic; line-height: 1.6; }
+@media (max-width: 900px) { .seco__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .seco__grid { grid-template-columns: 1fr; } }
+
 /* ── Pricing (identical pattern to lite.html) ── */
 .pricing { background: var(--cream); padding: var(--section-pad) 0; }
 .pricing__header { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
@@ -316,6 +343,8 @@ a { color: inherit; text-decoration: none; }
   .trust__points { grid-template-columns: 1fr; }
   .nav__links { display: none; } .nav__toggle { display: flex; }
   .footer__inner { flex-direction: column; align-items: flex-start; }
+  .nav__back-text { display: none; }
+  .nav__cta { gap: 0.75rem; }
 }
 
 </style>
@@ -333,10 +362,17 @@ a { color: inherit; text-decoration: none; }
       <ul class="nav__links" role="list">
         <li><a href="#workflow">How It Works</a></li>
         <li><a href="#trust">Data &amp; Privacy</a></li>
-        <li><a href="/">Other Arena Products</a></li>
+        <li><a href="#seco">Sharing &amp; SECO</a></li>
       </ul>
       <div class="nav__cta">
-        <a href="#pricing" class="btn btn--primary">Get Started</a>
+        <a href="index.html" class="nav__back" aria-label="Back to Arena.com">
+          <img src="assets/hub-crest.png" alt="">
+          <span class="nav__back-text">
+            <span class="nav__back-label">The Arena Hub</span>
+            <span class="nav__back-caption">back to Arena.com</span>
+          </span>
+        </a>
+        <a href="hestia-signup.html" class="btn btn--primary">Start Free Trial</a>
       </div>
       <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -359,7 +395,7 @@ a { color: inherit; text-decoration: none; }
           and a quiet place to log what really happened — built for home, not a classroom.
         </p>
         <div class="hero__actions">
-          <a href="#pricing" class="btn btn--primary">See Pricing</a>
+          <a href="hestia-signup.html" class="btn btn--primary">Start Free 5-Day Trial</a>
           <a href="#workflow" class="btn btn--ghost">How It Works</a>
         </div>
         <p class="hero__trust-line"><strong>Your data, your Google account.</strong> Nothing shared with school or anyone else without your say-so.</p>
@@ -532,6 +568,49 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
+<!-- SECO — controlled sharing -->
+<section class="seco" id="seco" aria-labelledby="seco-headline">
+  <div class="container">
+    <div class="seco__header reveal">
+      <span class="eyebrow eyebrow--dark">Sharing, On Your Terms</span>
+      <h2 class="seco__title" id="seco-headline">Share what's needed. Nothing more.</h2>
+      <p class="seco__subtitle">
+        Most of what Hestia records is just for you. But sometimes a record needs to go
+        further — to a school, a professional, or an organisation supporting your child.
+        Hestia's sharing tool (SECO) lets you prepare exactly what's needed for wherever
+        it's going, and nothing leaves your record until you actively choose to send it.
+      </p>
+    </div>
+    <div class="seco__grid reveal reveal--delay-1" role="list">
+      <div class="seco__card" role="listitem">
+        <div class="seco__card-name">Local Authority</div>
+        <div class="seco__card-text">If your child has an EHCP, is electively home educated, or receives EOTAS funding, the local authority may ask to see evidence of the learning taking place. Hestia can put together a clear pack for them — you choose what's included.</div>
+      </div>
+      <div class="seco__card" role="listitem">
+        <div class="seco__card-name">Mainstream School</div>
+        <div class="seco__card-text">Dual-registered, transitioning back into school, or just want to keep a school informed? You can share a summary of what Hestia has recorded, on your own timeline.</div>
+      </div>
+      <div class="seco__card" role="listitem">
+        <div class="seco__card-name">Awarding Body</div>
+        <div class="seco__card-text">If your child is working towards a qualification through home education, some awarding bodies need supporting evidence. Hestia can package the relevant records so they're ready to submit.</div>
+      </div>
+      <div class="seco__card" role="listitem">
+        <div class="seco__card-name">Social Worker</div>
+        <div class="seco__card-text">If a social worker is already involved with your family, you can share updates or evidence directly from Hestia — rather than trying to recall everything in a meeting.</div>
+      </div>
+      <div class="seco__card" role="listitem">
+        <div class="seco__card-name">Subject Access Request</div>
+        <div class="seco__card-text">This one's about your own rights: under UK GDPR, you can request everything held about your child. Hestia makes it straightforward to export your complete record for yourself.</div>
+      </div>
+      <div class="seco__card" role="listitem">
+        <div class="seco__card-name">Police</div>
+        <div class="seco__card-text">In the rare event a safeguarding concern needs to go to the police, Hestia gives you a controlled way to hand over exactly the record needed — nothing more, and only when you choose to.</div>
+      </div>
+    </div>
+    <p class="seco__note reveal">None of this happens automatically. Every share is something you actively start and approve — Hestia never sends anything on your behalf.</p>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing" id="pricing" aria-labelledby="pricing-title">
   <div class="container">
@@ -557,10 +636,11 @@ a { color: inherit; text-decoration: none; }
         <li>Dedicated safeguarding record</li>
         <li>Your own Google account — nothing shared without consent</li>
       </ul>
-      <button class="btn btn--primary" onclick="openCheckout()">Subscribe — £14.99/mo</button>
+      <a href="hestia-signup.html" class="btn btn--primary" style="width:100%;justify-content:center;">Start Free 5-Day Trial</a>
+      <button class="btn btn--outline-navy" style="width:100%;justify-content:center;margin-top:0.75rem;" onclick="openCheckout()">Skip the trial — subscribe now</button>
     </div>
     <p class="pricing__trial-note reveal">
-      Questions first? Email <a href="mailto:hello@thearenahub.co.uk">hello@thearenahub.co.uk</a>.
+      No card needed for the trial. Questions first? Email <a href="mailto:hestia@thearenahub.co.uk">hestia@thearenahub.co.uk</a>.
     </p>
   </div>
 </section>
@@ -573,10 +653,10 @@ a { color: inherit; text-decoration: none; }
       <h2 class="cta-final__headline" id="cta-headline">Give tomorrow a plan.</h2>
       <p class="cta-final__body">You're already doing the hard part. Let Hestia help with the planning and the remembering.</p>
       <div class="cta-final__actions">
-        <a href="#pricing" class="btn btn--primary" aria-label="See Hestia pricing">See Pricing</a>
+        <a href="hestia-signup.html" class="btn btn--primary" aria-label="Start Hestia free trial">Start Free 5-Day Trial</a>
         <div class="cta-final__guarantees">
+          <span class="cta-final__guarantee">No credit card required</span>
           <span class="cta-final__guarantee">Your own Google account</span>
-          <span class="cta-final__guarantee">Cancel any time</span>
           <span class="cta-final__guarantee">Nothing shared without consent</span>
         </div>
       </div>

@@ -4,18 +4,23 @@
 
 <!-- ============================================================
   Hestia — Product Page
-  Version:   1.3.0
-  Session:   S148 continued — 5 August 2026. MARKETING SCREENSHOT PASS: new
-             "See It In Action" section added between Workflow and
-             Contrast — 4 real, cleaned app screenshots (Plan the Day, Add
-             Evidence, Routine and Mood, Child Card) captured post-KF-050
-             fix (genuinely correct, non-trial-gated state), demo child
-             data ("Jess Parker") substituted for the real child's full
-             name/DOB before use. Workflow section's 3 CSS-only phone
-             mockups left untouched (portrait 9:17.5 frame doesn't fit the
-             landscape screenshots without heavy cropping) — real screens
-             now shown separately at their natural aspect ratio instead.
-  Prior:     S148 — 3 August 2026. ZERO-ADMIN SELF-SERVICE TRIAL LIVE.
+  Version:   1.4.0
+  Session:   S148 continued — 5 August 2026, second pass (Jon caught two
+             issues in the first pass — both fixed here). Hero's
+             .phone-frame and all 3 of Workflow's .phone-frame step
+             mockups now show the SAME real, cleaned screenshots as the
+             "See It In Action" section (dashboard / plan-the-day /
+             add-evidence / routine-mood) — first pass had deliberately
+             left these as the original CSS-only fake UI, reasoning the
+             fixed aspect-ratio:9/17.5 frame would crop real screenshots
+             too hard; Jon wanted real screens there too, not fake ones,
+             so .phone-frame__screen's fixed aspect-ratio was dropped
+             (image now sizes naturally, no cropping) instead of leaving
+             the frame fake. "See It In Action" section (4 real, cleaned
+             app screenshots between Workflow and Contrast) unchanged from
+             first pass. Demo child data ("Jess Parker") substituted for
+             the real child's full name/DOB in all screenshots before use.
+  Prior:     S148 continued — 3 August 2026. ZERO-ADMIN SELF-SERVICE TRIAL LIVE.
              Primary CTAs (hero, pricing card, final CTA) now point to the
              new hestia-signup.html — a 5-day free trial, no card required,
              calling main.py v2.9.0's /createHestiaTrialAccount. That route
@@ -181,7 +186,8 @@ a { color: inherit; text-decoration: none; }
 /* ── Phone frame (CSS-only mockups, no screenshots) ── */
 .phone-frame { background: #0F1724; border-radius: 2.75rem; padding: 0.55rem; position: relative; box-shadow: 0 0 0 1px rgba(255,255,255,0.07), inset 0 0 0 1px rgba(255,255,255,0.04), 0 40px 100px rgba(0,0,0,0.55), 0 12px 30px rgba(0,0,0,0.3); max-width: 270px; margin-inline: auto; }
 .phone-frame::before { content: ''; position: absolute; top: 0.85rem; left: 50%; transform: translateX(-50%); width: 52px; height: 5px; background: #0F1724; border-radius: 3px; z-index: 10; }
-.phone-frame__screen { border-radius: 2.2rem; overflow: hidden; background: var(--navy-mid); position: relative; aspect-ratio: 9/17.5; }
+.phone-frame__screen { border-radius: 2.2rem; overflow: hidden; background: var(--navy-mid); position: relative; }
+.phone-frame__screen img { width: 100%; display: block; }
 .screen__bar { background: var(--navy-deep); padding: 0.65rem 0.85rem; display: flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .screen__dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.12); }
 .screen__dot:first-child { background: rgba(197,160,89,0.4); }
@@ -427,20 +433,7 @@ a { color: inherit; text-decoration: none; }
       <div class="hero__media reveal">
         <div class="phone-frame">
           <div class="phone-frame__screen">
-            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
-            <div class="screen__body">
-              <div class="ui-tag ui-tag--gold">PLAN THE DAY</div>
-              <div class="ui-bar ui-bar--gold-solid ui-bar--medium"></div>
-              <div class="ui-block">
-                <div class="ui-bar ui-bar--short" style="margin-bottom:.4rem;"></div>
-                <div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div>
-                <div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div>
-                <div class="ui-bar ui-bar--medium"></div>
-              </div>
-              <div class="ui-tag ui-tag--green">TIER 2 — HIVEMIND</div>
-              <div class="ui-bar ui-bar--gold ui-bar--short"></div>
-              <div class="ui-btn-small">Generate Plan →</div>
-            </div>
+            <img src="assets/hestia-screen-dashboard.png" alt="Arena Hestia dashboard — Plan the day, Add evidence, Routine and mood, Child card">
           </div>
         </div>
       </div>
@@ -480,12 +473,7 @@ a { color: inherit; text-decoration: none; }
         <div class="workflow__step-num" aria-hidden="true">1</div>
         <div class="phone-frame" style="max-width:none;">
           <div class="phone-frame__screen">
-            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
-            <div class="screen__body">
-              <div class="ui-bar ui-bar--gold ui-bar--medium"></div>
-              <div class="ui-block"><div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div><div class="ui-bar ui-bar--short"></div></div>
-              <div class="ui-btn-small">Generate →</div>
-            </div>
+            <img src="assets/hestia-screen-plan-the-day.png" alt="Hestia Plan the Day screen — resilience and mood check-in, learning mode preference">
           </div>
         </div>
         <div class="workflow__step-label"><h3>Plan the day</h3><p>Tell Hestia what today needs — it drafts an AI-guided plan tailored to your child, grounded in what's worked before.</p></div>
@@ -494,12 +482,7 @@ a { color: inherit; text-decoration: none; }
         <div class="workflow__step-num" aria-hidden="true">2</div>
         <div class="phone-frame" style="max-width:none;">
           <div class="phone-frame__screen">
-            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
-            <div class="screen__body">
-              <div class="ui-tag ui-tag--green">COMMITTED</div>
-              <div class="ui-block"><div class="ui-bar ui-bar--full" style="margin-bottom:.3rem;"></div><div class="ui-bar ui-bar--medium"></div></div>
-              <div class="ui-bar ui-bar--gold ui-bar--short"></div>
-            </div>
+            <img src="assets/hestia-screen-add-evidence.png" alt="Hestia Add Evidence screen — photo, video, audio or written note capture with curriculum matching">
           </div>
         </div>
         <div class="workflow__step-label"><h3>Capture what happened</h3><p>A quick note or photo, logged in the moment — park it for later or commit it straight away.</p></div>
@@ -508,12 +491,7 @@ a { color: inherit; text-decoration: none; }
         <div class="workflow__step-num" aria-hidden="true">3</div>
         <div class="phone-frame" style="max-width:none;">
           <div class="phone-frame__screen">
-            <div class="screen__bar"><div class="screen__dot"></div><div class="screen__dot"></div><div class="screen__dot"></div></div>
-            <div class="screen__body">
-              <div class="ui-bar ui-bar--gold-solid ui-bar--medium"></div>
-              <div class="ui-block"><div class="ui-bar ui-bar--short" style="margin-bottom:.3rem;"></div><div class="ui-bar ui-bar--full"></div></div>
-              <div class="ui-bar ui-bar--full"></div>
-            </div>
+            <img src="assets/hestia-screen-routine-mood.png" alt="Hestia Routine and Mood screen — resilience score and mood tags logged with a timestamp">
           </div>
         </div>
         <div class="workflow__step-label"><h3>See the pattern over time</h3><p>Routine and mood tracked day by day — building a picture that's yours, ready when you need to show it.</p></div>

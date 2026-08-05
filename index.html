@@ -4,27 +4,37 @@
 
 <!-- ============================================================
   The Arena Hub — Ecosystem Homepage
-  Version:   2.1.0
-  Session:   S148 — 3 August 2026. VISUAL/CONTENT PASS per Jon's feedback
-             round: "sovereign products" → "sovereign tools" wording;
-             SECO tech-card now lists live destinations (Local Authority,
-             Police, Subject Access Request, Social Worker, Awarding Body,
-             Mainstream School); nav Log In removed (login/signup now lives
-             per-product, not on the index); product cards alternate media
-             side (Lite/Athena left, Hestia/Harmonia right); Hestia card is
-             now Live — real app screenshot in a phone-mockup frame, links
-             to hestia.html; Athena/Harmonia cards link to new coming-soon
-             placeholder pages instead of a toast. Section 4 "Arena Model"
-             flow chart replaced with a radial diagram — Hub crest centred,
-             the 4 products named around it with inward-pointing arrows.
+  Version:   2.2.0
+  Session:   S148 continued — 5 August 2026. MARKETING ASSET PASS: Hestia's
+             tile now uses a real, cleaned Dashboard screenshot
+             (assets/hestia-screen-dashboard.png) captured post-KF-050 fix
+             (genuinely correct, non-trial-gated state), full-bleed via
+             plain .product-card__media (same treatment as Lite's tile) —
+             dropped the old .phone-mock/.phone-mock-wrapper markup since
+             the new screenshot is a landscape browser capture, not a
+             portrait phone photo. Old hestia-app-screenshot.png left in
+             assets/ unreferenced (not deleted, in case of rollback).
+             Prior: S148 3 August 2026 VISUAL/CONTENT PASS per Jon's
+             feedback round: "sovereign products" → "sovereign tools"
+             wording; SECO tech-card now lists live destinations (Local
+             Authority, Police, Subject Access Request, Social Worker,
+             Awarding Body, Mainstream School); nav Log In removed
+             (login/signup now lives per-product, not on the index);
+             product cards alternate media side (Lite/Athena left,
+             Hestia/Harmonia right); Athena/Harmonia cards link to new
+             coming-soon placeholder pages instead of a toast. Section 4
+             "Arena Model" flow chart replaced with a radial diagram — Hub
+             crest centred, the 4 products named around it with
+             inward-pointing arrows.
   Author:    Jonathan Baguley · The Arena Hub Ltd
   Images:    assets/Dashboard_UI.png (Arena Lite) reused, blurred + single
              diagonal "UNDER CONSTRUCTION" ribbon, as the placeholder tile
              image for Athena/Harmonia until real screenshots exist.
-             assets/hestia-app-screenshot.png — real Hestia app screenshot
-             (portrait), shown via .phone-mock. assets/hub-crest.png — Arena
-             Hub crest, used as the radial diagram's centre and (from S148
-             onward) the shared "back to Arena.com" mark on product pages.
+             assets/hestia-screen-dashboard.png — real, cropped Hestia
+             Dashboard screenshot, full-bleed via .product-card__media (no
+             phone bezel). assets/hub-crest.png — Arena Hub crest, used as
+             the radial diagram's centre and (from S148 onward) the shared
+             "back to Arena.com" mark on product pages.
 ============================================================ -->
 
 <meta charset="UTF-8">
@@ -722,10 +732,8 @@ a { color: inherit; text-decoration: none; }
 
       <!-- PRODUCT 2 — ARENA HESTIA -->
       <article class="product-card product-card--reverse" id="arena-hestia">
-        <div class="product-card__media product-card__media--phone">
-          <div class="phone-mock">
-            <img src="assets/hestia-app-screenshot.png" alt="Arena Hestia app — current interface">
-          </div>
+        <div class="product-card__media">
+          <img src="assets/hestia-screen-dashboard.png" alt="Arena Hestia dashboard — Plan the day, Add evidence, Routine and mood, Child card">
         </div>
         <div class="product-card__body">
           <span class="status-badge status-badge--live"><span class="dot"></span> Live</span>
